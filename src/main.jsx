@@ -4,11 +4,11 @@ import App from "./App";
 import "./index.css";
 
 //import screens
-import PrincipalScreen from "./Screens/PrincipalScreen";
-import TurnosScreen from "./Screens/TurnosScreen";
-import RecorridosScreen from "./Screens/RecorridosScreen";
-import MuseoScreen from "./Screens/MuseoScreen";
-import BeepconsScreen from "./Screens/BeepconsScreen";
+import PrincipalScreen from "./Screens/PrincipalScreen/PrincipalScreen";
+import TurnosScreen from "./Screens/TurnosScreen/TurnosScreen";
+import RecorridosScreen from "./Screens/RecorridosScreen/RecorridosScreen";
+import MuseoScreen from "./Screens/MuseoScreen/MuseoScreen";
+import BeepconsScreen from "./Screens/BeepconsScreen/BeepconsScreen";
 
 
 
