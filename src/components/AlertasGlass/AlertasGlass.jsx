@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Principal() {
+export default function AlertasGlass() {
   return (
     <div>
-
+        AlertasGlass
     </div>
   )
 }

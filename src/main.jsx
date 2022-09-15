@@ -3,12 +3,21 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
+//import screens
+import PrincipalScreen from "./Screens/PrincipalScreen/PrincipalScreen";
+import TurnosScreen from "./Screens/TurnosScreen/TurnosScreen";
+import RecorridosScreen from "./Screens/RecorridosScreen/RecorridosScreen";
+import MuseoScreen from "./Screens/MuseoScreen/MuseoScreen";
+import BeepconsScreen from "./Screens/BeepconsScreen/BeepconsScreen";
+
+
+
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <PrincipalScreen />,
   },
   {
     path: "/login",
@@ -16,19 +25,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/museo",
-    element: <div>Museo Page</div>,
+    element: <MuseoScreen />,
   },
   {
     path: "/beepcons",
-    element: <div>Beepcons Page</div>,
+    element: <BeepconsScreen />,
   },
   {
     path: "/recorridos",
-    element: <div>Recorridos Page</div>,
+    element: <RecorridosScreen />,
   },
   {
     path: "/turnos",
-    element: <div>Turnos Page</div>,
+    element: <TurnosScreen />,
   },
 ]);
 

@@ -9,7 +9,7 @@
     font-style: normal;
 font-weight: 300;
 font-size: 48px;
-margin-bottom: 20px;
+margin-bottom: 0px;
 }
 
 .navigation-glass{
@@ -32,14 +32,16 @@ margin-bottom: 20px;
 }
 
 .navigation-glass__item{
+    text-decoration: none;
     cursor: pointer;
     height: 30px;
     width: fit-content;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     flex-direction: row;
     gap: 20px;
-    transition: 0.3s ease-in-out;
+    transition: 0.1s ease-in-out;
 }
 
 .navigation-glass__item:hover{

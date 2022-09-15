@@ -24,8 +24,8 @@ function App() {
   };
   return (
     <div className="App">
-      {/* <NavigationGlass/> */}
-      <TurnoGlass/>
+      <NavigationGlass/>
+      {/* <TurnoGlass/> */}
       {/* <form>
         <input type="text" />
       </form>
