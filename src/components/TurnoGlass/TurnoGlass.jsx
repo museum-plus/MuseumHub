@@ -40,9 +40,13 @@ export default function TurnoGlass() {
         </div>
       </div>
       <div className='turno-glass__body'>
+        <div className='turno-glass__body__content'>
         <TurnosGlassItem color="#9F51DD"></TurnosGlassItem>
         <TurnosGlassItem color="#E1B74A"></TurnosGlassItem>
         <TurnosGlassItem color="#78F165"></TurnosGlassItem>
+        <TurnosGlassItem color="#78F165"></TurnosGlassItem>
+        <TurnosGlassItem color="#78F165"></TurnosGlassItem>
+        </div>
       </div>
     </div>
   )

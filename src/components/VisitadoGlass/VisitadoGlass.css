@@ -1,0 +1,40 @@
+.visitado-glass__container {
+    overflow: hidden;
+    background: rgba(21, 21, 21, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    box-shadow: 0px 4px 24px 2px rgba(0, 0, 0, 0.25);
+    width: 589px;
+    height: 367px;
+    border-radius: 35px;
+}
+.visitado-glass__header{
+    height: 48px;
+    margin: 28px 0 0 42px;
+}
+.visitado-glass__header__text{
+    display: flex;
+    font-size: 48px;
+}
+/* HEADER */
+/* BODY */
+.visitado-glass__body{
+    margin-top: 40px;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+}
+.visitado-glass__body__content{
+    width: 250px;
+    height: 208px;
+    margin-left: 42px;
+    margin-right: 30px;
+}
+.visitado-glass__body__content__text{
+    font-size: 24px;
+    margin-bottom: 34px;
+}
+.visitado-glass__body__graph{
+    margin-top: -20px;
+    width: 200px;
+}
+/* BODY */
