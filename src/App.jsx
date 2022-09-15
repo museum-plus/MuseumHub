@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { db } from "./database/db";
+import NavigationGlass from "./components/NavigationGlass/NavigationGlass";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
@@ -22,10 +23,11 @@ function App() {
   };
   return (
     <div className="App">
-      <form>
+      <NavigationGlass/>
+      {/* <form>
         <input type="text" />
       </form>
-      <button onClick={registerMuseum}>Registrar Museo</button>
+      <button onClick={registerMuseum}>Registrar Museo</button> */}
     </div>
   );
 }
