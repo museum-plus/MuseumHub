@@ -1,4 +1,6 @@
 import React from "react";
+import homeIcon from "../../assets/homeIcon.svg";
+
 import "./NavigationGlass.css";
 
 function NavigationGlassItem(props) {
@@ -18,7 +20,9 @@ export default function NavigationGlass() {
   return (
     <div className="navigation-glass-container">
       <div className="navigation-glass">
-        <NavigationGlassItem icon="../" text="Inicio"/>
+        <h2>MuseumHub</h2>
+        <NavigationGlassItem icon={homeIcon} text="Inicio"/>
+        
       </div>
     </div>
   );
