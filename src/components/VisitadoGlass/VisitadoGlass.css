@@ -4,16 +4,16 @@
     border: 1px solid rgba(255, 255, 255, 0.19);
     box-shadow: 0px 4px 24px 2px rgba(0, 0, 0, 0.25);
     width: 589px;
-    height: 367px;
+    /* height: 367px; */
     border-radius: 35px;
 }
 .visitado-glass__header{
-    height: 48px;
+    height: 40px;
     margin: 28px 0 0 42px;
 }
 .visitado-glass__header__text{
     display: flex;
-    font-size: 48px;
+    font-size: 40px;
 }
 /* HEADER */
 /* BODY */
