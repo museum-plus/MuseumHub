@@ -13,3 +13,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}

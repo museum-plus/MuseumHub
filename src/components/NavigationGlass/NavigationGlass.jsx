@@ -5,6 +5,7 @@ import beepconsicon from "../../assets/beepconIcon.svg";
 import recorridosicon from "../../assets/recorridosicon.svg";
 
 import "./NavigationGlass.css";
+import { Link } from "react-router-dom";
 
 function NavigationGlassItem(props) {
   return(
@@ -12,9 +13,11 @@ function NavigationGlassItem(props) {
       <div className="navigation-glass__item__icon">
         <img src={props.icon} alt="icon" />
       </div>
+      <Link style={{}} unselectable to={props.route}>
       <div className="navigation-glass__item__text">
         {props.text}
       </div>
+      </Link>
     </div>
   )
 }
@@ -24,12 +27,11 @@ export default function NavigationGlass() {
     <div className="navigation-glass-container">
       <div className="navigation-glass">
         <div className="navigation-glass__title">MuseumHub</div>
-        <NavigationGlassItem icon={homeIcon} text="Inicio"/>
-        <NavigationGlassItem icon={museumicon} text="Tu museo"/>
-        <NavigationGlassItem icon={beepconsicon} text="Beepcons"/>
-        <NavigationGlassItem icon={recorridosicon} text="Tus recorridos"/>
-
-
+        <NavigationGlassItem icon={homeIcon} text="Inicio" route="/" />
+        <NavigationGlassItem icon={museumicon} text="Tu museo" route="/museo"/>
+        <NavigationGlassItem icon={beepconsicon} text="Beepcons" route="/beepcons" />
+        <NavigationGlassItem icon={recorridosicon} text="Tus recorridos" route="/recorridos" />
+        <NavigationGlassItem icon={recorridosicon} text="Turnos" route="/turnos" />
       </div>
     </div>
   );

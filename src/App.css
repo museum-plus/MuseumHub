@@ -2,7 +2,7 @@
   margin: 0;
   width: 100vw;
   height: 100vh;
-  background:url("glass 1.png");
+  background:url("./assets/background.png");
   background-size: 100%;
 }
 .App{
@@ -10,4 +10,7 @@
   height: 100vh;
   background: rgba(81, 96, 236, 0.29);
   backdrop-filter: blur(150px);
+
+  display: flex;
+  flex-direction: row;
 }
