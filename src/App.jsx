@@ -3,6 +3,7 @@ import { db } from "./database/db";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
+import TurnoGlass from "./components/TurnoGlass/TurnoGlass";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,10 +23,7 @@ function App() {
   };
   return (
     <div className="App">
-      <form>
-        <input type="text" />
-      </form>
-      <button onClick={registerMuseum}>Registrar Museo</button>
+      <TurnoGlass></TurnoGlass>
     </div>
   );
 }
