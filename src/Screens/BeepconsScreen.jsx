@@ -2,7 +2,7 @@ import React from 'react'
 import NavigationGlass from '../components/NavigationGlass/NavigationGlass'
 export default function BeepconsScreen() {
   return (
-    <div>
+    <div className='screen-blur'>
         <NavigationGlass />
       BeepconsScreen
     </div>

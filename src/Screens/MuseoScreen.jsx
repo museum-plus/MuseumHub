@@ -4,7 +4,7 @@ import NavigationGlass from '../components/NavigationGlass/NavigationGlass'
 export default function MuseoScreen() {
   return (
 
-    <div>
+    <div className='screen-blur'>
         <NavigationGlass />
         MuseoScreen
     </div>

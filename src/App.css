@@ -5,11 +5,16 @@
   background:url("./assets/background.png");
   background-size: 100%;
 }
+
+.screen-blur{
+
+  background: rgba(81, 96, 236, 0.29);
+  backdrop-filter: blur(150px);
+}
+
 .App{
   width: 100vw;
   height: 100vh;
-  background: rgba(81, 96, 236, 0.29);
-  backdrop-filter: blur(150px);
 
   display: flex;
   flex-direction: row;
