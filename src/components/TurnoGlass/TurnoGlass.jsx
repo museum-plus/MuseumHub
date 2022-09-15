@@ -1,6 +1,6 @@
 import React from 'react'
 import './TurnoGlass.css'
-import Calendar from './Calendar'
+import calendar from '../../assets/calendar.svg'
 export default function TurnoGlass() {
   return (
     <div className='container-turnoglass'>
@@ -9,10 +9,12 @@ export default function TurnoGlass() {
             Turnos Pendientes
           </div>
           <div className='icon-calendar'>
-            <Calendar/>
+          <img src={calendar} alt="icon" />
           </div>
         </div>
+        <div className='body-turnoglass'>
 
+        </div>
     </div>
   )
 }
