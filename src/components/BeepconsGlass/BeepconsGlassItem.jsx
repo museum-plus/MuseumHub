@@ -29,6 +29,7 @@ export default function BeepconsGlassItem(props) {
           handleDoubleClick={() => setShowInputTitle(true)}
           handleBlur={() => setShowInputTitle(false)}
           showInput={showInputTitle} />
+          
         </div>
         {/* </div> */}
       </motion.div>

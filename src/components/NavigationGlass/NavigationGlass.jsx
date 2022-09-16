@@ -14,7 +14,7 @@ import {
   query,
   where,
   getDocs,
-  setDoc
+  setDoc,
 } from "firebase/firestore";
 
 import "./NavigationGlass.css";
@@ -22,19 +22,18 @@ import { Link } from "react-router-dom";
 
 function NavigationGlassItem(props) {
   return (
-    <div className="navigation-glass__item">
-      <div className="navigation-glass__item__icon">
-        <img src={props.icon} alt="icon" />
-      </div>
-      <Link to={props.route}>
+    <Link to={props.route}>
+      <div className="navigation-glass__item">
+        <div className="navigation-glass__item__icon">
+          <img src={props.icon} alt="icon" />
+        </div>
         <div className="navigation-glass__item__text">{props.text}</div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 
 export default function NavigationGlass() {
-
   const registerMuseum = async () => {
     try {
       await setDoc(doc(db, "museums", "museum1"), {
@@ -46,7 +45,6 @@ export default function NavigationGlass() {
       console.log("ERROR ! =", e);
     }
   };
-
 
   const docas = async () => {
     // const q = query(collection(db, "museums"), where("city", "==", 'Neuquen'));
@@ -60,7 +58,6 @@ export default function NavigationGlass() {
       city: "Neuquen",
       country: "Argentina",
     });
-
   };
 
   return (

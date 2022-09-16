@@ -14,6 +14,16 @@
     flex-direction: column;
 }
 
+.recorridos-screen__modal__close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 30px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
 .recorridos-screen__modal:focus, *:focus{
     outline: none;
 }
@@ -21,6 +31,7 @@
 .recorridos-screen__modal__header{
     font-size: 40px;
     padding: 35px 35px 0 45px;
+    color: #fff;
 }
 
 .recorridos-screen__modal__body{
@@ -44,6 +55,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 35px   ;
+    padding-top: 0;
     padding-bottom: 45px;
     margin: 0 auto;
 }
@@ -74,6 +86,12 @@
     transition: all 0.2s ease;
     background-color: transparent;
     color: #fff;
+
+}
+
+.recorridos-screen__modal__body__row1__button:hover{
+    background-color: #ffffff;
+    color: #000;
 }
 
 .recorridos-screen__modal__body__row1__input__label{
@@ -88,7 +106,25 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+.recorridos-screen__modal__body__row2__group__text{
+    font-size: 23px;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.recorridos-screen__modal__body__row2__group__puntos{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.recorridos-screen__modal__body__row2__group__puntos > *{
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 

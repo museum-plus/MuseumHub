@@ -26,7 +26,6 @@
 
 .beepcons-glass__body__content__item__text {
     cursor: pointer;
-    transition: all 0.2s ease-in;
     color: #ffffffab;
     font-size: 24px;
     margin-bottom: 2px;
