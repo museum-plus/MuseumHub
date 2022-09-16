@@ -3,6 +3,7 @@ import "./TurnoGlass.css";
 import calendar from "../../assets/calendar.svg";
 import punto from "../../assets/punto.svg";
 import clock from "../../assets/clock.svg";
+import { motion } from "framer-motion"
 import Punto from "./Punto";
 
 function TurnosGlassItem(props) {
@@ -28,12 +29,12 @@ export default function TurnoGlass() {
   return (
     <div className="turno-glass__container">
       <div className="turno-glass__header">
-        <div className="turno-glass__header__text">
+        <motion.div className="turno-glass__header__text" whileTap={{ scale: 1.1 }} drag="x" dragConstraints={{ left: -5, right: 5 }}>
           Turnos Pendientes
           <div className="icon__calendar">
             <img src={calendar} alt="icon" />
           </div>
-        </div>
+        </motion.div>
       </div>
       <div className="turno-glass__body">
         <div className="turno-glass__body__content">

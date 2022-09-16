@@ -7,6 +7,8 @@ import edit from "../../assets/edit.svg";
 import clock from "../../assets/clock.svg";
 import deleteicon from "../../assets/deleteicon.svg";
 
+import { motion } from "framer-motion"
+
 export default function TurnosScreen() {
   return (
     <div className="screen-blur turnos-screen-container">

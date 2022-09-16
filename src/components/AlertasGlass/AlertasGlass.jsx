@@ -27,7 +27,7 @@ export default function AlertasGlass() {
           return (
             <div key={alert.id} className="alertas-glass__body__alert">
               <div className="alertas-glass__body__alert__icon">
-                <img src={phone} alt="..." />
+                <img src={`${phone}`} alt="..." />
               </div>
               <div className="alertas-glass__body__alert__text">
                 {alert.title}
