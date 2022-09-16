@@ -1,0 +1,33 @@
+
+.beepcons-container__item {
+    height: 100px;
+    width: 440px;
+    margin-top: 20px;
+    margin-left: 75px;
+    margin-bottom: 60px;
+}
+
+.beepcons-container__item__header {
+    display: flex;
+    font-size: 32px;
+    height: auto;
+}
+
+.beepcons-container__item__header__punto {
+    margin-right: 20px;
+    height: auto;
+}
+
+.beepcons-container__item__body{
+    width: 440px;
+    display: flex;
+    height: fit-content;
+
+}
+.beepcons-container__item__body__text {
+    width: 100%;
+    height: auto;
+    word-wrap: break-word;
+    font-size: 24px;
+    margin-left: 13px;
+}
