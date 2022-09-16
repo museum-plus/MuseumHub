@@ -1,21 +1,21 @@
 import React from 'react'
 import Punto from '../TurnoGlass/Punto'
-
+import { motion } from "framer-motion"
 import './BeepconsGlassItem.css'
-export default function BeepconsGlassItem() {
+export default function BeepconsGlassItem(props) {
   return (
-    <div className='beepcons-container__item'>
-      <div className='beepcons-container__item__header'>
-          <div className='beepcons-container__item__header__punto'>
-            <Punto color="#ab1234"/>
-          </div>
-          Punto 1
-      </div>
-      <div className='beepcons-container__item__body'>
-        <div className='beepcons-container__item__body__text'>
-          holAASDFAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+    <motion.div className='beepcons-glass__body__content__item' whileHover={{translateX: 5}}>
+      <div className='beepcons-glass__body__content__item__header'>
+        <div className='beepcons-glass__body__content__item__header_icon'>
+          <Punto color={props.color}></Punto>
+        </div>
+        <div className='beepcons-glass__body__content__item__header_titulo'>
+          Punto
         </div>
       </div>
-    </div>
+      <div className='beepcons-glass__body__content__item__text'>
+        {props.desc}
+      </div>
+    </motion.div>
   )
 }

@@ -7,60 +7,73 @@
     /* height: 543.17px; */
     border-radius: 35px;
 }
+
 /* HEADER */
-.turno-glass__header{
+.turno-glass__header {
     height: 48px;
     margin: 33px;
 }
-.turno-glass__header__text{
+
+.turno-glass__header__text {
     display: flex;
     font-size: 40px;
 }
-.icon__calendar{
+
+.icon__calendar {
     margin-left: 29px;
 }
+
 /* HEADER */
 /* BODY */
-.turno-glass__body{
+.turno-glass__body {
     margin: 52px;
-    max-width: 100%;
-    max-height: 100%;
+    width: auto;
+    height: auto;
     overflow-y: scroll;
     margin-top: 0;
     /* margin-bottom: 60px; */
 }
-.turno-glass__body__content{
+
+.turno-glass__body__content {
     height: 310px;
 }
+
 .turno-glass__body::-webkit-scrollbar {
     display: none;
-  }
-.turno-glass__body__container{
+}
+
+.turno-glass__body__container {
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
 }
-.turno-glass__body__info{
-    width: 100%;
+
+.turno-glass__body__info {
+    width: auto;
+    height: auto;
     display: flex;
 }
-.turno-glass__body__nombre{
+
+.turno-glass__body__nombre {
     margin-left: 47px;
     margin-top: 18px;
     padding-bottom: 14px;
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.67);
+    color: #ffffffab;
 }
-.turno-glass__body__text{
+
+.turno-glass__body__text {
     font-size: 24px;
     margin-left: 13px;
 }
-.hora__container{
+
+.hora__container {
     font-size: 20px;
     margin-top: 3px;
     margin-left: 23px;
     width: 200px;
     display: flex;
-    
+
 }
+
 /* BODY */

@@ -26,8 +26,11 @@ export default function Graph(props) {
         ],
     };
     const options = {
+        animation:{
+            duration:1500,
+        },
         responsive: 'true',
-        cutout: 75
+        cutout: 70
     }
     return <Doughnut data={data} options={options}/>;
 }

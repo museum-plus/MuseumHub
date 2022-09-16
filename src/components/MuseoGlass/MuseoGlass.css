@@ -1,0 +1,41 @@
+.museo-glass-container::-webkit-scrollbar {
+    display: none;
+  }
+.museo-glass__header {
+    margin-left: 35px;
+    height: auto;
+}
+
+.museo-glass__header__text {
+    align-items: center;
+    display: flex;
+    font-size: 48px;
+}
+
+.museo-glass__body {
+    display: flex;
+    padding: 0 40px;
+    margin-top: 43px;
+    width: auto;
+    height: auto;
+}
+
+.museo-glass__body__content {
+    width: auto;
+}
+.museo-glass__body__content__text{
+    font-size: 32px;
+    word-wrap: break-word;
+    color:#ffffff82;
+}
+.museo-glass__body__content__info{
+    margin-top: 26px;
+}
+.museo-glass__body__content__info__header{
+    font-size: 36px;
+}
+
+.museo-glass__body__content__info__text{
+    margin: 42px 0 45px 30px;
+    font-size: 32px;
+}

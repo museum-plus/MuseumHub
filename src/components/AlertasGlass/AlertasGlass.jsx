@@ -17,7 +17,15 @@ export default function AlertasGlass() {
     },
   ]);
   return (
-    <div className="alertas-glass">
+    <motion.div className="alertas-glass"
+    initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.6,
+        delay: 0.4,
+        ease: [0, 0.71, 0.2, 1.01]
+      }}
+    >
       <motion.div className="alertas-glass__header" whileTap={{ scale: 0.95 }}>
         <motion.div className="alertas-glass__header__text" >Alertas</motion.div>
         <div className="alertas-glass__header__icon">
@@ -38,6 +46,6 @@ export default function AlertasGlass() {
           );
         })}
       </div>
-    </div>
+      </motion.div>
   );
 }

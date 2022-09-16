@@ -26,7 +26,15 @@ function TurnosGlassItem(props) {
 
 export default function TurnoGlass() {
   return (
-    <div className="turno-glass__container">
+    <motion.div className="turno-glass__container"
+    initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.6,
+        delay: 0.2,
+        ease: [0, 0.71, 0.2, 1.01]
+      }}
+    >
       <div className="turno-glass__header">
         <motion.div className="turno-glass__header__text" whileTap={{ scale: 0.95 }}>
           Turnos Pendientes
@@ -44,6 +52,6 @@ export default function TurnoGlass() {
           <TurnosGlassItem color="#78F165"></TurnosGlassItem>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
