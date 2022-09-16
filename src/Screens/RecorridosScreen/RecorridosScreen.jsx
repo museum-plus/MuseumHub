@@ -28,7 +28,6 @@ export default function RecorridosScreen() {
           <RecorridosItem recorrido="Arte europeo XV" />
           <RecorridosItem recorrido="Arte europeo XV" />
           <RecorridosItem recorrido="Arte europeo XV" />
-
         </div>
       </div>
     </div>
@@ -42,7 +41,9 @@ function RecorridosItem(props) {
         <div className="recorridos-screen__body__row__icon">
           <Punto color="#9F51DD" />
         </div>
-        <div className="recorridos-screen__body__row__text">{props.recorrido}</div>
+        <div className="recorridos-screen__body__row__text">
+          {props.recorrido}
+        </div>
       </div>
       <div className="recorridos-screen__body__row2">
         <div className="recorridos-screen__body__row2__button">
