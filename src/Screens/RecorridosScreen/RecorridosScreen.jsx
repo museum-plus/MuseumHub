@@ -7,10 +7,13 @@ import deleteicon from "../../assets/deleteicon.svg";
 import { Modal } from "@mui/material";
 import "./RecorridosScreen.css";
 import "./Modal.css";
+import { motion } from "framer-motion";
 
 export default function RecorridosScreen() {
   const [open, setOpen] = React.useState(false);
   return (
+    
+    <>
     <div className="screen-blur container-screen">
       <NavigationGlass />
       <motion.div className="recorridos-screen"
@@ -45,7 +48,7 @@ export default function RecorridosScreen() {
           <RecorridosItem recorrido="Arte europeo XV" />
           <RecorridosItem recorrido="Arte europeo XV" />
         </div>
-      </div>
+      </motion.div>
       <Modal open={open}>
         <div className="recorridos-screen__modal">
           <div className="recorridos-screen__modal__header">Recorrido:</div>
@@ -76,6 +79,7 @@ export default function RecorridosScreen() {
         </div>
       </Modal>
     </div>
+    </>
   );
 }
 
