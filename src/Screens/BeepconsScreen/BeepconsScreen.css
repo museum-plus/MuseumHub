@@ -1,0 +1,10 @@
+.screen-container{
+    flex: 1;
+    overflow: hidden;
+}
+.screen{
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    
+}

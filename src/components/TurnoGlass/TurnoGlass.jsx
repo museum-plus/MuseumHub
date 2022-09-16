@@ -10,7 +10,6 @@ function TurnosGlassItem(props) {
     <div className="turno-glass__body__container">
       <div className="turno-glass__body__info">
         <Punto color={props.color}></Punto>
-        {/* <img src={punto} alt="icon" className='punto' /> */}
         <div className="turno-glass__body__text">Recorrido Arte Europeo</div>
         <div className="hora__container">
           18:00 - 19:30
