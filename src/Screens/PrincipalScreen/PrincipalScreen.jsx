@@ -3,6 +3,9 @@ import NavigationGlass from "../../components/NavigationGlass/NavigationGlass";
 import AlertasGlass from "../../components/AlertasGlass/AlertasGlass";
 import TurnoGlass from "../../components/TurnoGlass/TurnoGlass";
 import VisitadoGlass from "../../components/VisitadoGlass/VisitadoGlass";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../database/db";
+
 import "./PrincipalScreen.css";
 export default function PrincipalScreen() {
   return (
