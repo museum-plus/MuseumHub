@@ -1,49 +1,72 @@
-.navigation-glass-container{
-    height: 100vh;
-    width: 366px;
-    display: flex;
-    /* padding: 40px 0 40px 24px; */
+.navigation-glass-container {
+  height: 100vh;
+  width: 366px;
+  display: flex;
+  /* padding: 40px 0 40px 24px; */
 }
 
-.navigation-glass__title{
-    font-style: normal;
-font-weight: 300;
-font-size: 48px;
-margin-bottom: 0px;
+.navigation-glass__title {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 48px;
+  margin-bottom: 0px;
 }
 
-.navigation-glass{
-    height: auto;
-    width: 100%;
-    margin: 40px 0 40px 24px;
-    background: rgba(21, 21, 21, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.19);
-    box-shadow: 0px 4px 24px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 35px;
-    padding: 40px 0 40px 40px;
-    color: #fff;
-    font-weight: 100;
+.navigation-glass {
+  height: auto;
+  width: 100%;
+  margin: 40px 0 40px 24px;
+  background: rgba(21, 21, 21, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  box-shadow: 0px 4px 24px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 35px;
+  padding: 40px 0 40px 40px;
+  color: #fff;
+  font-weight: 100;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 30px;
 }
 
-.navigation-glass__item{
-    text-decoration: none;
-    cursor: pointer;
-    height: 30px;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 20px;
-    transition: 0.1s ease-in-out;
+.navigation-glass__item {
+  text-decoration: none;
+  cursor: pointer;
+  height: 30px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 20px;
+  transition: 0.1s ease-in-out;
 }
 
-.navigation-glass__item:hover{
-    transform: scale(1.1);
+.navigation-glass__item:hover {
+  transform: scale(1.1);
+}
+
+.navigation-glass__title {
+  display: inline-block;
+  position: relative;
+}
+
+.navigation-glass__title:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transform-origin: bottom right;
+  background-color: #fff;
+  transition: transform 0.45s ease-in-out;
+}
+
+.navigation-glass__title:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

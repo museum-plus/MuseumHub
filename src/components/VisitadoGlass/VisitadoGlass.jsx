@@ -2,6 +2,8 @@ import React from 'react'
 import './VisitadoGlass.css'
 import ojo from '../../assets/ojo.svg'
 import Graph from './Graph.jsx'
+import { motion } from "framer-motion"
+
 function Position(props){
   const styles = {
     primary:{color:props.color}
@@ -16,16 +18,16 @@ export default function VisitadoGlass(props) {
   return (
         <div className='visitado-glass__container'>
       <div className='visitado-glass__header'>
-        <div className='visitado-glass__header__text'>
+        <motion.div className='visitado-glass__header__text' whileTap={{ scale: 0.95 }}>
           Más visitado
           <div className='icon__calendar'>
             <img src={ojo} alt="icon" />
           </div>
-        </div>
+        </motion.div>
       </div>
       <div className='visitado-glass__body'>
         <div className='visitado-glass__body__content'>
-          <Position color="#EEC740"/>
+          <Position color="#EEC740" />
           <Position/>
           <Position/>
         </div>

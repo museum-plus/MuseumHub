@@ -2,6 +2,8 @@ import React from "react";
 import bell from "../../assets/bell.svg";
 import phone from "../../assets/phone.svg";
 import "./AlertasGlass.css";
+import { motion } from "framer-motion"
+
 
 export default function AlertasGlass() {
   const [alerts, setAlerts] = React.useState([
@@ -16,12 +18,12 @@ export default function AlertasGlass() {
   ]);
   return (
     <div className="alertas-glass">
-      <div className="alertas-glass__header">
-        <div className="alertas-glass__header__text">Alertas</div>
+      <motion.div className="alertas-glass__header" whileTap={{ scale: 0.95 }}>
+        <motion.div className="alertas-glass__header__text" >Alertas</motion.div>
         <div className="alertas-glass__header__icon">
           <img src={bell} alt="" />
         </div>
-      </div>
+      </motion.div>
       <div className="alertas-glass__body">
         {alerts.map((alert, index) => {
           return (

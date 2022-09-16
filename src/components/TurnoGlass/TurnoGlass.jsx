@@ -8,7 +8,7 @@ import Punto from "./Punto";
 
 function TurnosGlassItem(props) {
   return (
-    <div className="turno-glass__body__container">
+    <motion.div className="turno-glass__body__container" whileHover={{translateX: 5}}>
       <div className="turno-glass__body__info">
         <Punto color={props.color}></Punto>
         <div className="turno-glass__body__text">Recorrido Arte Europeo</div>
@@ -20,7 +20,7 @@ function TurnosGlassItem(props) {
         </div>
       </div>
       <div className="turno-glass__body__nombre">Daniel Chavez</div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -28,7 +28,7 @@ export default function TurnoGlass() {
   return (
     <div className="turno-glass__container">
       <div className="turno-glass__header">
-        <motion.div className="turno-glass__header__text" whileTap={{ scale: 1.1 }} drag="x" dragConstraints={{ left: -5, right: 5 }}>
+        <motion.div className="turno-glass__header__text" whileTap={{ scale: 0.95 }}>
           Turnos Pendientes
           <div className="icon__calendar">
             <img src={calendar} alt="icon" />
