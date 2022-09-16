@@ -9,6 +9,7 @@
 }
 
 .beepcons-glass__body__content__item__header {
+    cursor: pointer;
     align-items: center;
     margin-bottom: 18px;
     display: flex;
@@ -24,8 +25,43 @@
 }
 
 .beepcons-glass__body__content__item__text {
+    cursor: pointer;
+    transition: all 0.2s ease-in;
     color: #ffffffab;
+    font-size: 24px;
     margin-bottom: 2px;
     border-bottom: 2px solid #ffffff2d;
     padding-bottom: 15px;
+}
+
+.item-text-area {
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    resize: none;
+    overflow: auto;
+    border: 0px;
+    background-color: transparent;
+    color: #ffffffab;
+    font-size: 24px;
+    stroke: none;
+    height: 100%;
+    width: 100%;
+    font-weight: 300;
+}
+.item-text-area::-webkit-scrollbar {
+    display: none;
+}
+.item-text-area-title{
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    resize: none;
+    overflow: auto;
+    border: 0px;
+    background-color: transparent;
+    color: #ffffffde;
+    font-size: 32px;
+    stroke: none;
+    height: 100%;
+    width: 100%;
+    font-weight: 300;
 }
