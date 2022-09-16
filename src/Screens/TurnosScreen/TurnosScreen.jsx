@@ -13,27 +13,35 @@ export default function TurnosScreen() {
   return (
     <div className="screen-blur turnos-screen-container">
       <NavigationGlass />
-      <div className="turnos-screen">
-          <div className="turnos-screen__header">
-            <div className="turnos-screen__header__text">Turnos</div>
-            <div className="turnos-screen__header__icon">
-              <img src={plus} alt="" />
-            </div>
-          </div>
-          <div className="turnos-screen__body">
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
-            <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30"/>
+      <motion.div className="turnos-screen"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.6,
+          delay: 0.4,
+          ease: [0, 0.71, 0.2, 1.01]
+        }}
+      >
+        <div className="turnos-screen__header">
+          <div className="turnos-screen__header__text">Turnos</div>
+          <div className="turnos-screen__header__icon">
+            <img src={plus} alt="" />
           </div>
         </div>
-      </div>
+        <div className="turnos-screen__body">
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+          <TurnosItem visitante="Daniel Chavez" recorrido="Arte europeo XV" horario="18:00 - 19:30" />
+        </div>
+      </motion.div>
+    </div>
   );
 }
 

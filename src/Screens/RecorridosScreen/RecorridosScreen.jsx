@@ -4,13 +4,22 @@ import plus from "../../assets/plus.svg";
 import Punto from "../../components/TurnoGlass/Punto";
 import edit from "../../assets/edit.svg";
 import deleteicon from "../../assets/deleteicon.svg";
+import { motion } from "framer-motion";
 
 import "./RecorridosScreen.css";
 export default function RecorridosScreen() {
   return (
     <div className="screen-blur container-screen">
       <NavigationGlass />
-      <div className="recorridos-screen">
+      <motion.div className="recorridos-screen"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.6,
+                delay: 0.4,
+                ease: [0, 0.71, 0.2, 1.01]
+            }}
+        >
         <div className="recorridos-screen__header">
           <div className="recorridos-screen__header__text">Recorridos</div>
           <div className="recorridos-screen__header__icon">
@@ -29,7 +38,7 @@ export default function RecorridosScreen() {
           <RecorridosItem recorrido="Arte europeo XV" />
           <RecorridosItem recorrido="Arte europeo XV" />
         </div>
-      </div>
+        </motion.div>
     </div>
   );
 }
