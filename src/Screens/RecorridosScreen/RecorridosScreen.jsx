@@ -12,7 +12,9 @@ import close from "../../assets/close.svg";
 
 export default function RecorridosScreen() {
   const [open, setOpen] = React.useState(false);
-  const sendRecorrido = () => {};
+  const sendRecorrido = () => {
+    console.log("enviando recorrido");
+  };
   return (
     <>
       <div className="screen-blur container-screen">

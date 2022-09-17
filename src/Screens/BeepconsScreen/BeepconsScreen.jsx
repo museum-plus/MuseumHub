@@ -9,6 +9,7 @@ export default function BeepconsScreen() {
         <NavigationGlass/> 
       </div>
         <BeepconsGlass/>
+
   </div>
   )
 }
