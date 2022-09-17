@@ -8,7 +8,7 @@ import plus from "../../assets/plus.svg";
 import close from "../../assets/close.svg";
 import { motion } from "framer-motion";
 import "./beepcons-modal.css";
-
+import { getBeepcons } from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
@@ -22,6 +22,7 @@ import {
   where,
   documentId,
 } from "firebase/firestore";
+
 
 export default function BeepconsGlass() {
   const [open, setOpen] = React.useState(false);
@@ -46,7 +47,7 @@ export default function BeepconsGlass() {
       const beepconsList = beepconsSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-        }));
+      }));
 
       console.log(beepconsList);
 
@@ -55,16 +56,15 @@ export default function BeepconsGlass() {
     getBeepcons();
   }, []);
 
-  const getBeepcons = async () => {
-    const beepconsCollection = collection(db, "beepcons");
-    const beepconsSnapshot = await getDocs(beepconsCollection);
-    const beepconsList = beepconsSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      }));
-
-    setBeepcons(beepconsList);
-  };
+  // const getBeepcons = async () => {
+  //   const beepconsCollection = collection(db, "beepcons");
+  //   const beepconsSnapshot = await getDocs(beepconsCollection);
+  //   const beepconsList = beepconsSnapshot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //     }));
+  //   setBeepcons(beepconsList);
+  // };
 
   const sendBeepcon = async () => {
     setOpen(false);
@@ -78,7 +78,7 @@ export default function BeepconsGlass() {
         },
       });
 
-      getBeepcons();
+      setBeepcons(getBeepcons());
       //Limpio los campos
       setUserInput({
         id: "",
