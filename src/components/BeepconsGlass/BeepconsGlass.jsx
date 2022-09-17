@@ -2,10 +2,11 @@ import React from "react";
 import "./BeepconsGlass.css";
 import Punto from "../TurnoGlass/Punto";
 import BeepconsGlassItem from "./BeepconsGlassItem";
+import { TextareaAutosize } from "@mui/material";
 import { Modal } from "@mui/material";
 import plus from "../../assets/plus.svg";
 import { motion } from "framer-motion";
-import "./beepcons-modal.css"
+import "./beepcons-modal.css";
 export default function BeepconsGlass() {
   const [open, setOpen] = React.useState(false);
   const openModal = () => {
@@ -36,7 +37,7 @@ export default function BeepconsGlass() {
         </div>
         <div className="beepcons-glass__body">
           {/* <div className='beepcons-glass__body__content'> */}
-          <BeepconsGlassItem
+          {/* <BeepconsGlassItem
             color="#9F51DD"
             punto="Punto 1"
             desc="holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -99,16 +100,34 @@ export default function BeepconsGlass() {
           <BeepconsGlassItem
             color="#E1B74A"
             punto="Punto 5"
-            desc="Essssssssssssssssssssssssssssssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-          />
+            desc="Essssssssssssssssssssssssssssssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" */}
+          {/* /> */}
           {/* </div> */}
         </div>
       </motion.div>
       <Modal open={open}>
-          <div className="beepcons_modal">
-            
+        <div className="beepcons_modal">
+          <div className="beepcons-modal__row1">
+            <div className="beepcons-modal__title">Añadir Beepcon</div>
+            <div className="beepcons-modal__inputs">
+              <span className="beepcons-modal__input1__label">Nombre</span>
+              <input type="text" className="beepcons-modal__input1" />
+
+              <div className="beepcons-modal__input__group">
+                <span className="beepcons-modal__input2__label">
+                  Descripcion
+                </span>
+                <TextareaAutosize
+                  aria-label="empty textarea"
+                  className="beepcons-modal__input2"
+                  placeholder=""
+                />
+              </div>
+            </div>
           </div>
-        </Modal>
+          <div className="beepcons-modal__row2"></div>
+        </div>
+      </Modal>
     </>
   );
 }
