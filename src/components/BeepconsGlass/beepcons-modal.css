@@ -1,5 +1,5 @@
 .beepcons_modal{
-    width: 65%;
+    width: 90%;
     height: 90%;
     background: #15151583;
     backdrop-filter: blur(127px);
@@ -19,6 +19,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin-right: 5rem;
 }
 
 .beepcons-modal__inputs{
@@ -27,6 +28,23 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.beepcons-modal__button{
+    outline: none;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 24px;
+    padding: 35px;
+    margin-top: auto;
+    border: solid 3px #fff;
+    transition: all 0.3s ease;
+}
+
+.beepcons-modal__button:hover{
+    background: #fff;
+    color: #000;
 }
 
 .beepcons-modal__inputs > span, .beepcons-modal__input__group > span{
@@ -94,4 +112,28 @@
 .beepcons-modal__row2{
     flex: 1;
     height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.beepcons-modal__row2 > img{
+    width: 95%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.beepcons-modal__input__test{
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    border: 3px;
+    background-color: transparent;
+    color: #ffffffab;
+    font-size: 24px;
+    stroke: none;
+    font-weight: 300;
+    border-bottom: 2px solid #ffffffab;
 }

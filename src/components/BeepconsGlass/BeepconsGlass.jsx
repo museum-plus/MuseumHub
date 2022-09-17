@@ -5,13 +5,95 @@ import BeepconsGlassItem from "./BeepconsGlassItem";
 import { TextareaAutosize } from "@mui/material";
 import { Modal } from "@mui/material";
 import plus from "../../assets/plus.svg";
+import close from "../../assets/close.svg";
 import { motion } from "framer-motion";
 import "./beepcons-modal.css";
+
+import { db } from "../../database/db";
+import {
+  collection,
+  addDoc,
+  doc,
+  onSnapshot,
+  getDocs,
+  setDoc,
+  query,
+  getDoc,
+  where,
+  documentId,
+} from "firebase/firestore";
+
 export default function BeepconsGlass() {
   const [open, setOpen] = React.useState(false);
+  const [beepcons, setBeepcons] = React.useState([]);
+  const [userInput, setUserInput] = React.useState({
+    id: "",
+    nombre: "",
+    descripcion: "",
+    posicion: {
+      x: 0,
+      y: 0,
+    },
+  });
   const openModal = () => {
     setOpen(true);
   };
+
+  React.useEffect(() => {
+    const getBeepcons = async () => {
+      const beepconsCollection = collection(db, "beepcons");
+      const beepconsSnapshot = await getDocs(beepconsCollection);
+      const beepconsList = beepconsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+        }));
+
+      console.log(beepconsList);
+
+      setBeepcons(beepconsList);
+    };
+    getBeepcons();
+  }, []);
+
+  const getBeepcons = async () => {
+    const beepconsCollection = collection(db, "beepcons");
+    const beepconsSnapshot = await getDocs(beepconsCollection);
+    const beepconsList = beepconsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+      }));
+
+    setBeepcons(beepconsList);
+  };
+
+  const sendBeepcon = async () => {
+    setOpen(false);
+    try {
+      const docRef = await addDoc(collection(db, "beepcons"), {
+        nombre: userInput.nombre,
+        descripcion: userInput.descripcion,
+        posicion: {
+          x: userInput.posicion.x,
+          y: userInput.posicion.y,
+        },
+      });
+
+      getBeepcons();
+      //Limpio los campos
+      setUserInput({
+        id: "",
+        nombre: "",
+        descripcion: "",
+        posicion: {
+          x: 0,
+          y: 0,
+        },
+      });
+    } catch (e) {
+      console.log("ERROR ! =", e);
+    }
+  };
+
   return (
     <>
       <motion.div
@@ -36,83 +118,42 @@ export default function BeepconsGlass() {
           </div>
         </div>
         <div className="beepcons-glass__body">
-          {/* <div className='beepcons-glass__body__content'> */}
-          {/* <BeepconsGlassItem
-            color="#9F51DD"
-            punto="Punto 1"
-            desc="holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          />
-          <BeepconsGlassItem
-            color="#E1B74A"
-            punto="Punto 2"
-            desc="Essssssssssssssssssssssssssssssssssssss"
-          />
-          <BeepconsGlassItem
-            color="#78F165"
-            punto="Punto 3"
-            desc="gggggggggggggggolaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          />
-          <BeepconsGlassItem
-            color="#9F51DD"
-            punto="Punto 4"
-            desc="holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          />
-          <BeepconsGlassItem
-            color="#E1B74A"
-            punto="Punto 5"
-            desc="Essssssssssssssssssssssssssssssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-          />
-          <BeepconsGlassItem
-            color="#9F51DD"
-            punto="Punto 4"
-            desc="holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          />
-          <BeepconsGlassItem
-            color="#E1B74A"
-            punto="Punto 5"
-            desc="Essssssssssssssssssssssssssssssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-          />
-          <BeepconsGlassItem
-            color="#9F51DD"
-            punto="Punto 4"
-            desc="holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          />
-          <BeepconsGlassItem
-            color="#E1B74A"
-            punto="Punto 5"
-            desc="Essssssssssssssssssssssssssssssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-          />
-          <BeepconsGlassItem
-            color="#9F51DD"
-            punto="Punto 4"
-            desc="holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          />
-          <BeepconsGlassItem
-            color="#E1B74A"
-            punto="Punto 5"
-            desc="Essssssssssssssssssssssssssssssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-          />
-          <BeepconsGlassItem
-            color="#9F51DD"
-            punto="Punto 4"
-            desc="holaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          />
-          <BeepconsGlassItem
-            color="#E1B74A"
-            punto="Punto 5"
-            desc="Essssssssssssssssssssssssssssssssssssssffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" */}
-          {/* /> */}
-          {/* </div> */}
+          {beepcons.map((beepcon) => (
+            <BeepconsGlassItem
+              key={beepcon.id}
+              package={{
+                nombre: beepcon.nombre,
+                descripcion: beepcon.descripcion,
+                posicion: beepcon.posicion,
+                id: beepcon.id,
+              }}
+              color="#fff"
+            />
+          ))}
         </div>
       </motion.div>
       <Modal open={open}>
         <div className="beepcons_modal">
+          <span
+            className="recorridos-screen__modal__close"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            <img src={close} alt="close" />
+          </span>
           <div className="beepcons-modal__row1">
-            <div className="beepcons-modal__title">Añadir Beepcon</div>
+            <div className="beepcons-modal__title">Beepcon</div>
             <div className="beepcons-modal__inputs">
               <span className="beepcons-modal__input1__label">Nombre</span>
-              <input type="text" className="beepcons-modal__input1" />
-
+              <input
+                type="text"
+                className="beepcons-modal__input1"
+                value={userInput.nombre}
+                onChange={(e) => {
+                  setUserInput({ ...userInput, nombre: e.target.value });
+                }}
+              />
               <div className="beepcons-modal__input__group">
                 <span className="beepcons-modal__input2__label">
                   Descripcion
@@ -121,11 +162,61 @@ export default function BeepconsGlass() {
                   aria-label="empty textarea"
                   className="beepcons-modal__input2"
                   placeholder=""
+                  value={userInput.descripcion}
+                  onChange={(e) => {
+                    setUserInput({
+                      ...userInput,
+                      descripcion: e.target.value,
+                    });
+                  }}
                 />
+                <input
+                  type="text"
+                  placeholder="posicion x"
+                  className="beepcons-modal__input__test"
+                  value={userInput.posicion.x}
+                  onChange={(e) => {
+                    setUserInput({
+                      ...userInput,
+                      posicion: {
+                        ...userInput.posicion,
+                        x: e.target.value,
+                      },
+                    });
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="posicion y"
+                  className="beepcons-modal__input__test"
+                  value={userInput.posicion.y}
+                  onChange={(e) => {
+                    setUserInput({
+                      ...userInput,
+                      posicion: {
+                        ...userInput.posicion,
+                        y: e.target.value,
+                      },
+                    });
+                  }}
+                />
+
+                <motion.button
+                  className="beepcons-modal__button"
+                  onClick={sendBeepcon}
+                >
+                  Añadir Beepcon
+                </motion.button>
               </div>
             </div>
           </div>
-          <div className="beepcons-modal__row2"></div>
+
+          <div className="beepcons-modal__row2">
+            <img
+              src="https://cdn.discordapp.com/attachments/961286035134889994/1020483736271343626/unknown.png"
+              alt="plano"
+            />
+          </div>
         </div>
       </Modal>
     </>

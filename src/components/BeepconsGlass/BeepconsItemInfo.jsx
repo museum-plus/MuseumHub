@@ -18,6 +18,7 @@ export default function BeepconsItemInfo(props) {
               if (e.key === "Enter") {
                 e.preventDefault();
                 props.handleBlur();
+                props.sendEditedValues();
               }
             }}
           />
