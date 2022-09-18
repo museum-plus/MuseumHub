@@ -1,30 +1,42 @@
 import React from 'react'
 import './MuseoGlass.css'
+import { getMuseum } from "../../database/getBeepcons";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+
 export default function MuseoGlass() {
+    const [museo, setMuseo] = React.useState({});
+    React.useEffect(() => {
+        async function get() {
+            let museo = await getMuseum();
+            setMuseo(museo[0]);
+        }
+        get();
+      }, []);
+      console.log(museo)
     return (
         <>
             <div className='museo-glass__header'>
                 <div className="museo-glass__header__text">
-                    Museo Nacional de Bellas Artes
+                    {museo.nombre}
                 </div>
             </div>
             <div className='museo-glass__body'>
                 <div className='museo-glass__body__content'>
                     <div className='museo-glass__body__content__text'>
-                        museo nacional bellas artes descripcion museo nacional bellas artes descripcion museo nacional bellas artes descripcion museo nacional bellas artes descripcion museo nacional bellas artes descripcion
+                        {museo.descripcion}
                     </div>
                     <div className='museo-glass__body__content__info'>
                         <div className='museo-glass__body__content__info__header'>
-                            Ubicación
+                            Dirección:
                         </div>
                         <div className='museo-glass__body__content__info__text'>
-                            Provincia
+                            Provincia: {museo.direccion.provincia}
                         </div>
                         <div className='museo-glass__body__content__info__text'>
-                            Ciudad
+                            Ciudad: {museo.direccion.ciudad}
                         </div>
                         <div className='museo-glass__body__content__info__text'>
-                            Calle
+                            Calle: {museo.direccion.calle}
                         </div>
                     </div>
                 </div>

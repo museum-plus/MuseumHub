@@ -14,39 +14,49 @@ import {
   } from "firebase/firestore";
 import refresh from '../assets/refresh.svg'
 
+const getMuseum = async () =>{
+  const museumCollection = collection(db, "museum");
+  const museumSnapshot = await getDocs(museumCollection);
+  const museumList = museumSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+    }));
+    return museumList;
+}
+
 const getBeepcons = async () =>{
-        const beepconsCollection = collection(db, "beepcons");
-        const beepconsSnapshot = await getDocs(beepconsCollection);
-        const beepconsList = beepconsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-          }));
-          return beepconsList;
+  const beepconsCollection = collection(db, "beepcons");
+  const beepconsSnapshot = await getDocs(beepconsCollection);
+  const beepconsList = beepconsSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+    }));
+    return beepconsList;
 }
 
 const getRecorridos = async () =>{
-    const recorridosCollection = collection(db, "recorridos");
-    const recorridosSnapshot = await getDocs(recorridosCollection);
-    const recorridosList = recorridosSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      }));
-      return recorridosList;
+  const recorridosCollection = collection(db, "recorridos");
+  const recorridosSnapshot = await getDocs(recorridosCollection);
+  const recorridosList = recorridosSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+    }));
+    return recorridosList;
 }
 
 const getTurnos = async () =>{
-    const turnosCollection = collection(db, "turnos");
-    const turnosSnapshot = await getDocs(turnosCollection);
-    const turnosList = turnosSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      }));
-      return turnosList;
+  const turnosCollection = collection(db, "turnos");
+  const turnosSnapshot = await getDocs(turnosCollection);
+  const turnosList = turnosSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+    }));
+    return turnosList;
 }
 const deleteTurnos = async (id) =>{
-    await deleteDoc(doc(db, "turnos", id));
-    console.log(id)
-    return id;
+  await deleteDoc(doc(db, "turnos", id));
+  console.log(id)
+  return id;
     
 }
 
@@ -58,4 +68,4 @@ const RefreshButton = (props) => {
   )
 }
 
-export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton};
+export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton, getMuseum};

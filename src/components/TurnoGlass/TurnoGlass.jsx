@@ -44,12 +44,11 @@ function TurnosInfo(props) {
 }
 export default function TurnoGlass() {
   const [turnos, setTurnos] = React.useState([]);
-  console.log(turnos)
   React.useEffect(() => {
-    async function hola() {
+    async function get() {
       setTurnos(await getTurnos());
     }
-    hola();
+    get();
   }, []);
   return (
     <motion.div className="turno-glass__container"
