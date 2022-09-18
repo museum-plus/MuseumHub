@@ -11,7 +11,7 @@ import "./Modal.css";
 import { motion } from "framer-motion";
 import close from "../../assets/close.svg";
 import RecorridoGlassSelected from '../../components/RecorridoGlass/RecorridoGlassSelect'
-import { getBeepcons, getRecorridos } from "../../database/getBeepcons";
+import { getBeepcons, getRecorridos, } from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
@@ -24,6 +24,7 @@ import {
   getDoc,
   where,
   documentId,
+  deleteDoc,
 } from "firebase/firestore";
 import BeepconsGlassItem from "../../components/BeepconsGlass/BeepconsGlassItem";
 export default function RecorridosScreen() {
@@ -96,6 +97,10 @@ export default function RecorridosScreen() {
     }
   };
 
+  const getterRecorridos = async () => {
+    setRecorridos(await getRecorridos())
+  };
+
   
   const deleteRecorrido = async (recorrido) => {
 
@@ -134,6 +139,7 @@ export default function RecorridosScreen() {
                   nombre: recorrido.nombre,
                   descripcion: recorrido.descripcion,
                   id: recorrido.id,
+                  actualizar: getterRecorridos,
                 }}
               />
             ))}
@@ -217,8 +223,12 @@ Lista de tareas
 */
 
 function RecorridosItem(props) {
-  const { nombre, descripcion, id} = props.package;
-
+  const { nombre, descripcion, id, actualizar} = props.package;
+  const deleteRecorrido = async () => {
+    console.log("Eliminar recorrido");
+  await deleteDoc(doc(db, "recorridos", id));
+  actualizar();
+  }
   return (
     <div className="recorridos-screen__body__item">
       <div className="recorridos-screen__body__row">
