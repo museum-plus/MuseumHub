@@ -67,8 +67,9 @@ export default function BeepconsGlassItem(props) {
         onHoverEnd={e => { }}
       >
         <BeepconsItemInfo
-          value={desc}
-          handleChange={(e) => setDesc(e.target.value)}
+          value={userInput.descripcion}
+          sendEditedValues={()=>{sendEditedValues()}}
+          handleChange={(e) => setUserInput({...userInput, descripcion: e.target.value})}
           handleDoubleClick={() => setShowInput(true)}
           handleBlur={() => setShowInput(false)}
           showInput={showInput} />

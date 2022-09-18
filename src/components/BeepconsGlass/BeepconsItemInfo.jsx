@@ -24,7 +24,7 @@ export default function BeepconsItemInfo(props) {
           />
         ) : (
           <TextareaAutosize
-            style={{ width: "100%" }}
+            style={{ width: "100%", userSelect: "revert"}}
             className="item-text-area"
             type="text"
             value={props.value}
@@ -35,6 +35,7 @@ export default function BeepconsItemInfo(props) {
               if (e.key === "Enter") {
                 e.preventDefault();
                 props.handleBlur();
+                props.sendEditedValues();
               }
             }}
           />

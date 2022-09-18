@@ -7,10 +7,11 @@ import Punto from "../../components/TurnoGlass/Punto";
 import edit from "../../assets/edit.svg";
 import clock from "../../assets/clock.svg";
 import deleteicon from "../../assets/deleteicon.svg";
-import { getRecorridos, getTurnos } from "../../database/getBeepcons";
+import { getRecorridos, getTurnos, deleteTurnos } from "../../database/getBeepcons";
 import { motion } from "framer-motion";
 import { Modal } from "@mui/material";
 import { db } from "../../database/db";
+import close from "../../assets/close.svg";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 export default function TurnosScreen() {
   const [open, setOpen] = React.useState(false);
@@ -54,6 +55,9 @@ export default function TurnosScreen() {
       console.log("ERROR ! =", e);
     }
   }
+  const setearTurnos = async () =>{
+    setTurnos(await getTurnos())
+  }
 
   return (
     <div className="screen-blur turnos-screen-container">
@@ -78,6 +82,7 @@ export default function TurnosScreen() {
           {turnos.map((turno) => (
 
             <TurnosItem
+              setearTurnos={setearTurnos()}
               key={turno.id}
               id={turno.id}
               visitante={turno.visitante}
@@ -91,6 +96,9 @@ export default function TurnosScreen() {
       </motion.div>
       <Modal open={open}>
         <div className="turnos_modal">
+            <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
+              <img src={close} alt="close" />
+            </span>
           <div>
             <p> Turnos </p>
             <input type="text" onChange={(e)=>{setData({...data, visitante: e.target.value })}} value={data.visitante}/>
@@ -112,7 +120,11 @@ export default function TurnosScreen() {
 }
 
 function TurnosItem(props) {
+  const [open, setOpen] = React.useState(false);
   const [recorrido, setRecorrido] = React.useState({});
+  const openModal = () => {
+    setOpen(true);
+  };
   React.useEffect(() => {
     const get = async () => {
       const docRef = doc(db, "recorridos", props.recorrido_id);
@@ -121,6 +133,11 @@ function TurnosItem(props) {
     };
     get();
   }, [props.recorrido_id]);
+  const deleteTurno = async () =>{
+    await deleteTurnos(props.id)
+    props.setearTurnos();
+  }
+
   return (
     <div key={props.id} className="turnos-screen__body__item">
       <div className="turnos-screen__body__row">
@@ -141,13 +158,14 @@ function TurnosItem(props) {
         <div className="turnos-screen__body__row2__text">{recorrido.nombre}</div>
         <div className="turnos-screen__body__row2__button__group">
           <div className="turnos-screen__body__row2__button__group__edit">
-            <img src={edit} alt="..." />
+            <img src={edit} alt="..." onClick={()=>{openModal()}}/>
           </div>
           <div className="turnos-screen__body__row2__button__group__delete">
-            <img src={deleteicon} alt="" />
+            <img src={deleteicon} alt="" onClick={()=>{deleteTurno()}}/>
           </div>
         </div>
       </div>
     </div>
   );
 }
+//Hacer componente modal el cual sirva tanto para el edit como para el create
