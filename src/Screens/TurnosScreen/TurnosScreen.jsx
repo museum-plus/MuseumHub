@@ -28,8 +28,12 @@ export default function TurnosScreen() {
 
   React.useEffect(() => {
     const get = async () => {
-      setRecorridos(await getRecorridos());
-      setTurnos(await getTurnos());
+      let cloned_recorridos = recorridos
+      let cloned_turnos = turnos
+      cloned_turnos = await getTurnos()
+      cloned_recorridos = await getRecorridos()
+      setRecorridos(cloned_recorridos)
+      setTurnos(cloned_turnos);
     };
     get();
   }, []);
@@ -77,7 +81,14 @@ export default function TurnosScreen() {
     setTurnos(await getTurnos())
   }
   const openModal = () => {
-    setOpen(true);
+    if (recorridos.length > 0) {
+      setOpen(true);
+    } else {
+      let answer = confirm("No hay recorridos disponibles, cree uno primero");
+      if (answer) {
+        window.location.href = "/recorridos";
+      }
+    } 
   }
 
   const closeModal = () => {
