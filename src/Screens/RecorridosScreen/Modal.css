@@ -50,11 +50,11 @@
 }
 
 .recorridos-screen__modal__body__row2{
-    flex: 1;
+    width: 400px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 35px   ;
     padding-top: 0;
     padding-bottom: 45px;
     margin: 0 auto;
@@ -103,9 +103,9 @@
 }
 
 .recorridos-screen__modal__body__row2__group{
-    flex: 1;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .recorridos-screen__modal__body__row2__group__text{
@@ -116,7 +116,7 @@
     margin-bottom: 5px;
 }
 
-.recorridos-screen__modal__body__row2__group__puntos{
+/* .recorridos-screen__modal__body__row2__group__puntos{
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -125,6 +125,13 @@
 .recorridos-screen__modal__body__row2__group__puntos > *{
     padding: 10px;
     margin-bottom: 10px;
-}
+} */
 
+.recorridos-screen__modal__body__row2__group__puntos{
+    height: 100%;
+   overflow: auto;
+  }
+  .recorridos-screen__modal__body__row2__group__puntos::-webkit-scrollbar {
+    display: none;
+  }
 

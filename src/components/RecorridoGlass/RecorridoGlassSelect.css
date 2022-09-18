@@ -1,0 +1,12 @@
+.item{
+    margin: 20px 0;
+    display: flex;
+    height: auto;
+    text-align: center;
+}
+.item__text{
+    width: 400px;
+    font-size: 20px;
+    padding-left: 15px;
+    word-wrap: break-word;
+}

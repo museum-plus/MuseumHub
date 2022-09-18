@@ -6,6 +6,7 @@ import edit from "../../assets/edit.svg";
 import deleteicon from "../../assets/deleteicon.svg";
 import { Box, Modal } from "@mui/material";
 import "./RecorridosScreen.css";
+import ListItem from '@mui/material/ListItem';
 import "./Modal.css";
 import { motion } from "framer-motion";
 import close from "../../assets/close.svg";
@@ -29,6 +30,9 @@ export default function RecorridosScreen() {
   const [beepcons, setBeepcons] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [recorridos, setRecorridos] = React.useState([]);
+  const [checkbox, setCheckbox] = React.useState();
+  const [puntos, setPuntos] = React.useState([])
+
   React.useEffect(() => {
     async function hola() {
       setBeepcons(await getBeepcons());
@@ -54,6 +58,35 @@ export default function RecorridosScreen() {
 
     setRecorridos(recorridosList);
   };
+  // const handleChange = (e,beepcon) => {
+    // if (puntos.includes(checkbox)) {
+    //   console.log("entro a la que se elimina")
+    // } else {
+    //   console.log("entro a la que no se elimina")
+    //   setPuntos(current => [checkbox, ...current]);
+    // }
+    // console.log(checkbox);
+    // console.log(puntos)
+    // ------------------
+    // if (e.target.checked) {
+    //   setPuntos(value => [...value, beepcon.id])
+    // } else {
+    //   setPuntos(value => value.filter(it => it !== beepcon.id))
+    // }
+    // console.log(puntos)
+    
+  // }
+  const handleCheck = (e,beepcon) => {
+    var updatedList = [...puntos];
+    if (e.target.checked) {
+      updatedList = [...puntos, e.target.value];
+    } else {
+      updatedList.splice(puntos.indexOf(e.target.value), 1);
+    }
+    setPuntos(updatedList);
+    console.log(puntos)
+  };
+
   const sendRecorrido = async () => {
     // setOpen(false);
     // try {
@@ -169,18 +202,29 @@ export default function RecorridosScreen() {
                     Seleccione los puntos:
                   </div>
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
-                        {beepcons.map((beepcon) => (
-                          <RecorridoGlassSelected
-                            key={beepcon.id}
-                            package={{
-                              nombre: beepcon.nombre,
-                              descripcion: beepcon.descripcion,
-                              posicion: beepcon.posicion,
-                              id: beepcon.id,
-                            }}
-                            color="#fff"
-                          />
-                        ))}
+                    {beepcons.map((beepcon) => (
+                      // <RecorridoGlassSelected
+                      //   key={beepcon.id}
+                      //   package={{
+                      //     nombre: beepcon.nombre,
+                      //     descripcion: beepcon.descripcion,
+                      //     posicion: beepcon.posicion,
+                      //     id: beepcon.id,
+                      //   }}
+                      //   color="#fff"
+                      // />
+                      <ListItem key={beepcon.id} component="div" disablePadding className='item'>
+                        <Punto color="#fff"></Punto>
+                        <div className='item__text'>
+                          {beepcon.nombre}
+                        </div>
+                        <div className='checkbox'>
+                          {console.log(beepcon.id)}
+                          <input type="checkbox" value={beepcon.id}
+                            onChange={(e)=>{handleCheck(e,beepcon)}} />
+                        </div>
+                      </ListItem>
+                    ))}
                   </div>
                 </div>
               </div>
