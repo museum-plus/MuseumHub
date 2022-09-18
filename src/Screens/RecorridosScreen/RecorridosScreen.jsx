@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import DialogAsignar from "./DialogAsignar";
 import close from "../../assets/close.svg";
 import RecorridoGlassSelected from '../../components/RecorridoGlass/RecorridoGlassSelect'
-import { getBeepcons, getRecorridos, getTurnos, } from "../../database/getBeepcons";
+import { getBeepcons, getRecorridos, getTurnos, RefreshButton, } from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
@@ -132,7 +132,9 @@ export default function RecorridosScreen() {
           }}
         >
           <div className="recorridos-screen__header">
+
             <div className="recorridos-screen__header__text">Recorridos</div>
+            <RefreshButton refresh={() => { getterRecorridos() }}/>
             <div
               className="recorridos-screen__header__icon"
               onClick={async () => {

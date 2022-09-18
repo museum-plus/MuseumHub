@@ -12,6 +12,7 @@ import {
     where,
     documentId
   } from "firebase/firestore";
+import refresh from '../assets/refresh.svg'
 
 const getBeepcons = async () =>{
         const beepconsCollection = collection(db, "beepcons");
@@ -48,4 +49,13 @@ const deleteTurnos = async (id) =>{
     return id;
     
 }
-export { deleteTurnos, getTurnos, getRecorridos, getBeepcons};
+
+const RefreshButton = (props) => {
+  return(
+    <button className="refresh" onClick={props.refresh}>
+      <img src={refresh} alt="refresh" />
+    </button>
+  )
+}
+
+export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton};

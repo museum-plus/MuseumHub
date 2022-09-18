@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { Modal } from "@mui/material";
 import { db } from "../../database/db";
 import close from "../../assets/close.svg";
+import { RefreshButton } from "../../database/getBeepcons";
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 export default function TurnosScreen() {
   const [open, setOpen] = React.useState(false);
@@ -129,6 +130,7 @@ export default function TurnosScreen() {
       >
         <div className="turnos-screen__header">
           <div className="turnos-screen__header__text">Turnos</div>
+          <RefreshButton refresh={() => {setearTurnos()}}/>
           <div className="turnos-screen__header__icon" onClick={openModal}>
             <img src={plus} alt="" />
           </div>

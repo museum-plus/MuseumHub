@@ -18,3 +18,28 @@ a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
+
+.refresh{
+  justify-self: flex-end;
+  margin-left: auto;
+  margin-right: 30px;
+  height: 35px;
+  width: 35px;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  background-color: transparent;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.refresh > img{
+  height: 30px;
+  width: 30px;
+  transition: all 0.2s ease;
+  background-position: center;
+}
+
+.refresh:hover{
+  transform: scale(1.1);
+}

@@ -9,6 +9,7 @@ import close from "../../assets/close.svg";
 import { motion } from "framer-motion";
 import "./beepcons-modal.css";
 import { getBeepcons } from "../../database/getBeepcons";
+import { RefreshButton } from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
@@ -39,6 +40,10 @@ export default function BeepconsGlass() {
   });
   const openModal = () => {
     setOpen(true);
+  };
+
+  const getterBeepcons = async () => {
+    setBeepcons(await getBeepcons());
   };
 
   React.useEffect(() => {
@@ -94,7 +99,9 @@ export default function BeepconsGlass() {
             <div className="beepcons-icon-punto">
               <Punto color="#fff" />
             </div>
+            
           </div>
+          <RefreshButton refresh={() => {getterBeepcons()}}/>
           <div className="beepcons-glass__header__icon" onClick={openModal}>
             <img src={plus} alt="" />
           </div>
