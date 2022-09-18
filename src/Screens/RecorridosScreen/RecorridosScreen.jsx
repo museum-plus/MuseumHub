@@ -86,7 +86,7 @@ export default function RecorridosScreen() {
         nombre: userInput.nombre,
         descripcion: userInput.descripcion,
         puntos: reducedBeepcons.filter((beepcon) => beepcon.selected),
-        
+        turnos: [],
       });
 
       console.log("Document recorrido written with ID: ", docRef.id);
@@ -243,7 +243,7 @@ function RecorridosItem(props) {
   const deleteRecorrido = async () => {
     console.log("Eliminar recorrido");
     await deleteDoc(doc(db, "recorridos", id));
-    
+
     actualizar();
   }
   return (

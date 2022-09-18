@@ -47,14 +47,14 @@ export default function TurnosScreen() {
         recorrido_id: data.recorrido_id,
       });
 
-      const recorridoRef = doc(db, "recorridos", data.recorrido_id); //Referencia al recorrido del turno
+      const recorridoRef =  doc(db, "recorridos", data.recorrido_id); //Referencia al recorrido del turno
       const recorridoSnap = await getDoc(recorridoRef); //Obtengo el recorrido
       const recorridoData = recorridoSnap.data(); //Obtengo los datos del recorrido
       const recorridoTurnos = recorridoData.turnos; //Obtengo el array de turnos del recorrido
       const turnoId = docRef.id; //Id del turno agregado
 
       //Añado el id del turno al array de turnos del recorrido con updateDoc
-      await updateDoc(recorridoRef, {
+      const updateRef = await updateDoc(recorridoRef, {
         turnos: [...recorridoTurnos, turnoId], 
       });
 
@@ -109,6 +109,11 @@ export default function TurnosScreen() {
     setDataFecha();
     setDataRecorrido();
   }
+  const handleSelectChange = (e) => { 
+    console.log(e.target.value)
+    let value = e.target.value;
+    setData({ ...data, recorrido_id: value })
+  }
   return (
     <div className="screen-blur turnos-screen-container">
       <NavigationGlass />
@@ -158,7 +163,7 @@ export default function TurnosScreen() {
             <button onClick={sendTurno} >Guardar</button>
           </div>
           <div>
-            <select onChange={(e) => { setData({ ...data, recorrido_id: e.target.value }) }}>
+            <select onClick={handleSelectChange} >
               {recorridos.map((recorrido) => (
                 <option key={recorrido.id} value={recorrido.id}>{recorrido.nombre}</option>
               ))}
