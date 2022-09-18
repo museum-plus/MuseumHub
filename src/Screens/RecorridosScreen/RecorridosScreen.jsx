@@ -80,6 +80,12 @@ export default function RecorridosScreen() {
     console.log(newReducedBeepcons);
   };
   const sendRecorrido = async () => {
+    if (userInput.nombre === "" || userInput.descripcion === "" || userInput.puntos.length === 0 )  {
+      alert("Complete todos los campos");
+      return;
+    }
+
+    
     setOpen(false);
     try {
       const docRef = await addDoc(collection(db, "recorridos"), {
@@ -214,10 +220,10 @@ export default function RecorridosScreen() {
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
                     {
                     beepcons.map((beepcon) => {return (
-                      <>
+                      <div className="recorridos-modal__item">
                         <p>{beepcon.nombre}</p>
                         <input type="checkbox" onClick={() => handleCheck(beepcon)} />
-                      </>
+                      </div>
                     )})
 
                     }

@@ -11,6 +11,8 @@
   padding: 45px;
 }
 
+
+
 .recorridos-screen__header {
   display: flex;
   flex-direction: row;
@@ -86,6 +88,53 @@
 }
 p {
   margin: 0;
+}
+
+.recorridos-modal__item{
+  font-size: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  
+}
+
+.recorridos-modal__item > input {
+  appearance: none;
+  margin: 0;
+  background-color: transparent;
+  border: 1px solid #fff;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.recorridos-modal__item > input:checked {
+  background-color: #fff;
+  border: 1px solid #fff;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+
+}
+
+.recorridos-modal__item > input:hover {
+  background-color: #ffffff30;
+  border: 1px solid #fff;
+
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.recorridos-modal__item > input:checked:hover{
+  background-color: #fff;
+  border: 1px solid #fff;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 .recorridos-screen__body__row2__button {
   height: 40px;
