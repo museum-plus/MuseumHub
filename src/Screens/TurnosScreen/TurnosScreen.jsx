@@ -15,17 +15,15 @@ import close from "../../assets/close.svg";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 export default function TurnosScreen() {
   const [open, setOpen] = React.useState(false);
+  const [openEdit, setOpenEdit] = React.useState(false);
   const [recorridos, setRecorridos] = React.useState([]);
   const [turnos, setTurnos] = React.useState([]);
-  const [data, setData] = React.useState({	
+  const [data, setData] = React.useState({
     visitante: "",
     horario: "",
     fecha: "",
     recorrido_id: "",
-    });
-  const openModal = () => {
-    setOpen(true);
-  };
+  });
 
   React.useEffect(() => {
     const get = async () => {
@@ -35,30 +33,64 @@ export default function TurnosScreen() {
     get();
   }, []);
 
-  const sendTurno = async () =>{
+  const sendTurno = async () => {
     setOpen(false);
-    try {
-      const docRef = await addDoc(collection(db, "turnos"), {
-        visitante: data.visitante,
-        horario: data.horario,
-        fecha: data.fecha,
-        recorrido_id: data.recorrido_id,
-      });
-      setTurnos(await getTurnos());
-      setData({
-        visitante: "",
-        horario: "",
-        fecha: "",
-        recorrido_id: "",
-      });
-    } catch (e) {
-      console.log("ERROR ! =", e);
-    }
+    console.log("entro sendTurno")
+    // try {
+    //   const docRef = await addDoc(collection(db, "turnos"), {
+    //     visitante: data.visitante,
+    //     horario: data.horario,
+    //     fecha: data.fecha,
+    //     recorrido_id: data.recorrido_id,
+    //   });
+    //   setTurnos(await getTurnos());
+    //   setData({
+    //     visitante: "",
+    //     horario: "",
+    //     fecha: "",
+    //     recorrido_id: "",
+    //   });
+    // } catch (e) {
+    //   console.log("ERROR ! =", e);
+    // }
   }
-  const setearTurnos = async () =>{
+  const setearTurnos = async () => {
     setTurnos(await getTurnos())
   }
+  const openModal = () => {
+    setOpen(true);
+  }
 
+  const closeModal = () => {
+    setOpen(false);
+  }
+
+  const openModalEdit = () => {
+    setOpenEdit(true);
+  }
+  const closeModalEdit = () => {
+    setOpenEdit(false);
+  }
+  //seters Data
+  const setDataVisitante = (visitante) => {
+    console.log(visitante, "SET DATA VISITANTE")
+    setData({ ...data, visitante: visitante })
+  }
+  const setDataHorario = (horario) => {
+    setData({ ...data, horario: e.target.value })
+  }
+  const setDataFecha = (fecha) => {
+    setData({ ...data, fecha: e.target.value })
+  }
+  const setDataRecorrido = (recorrido) => {
+    setData({ ...data, recorrido_id: e.target.value })
+  }
+  const setersData = () => {
+    setDataVisitante();
+    setDataHorario();
+    setDataFecha();
+    setDataRecorrido();
+  }
   return (
     <div className="screen-blur turnos-screen-container">
       <NavigationGlass />
@@ -82,7 +114,8 @@ export default function TurnosScreen() {
           {turnos.map((turno) => (
 
             <TurnosItem
-              setearTurnos={setearTurnos()}
+              openModalEdit={() => { openModalEdit() }}
+              setearTurnos={() => { setearTurnos() }}
               key={turno.id}
               id={turno.id}
               visitante={turno.visitante}
@@ -96,18 +129,18 @@ export default function TurnosScreen() {
       </motion.div>
       <Modal open={open}>
         <div className="turnos_modal">
-            <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
-              <img src={close} alt="close" />
-            </span>
+          <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
+            <img src={close} alt="close" />
+          </span>
           <div>
             <p> Turnos </p>
-            <input type="text" onChange={(e)=>{setData({...data, visitante: e.target.value })}} value={data.visitante}/>
-            <input type="text" onChange={(e)=>{setData({...data, horario: e.target.value })}} value={data.horario}/>
-            <input type="text" onChange={(e)=>{setData({...data, fecha: e.target.value })}} value={data.fecha}/>          
+            <input type="text" onChange={(e) => { setData({ ...data, visitante: e.target.value }) }} value={data.visitante} />
+            <input type="text" onChange={(e) => { setData({ ...data, horario: e.target.value }) }} value={data.horario} />
+            <input type="text" onChange={(e) => { setData({ ...data, fecha: e.target.value }) }} value={data.fecha} />
             <button onClick={sendTurno} >Guardar</button>
           </div>
           <div>
-            <select onChange={(e)=>{setData({...data, recorrido_id: e.target.value})}}>
+            <select onChange={(e) => { setData({ ...data, recorrido_id: e.target.value }) }}>
               {recorridos.map((recorrido) => (
                 <option key={recorrido.id} value={recorrido.id}>{recorrido.nombre}</option>
               ))}
@@ -115,16 +148,16 @@ export default function TurnosScreen() {
           </div>
         </div>
       </Modal>
+      <ModalEdit open={openEdit}
+        closeModalEdit={() => { closeModalEdit() }}
+      />
     </div>
   );
 }
 
 function TurnosItem(props) {
-  const [open, setOpen] = React.useState(false);
   const [recorrido, setRecorrido] = React.useState({});
-  const openModal = () => {
-    setOpen(true);
-  };
+
   React.useEffect(() => {
     const get = async () => {
       const docRef = doc(db, "recorridos", props.recorrido_id);
@@ -133,7 +166,7 @@ function TurnosItem(props) {
     };
     get();
   }, [props.recorrido_id]);
-  const deleteTurno = async () =>{
+  const deleteTurno = async () => {
     await deleteTurnos(props.id)
     props.setearTurnos();
   }
@@ -158,14 +191,26 @@ function TurnosItem(props) {
         <div className="turnos-screen__body__row2__text">{recorrido.nombre}</div>
         <div className="turnos-screen__body__row2__button__group">
           <div className="turnos-screen__body__row2__button__group__edit">
-            <img src={edit} alt="..." onClick={()=>{openModal()}}/>
+            <img src={edit} alt="..." onClick={() => { props.openModalEdit() }} />
           </div>
           <div className="turnos-screen__body__row2__button__group__delete">
-            <img src={deleteicon} alt="" onClick={()=>{deleteTurno()}}/>
+            <img src={deleteicon} alt="" onClick={() => { deleteTurno() }} />
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function ModalEdit(props) {
+  return (
+    <Modal open={props.open}>
+      <div className="turnos_modal">
+        <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
+          <img src={close} alt="close" />
+        </span>
+      </div>
+    </Modal>
   );
 }
 //Hacer componente modal el cual sirva tanto para el edit como para el create
