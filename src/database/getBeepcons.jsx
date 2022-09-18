@@ -5,14 +5,15 @@ import {
     doc,
     onSnapshot,
     getDocs,
+    deleteDoc,
     setDoc,
     query,
     getDoc,
     where,
-    documentId,
+    documentId
   } from "firebase/firestore";
 
-export const getBeepcons = async () =>{
+const getBeepcons = async () =>{
         const beepconsCollection = collection(db, "beepcons");
         const beepconsSnapshot = await getDocs(beepconsCollection);
         const beepconsList = beepconsSnapshot.docs.map((doc) => ({
@@ -22,7 +23,7 @@ export const getBeepcons = async () =>{
           return beepconsList;
 }
 
-export const getRecorridos = async () =>{
+const getRecorridos = async () =>{
     const recorridosCollection = collection(db, "recorridos");
     const recorridosSnapshot = await getDocs(recorridosCollection);
     const recorridosList = recorridosSnapshot.docs.map((doc) => ({
@@ -32,7 +33,7 @@ export const getRecorridos = async () =>{
       return recorridosList;
 }
 
-export const getTurnos = async () =>{
+const getTurnos = async () =>{
     const turnosCollection = collection(db, "turnos");
     const turnosSnapshot = await getDocs(turnosCollection);
     const turnosList = turnosSnapshot.docs.map((doc) => ({
@@ -41,3 +42,10 @@ export const getTurnos = async () =>{
       }));
       return turnosList;
 }
+const deleteTurnos = async (id) =>{
+    await deleteDoc(doc(db, "turnos", id));
+    console.log(id)
+    return id;
+    
+}
+export { deleteTurnos, getTurnos, getRecorridos, getBeepcons};
