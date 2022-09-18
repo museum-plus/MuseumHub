@@ -5,6 +5,8 @@ import beepconsicon from "../../assets/beepconIcon.svg";
 import recorridosicon from "../../assets/recorridosicon.svg";
 import turnosIcon from "../../assets/turnos.svg";
 import { db } from "../../database/db";
+import './Cube.css'
+import { useAnimationFrame } from "framer-motion";
 import {
   collection,
   addDoc,
@@ -63,7 +65,10 @@ export default function NavigationGlass() {
   return (
     <div className="navigation-glass-container">
       <div className="navigation-glass">
+        <section>
+        <Cube />
         <div className="navigation-glass__title">MuseumHub</div>
+        </section>
         <NavigationGlassItem icon={homeIcon} text="Inicio" route="/" />
         <NavigationGlassItem icon={museumicon} text="Tu museo" route="/museo" />
         <NavigationGlassItem
@@ -81,3 +86,28 @@ export default function NavigationGlass() {
     </div>
   );
 }
+
+
+export function Cube() {
+  const ref = React.useRef(null);
+
+  useAnimationFrame((t) => {
+    const rotate = Math.sin(t / 1500) * 200;
+    const y = (1 + Math.sin(t / 1000)) * -5;
+    ref.current.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`;
+  });
+
+  return (
+    <div className="container">
+      <div className="cube" ref={ref}>
+        <div className="side front" />
+        <div className="side left" />
+        <div className="side right" />
+        <div className="side top" />
+        <div className="side bottom" />
+        <div className="side back" />
+      </div>
+    </div>
+  );
+}
+

@@ -1,0 +1,47 @@
+.container {
+    perspective: 800px;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+  }
+  
+  .cube {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+  
+  .side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    opacity: 1;
+  }
+  
+  .front {
+    transform: rotateY(0deg) translateZ(15px);
+    background-color: #974298;
+  }
+  .right {
+    transform: rotateY(90deg) translateZ(15px);
+    background-color: #D69800;
+  }
+  .back {
+    transform: rotateY(180deg) translateZ(15px);
+    background-color: #E61720;
+  }
+  .left {
+    transform: rotateY(-90deg) translateZ(15px);
+    background-color: #64AABD;
+  }
+  .top {
+    transform: rotateX(90deg) translateZ(15px);
+    background-color: #0099ff;
+  }
+  .bottom {
+    transform: rotateX(-90deg) translateZ(15px);
+    background-color: #22cc88;
+  }
+  
