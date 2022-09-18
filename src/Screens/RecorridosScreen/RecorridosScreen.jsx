@@ -9,9 +9,10 @@ import "./RecorridosScreen.css";
 import ListItem from '@mui/material/ListItem';
 import "./Modal.css";
 import { motion } from "framer-motion";
+import DialogAsignar from "./DialogAsignar";
 import close from "../../assets/close.svg";
 import RecorridoGlassSelected from '../../components/RecorridoGlass/RecorridoGlassSelect'
-import { getBeepcons, getRecorridos, } from "../../database/getBeepcons";
+import { getBeepcons, getRecorridos, getTurnos, } from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
@@ -29,16 +30,21 @@ import {
 import BeepconsGlassItem from "../../components/BeepconsGlass/BeepconsGlassItem";
 export default function RecorridosScreen() {
   const [beepcons, setBeepcons] = React.useState([]);
+  const [turnos, setTurnos] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [openAsignar, setOpenAsignar] = React.useState(false);
   const [recorridos, setRecorridos] = React.useState([]);
+  const [recorridoId, setRecorridoId] = React.useState("");
   const [reducedBeepcons, setReducedBeepcons] = React.useState([]);
 
   React.useEffect(() => {
     async function hola() {
       let beepcons = await getBeepcons();
       let recorridos = await getRecorridos();
+      let turnos = await getTurnos();
       setBeepcons(beepcons);
       setRecorridos(recorridos);
+      setTurnos(turnos);
       
       let r_beepcons = beepcons.map((beepcon) => {
         return {
@@ -79,6 +85,7 @@ export default function RecorridosScreen() {
         nombre: userInput.nombre,
         descripcion: userInput.descripcion,
         puntos: reducedBeepcons.filter((beepcon) => beepcon.selected),
+        
       });
 
       console.log("Document recorrido written with ID: ", docRef.id);
@@ -101,10 +108,11 @@ export default function RecorridosScreen() {
     setRecorridos(await getRecorridos())
   };
 
-  
-  const deleteRecorrido = async (recorrido) => {
+  const openDialog = (id) => {
+    setRecorridoId(id);
+    setOpenAsignar(true);
+  };
 
-  }
   return (
     <>
       <div className="screen-blur container-screen">
@@ -140,11 +148,13 @@ export default function RecorridosScreen() {
                   descripcion: recorrido.descripcion,
                   id: recorrido.id,
                   actualizar: getterRecorridos,
+                  openAsignar: openDialog,
                 }}
               />
             ))}
           </div>
         </motion.div>
+        {/* MODAL AÑADIR */}
         <Modal open={open}>
           <div className="recorridos-screen__modal">
             <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
@@ -209,6 +219,8 @@ export default function RecorridosScreen() {
             </div>
           </div>
         </Modal>
+        {/* Dialog ASIGNAR */}
+        <DialogAsignar setRecorridos={()=>{ getterRecorridos}} open={openAsignar} onClose={() => setOpenAsignar(false)} id={recorridoId} />
       </div>
     </>
   );
@@ -223,7 +235,7 @@ Lista de tareas
 */
 
 function RecorridosItem(props) {
-  const { nombre, descripcion, id, actualizar} = props.package;
+  const { nombre, descripcion, id, actualizar, openAsignar} = props.package;
   const deleteRecorrido = async () => {
     console.log("Eliminar recorrido");
   await deleteDoc(doc(db, "recorridos", id));
@@ -240,7 +252,7 @@ function RecorridosItem(props) {
         </div>
       </div>
       <div className="recorridos-screen__body__row2">
-        <div className="recorridos-screen__body__row2__button">
+        <div className="recorridos-screen__body__row2__button" onClick={()=>{openAsignar(id)}}>
           <p>Asignar Turno</p>
         </div>
         <div className="recorridos-screen__body__row2__button__group">

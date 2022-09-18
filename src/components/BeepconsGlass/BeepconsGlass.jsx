@@ -22,6 +22,7 @@ import {
   where,
   documentId,
 } from "firebase/firestore";
+import { useRef } from "react";
 
 
 export default function BeepconsGlass() {
@@ -193,10 +194,7 @@ export default function BeepconsGlass() {
           </div>
 
           <div className="beepcons-modal__row2">
-            <img
-              src="https://cdn.discordapp.com/attachments/961286035134889994/1020483736271343626/unknown.png"
-              alt="plano"
-            />
+
           </div>
         </div>
       </Modal>
