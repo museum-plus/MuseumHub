@@ -46,7 +46,7 @@
   flex: 1;
   height: 100%;
   display: grid;
-  place-items: center start;
+  place-items: start start;
   overflow-y: scroll;
   grid-template-columns: repeat(2, 1fr);
   padding-left: 35px;

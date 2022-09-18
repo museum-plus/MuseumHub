@@ -21,3 +21,23 @@ export const getBeepcons = async () =>{
           }));
           return beepconsList;
 }
+
+export const getRecorridos = async () =>{
+    const recorridosCollection = collection(db, "recorridos");
+    const recorridosSnapshot = await getDocs(recorridosCollection);
+    const recorridosList = recorridosSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+      }));
+      return recorridosList;
+}
+
+export const getTurnos = async () =>{
+    const turnosCollection = collection(db, "turnos");
+    const turnosSnapshot = await getDocs(turnosCollection);
+    const turnosList = turnosSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+      }));
+      return turnosList;
+}

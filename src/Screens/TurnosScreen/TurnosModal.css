@@ -1,0 +1,19 @@
+.turnos_modal{
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+    width: 50%;
+    height: 70%;
+    background: #15151583;
+    backdrop-filter: blur(127px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 35px;
+}
+
+.turnos_modal:has(p){
+    font-size: 48px;
+}
+
