@@ -11,7 +11,7 @@ import "./Modal.css";
 import { motion } from "framer-motion";
 import close from "../../assets/close.svg";
 import RecorridoGlassSelected from '../../components/RecorridoGlass/RecorridoGlassSelect'
-import { getBeepcons } from "../../database/getBeepcons";
+import { getBeepcons, getRecorridos } from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
@@ -30,88 +30,76 @@ export default function RecorridosScreen() {
   const [beepcons, setBeepcons] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [recorridos, setRecorridos] = React.useState([]);
-  const [checkbox, setCheckbox] = React.useState();
-  const [puntos, setPuntos] = React.useState([])
+  const [reducedBeepcons, setReducedBeepcons] = React.useState([]);
 
   React.useEffect(() => {
     async function hola() {
-      setBeepcons(await getBeepcons());
+      let beepcons = await getBeepcons();
+      let recorridos = await getRecorridos();
+      setBeepcons(beepcons);
+      setRecorridos(recorridos);
+      
+      let r_beepcons = beepcons.map((beepcon) => {
+        return {
+          id: beepcon.id,
+          selected: false,
+        };
+      }
+      );
+      setReducedBeepcons(r_beepcons);
+      // console.log(reducedBeepcons);
     }
     hola();
   }, []);
-
   const [userInput, setUserInput] = React.useState({
     id: "",
     nombre: "",
     descripcion: "",
     puntos: [],
   });
-
-
-  const getRecorridos = async () => {
-    const recorridosCollection = collection(db, "recorridos");
-    const recorridosSnapshot = await getDocs(recorridosCollection);
-    const recorridosList = recorridosSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-
-    setRecorridos(recorridosList);
+  const handleCheck = (beepcon) => {
+    let newReducedBeepcons = reducedBeepcons.map((r_beepcon) => {
+      if (r_beepcon.id === beepcon.id) {
+        return {
+          ...r_beepcon,
+          selected: !r_beepcon.selected,
+        };
+      } else {
+        return r_beepcon;
+      }
+    });
+    setReducedBeepcons(newReducedBeepcons);
+    console.log(newReducedBeepcons);
   };
-  // const handleChange = (e,beepcon) => {
-    // if (puntos.includes(checkbox)) {
-    //   console.log("entro a la que se elimina")
-    // } else {
-    //   console.log("entro a la que no se elimina")
-    //   setPuntos(current => [checkbox, ...current]);
-    // }
-    // console.log(checkbox);
-    // console.log(puntos)
-    // ------------------
-    // if (e.target.checked) {
-    //   setPuntos(value => [...value, beepcon.id])
-    // } else {
-    //   setPuntos(value => value.filter(it => it !== beepcon.id))
-    // }
-    // console.log(puntos)
-    
-  // }
-  const handleCheck = (e,beepcon) => {
-    var updatedList = [...puntos];
-    if (e.target.checked) {
-      updatedList = [...puntos, e.target.value];
-    } else {
-      updatedList.splice(puntos.indexOf(e.target.value), 1);
-    }
-    setPuntos(updatedList);
-    console.log(puntos)
-  };
-
   const sendRecorrido = async () => {
-    // setOpen(false);
-    // try {
-    //   const docRef = await addDoc(collection(db, "recorridos"), {
-    //     nombre: userInput.nombre,
-    //     descripcion: userInput.descripcion,
-    //     puntos: [
+    setOpen(false);
+    try {
+      const docRef = await addDoc(collection(db, "recorridos"), {
+        nombre: userInput.nombre,
+        descripcion: userInput.descripcion,
+        puntos: reducedBeepcons.filter((beepcon) => beepcon.selected),
+      });
 
-    //     ],
-    //   });
+      console.log("Document recorrido written with ID: ", docRef.id);
+      setRecorridos(await getRecorridos());
+      //Limpio los campos
+      setUserInput({
+        id: "",
+        nombre: "",
+        descripcion: "",
+        puntos:[
 
-
-    //   //Limpio los campos
-    //   setUserInput({
-    //     id: "",
-    //     nombre: "",
-    //     descripcion: "",
-    //     puntos:[
-
-    //     ],
-    //   });
-    // } catch (e) {
-    //   console.log("ERROR ! =", e);
-    // }
+        ],
+      });
+    } catch (e) {
+      console.log("ERROR ! =", e);
+    }
   };
+
+  
+  const deleteRecorrido = async (recorrido) => {
+
+  }
   return (
     <>
       <div className="screen-blur container-screen">
@@ -133,7 +121,6 @@ export default function RecorridosScreen() {
               onClick={async () => {
                 setOpen(true),
                   setBeepcons(await getBeepcons())
-                console.log(beepcons)
               }}
             >
               <img src={plus} alt="" />
@@ -146,7 +133,6 @@ export default function RecorridosScreen() {
                 package={{
                   nombre: recorrido.nombre,
                   descripcion: recorrido.descripcion,
-                  posicion: recorrido.posicion,
                   id: recorrido.id,
                 }}
               />
@@ -202,29 +188,15 @@ export default function RecorridosScreen() {
                     Seleccione los puntos:
                   </div>
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
-                    {beepcons.map((beepcon) => (
-                      // <RecorridoGlassSelected
-                      //   key={beepcon.id}
-                      //   package={{
-                      //     nombre: beepcon.nombre,
-                      //     descripcion: beepcon.descripcion,
-                      //     posicion: beepcon.posicion,
-                      //     id: beepcon.id,
-                      //   }}
-                      //   color="#fff"
-                      // />
-                      <ListItem key={beepcon.id} component="div" disablePadding className='item'>
-                        <Punto color="#fff"></Punto>
-                        <div className='item__text'>
-                          {beepcon.nombre}
-                        </div>
-                        <div className='checkbox'>
-                          {console.log(beepcon.id)}
-                          <input type="checkbox" value={beepcon.id}
-                            onChange={(e)=>{handleCheck(e,beepcon)}} />
-                        </div>
-                      </ListItem>
-                    ))}
+                    {
+                    beepcons.map((beepcon) => {return (
+                      <>
+                        <p>{beepcon.nombre}</p>
+                        <input type="checkbox" onClick={() => handleCheck(beepcon)} />
+                      </>
+                    )})
+
+                    }
                   </div>
                 </div>
               </div>
@@ -236,7 +208,17 @@ export default function RecorridosScreen() {
   );
 }
 
+/*
+Lista de tareas
+- Boton eliminar recorrido
+- Boton editar recorrido
+- Boton ver recorrido
+- Asignar turno a recorrido
+*/
+
 function RecorridosItem(props) {
+  const { nombre, descripcion, id} = props.package;
+
   return (
     <div className="recorridos-screen__body__item">
       <div className="recorridos-screen__body__row">
@@ -244,7 +226,7 @@ function RecorridosItem(props) {
           <Punto color="#9F51DD" />
         </div>
         <div className="recorridos-screen__body__row__text">
-          {props.recorrido}
+          {nombre}
         </div>
       </div>
       <div className="recorridos-screen__body__row2">
@@ -255,7 +237,7 @@ function RecorridosItem(props) {
           <div className="recorridos-screen__body__row2__button__group__edit">
             <img src={edit} alt="" />
           </div>
-          <div className="recorridos-screen__body__row2__button__group__delete">
+          <div className="recorridos-screen__body__row2__button__group__delete" onClick={deleteRecorrido}>
             <img src={deleteicon} alt="" />
           </div>
         </div>
