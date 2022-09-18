@@ -63,6 +63,7 @@ export default function RecorridosScreen() {
     nombre: "",
     descripcion: "",
     puntos: [],
+    turnos: [],
   });
   const handleCheck = (beepcon) => {
     let newReducedBeepcons = reducedBeepcons.map((r_beepcon) => {
@@ -98,6 +99,9 @@ export default function RecorridosScreen() {
         puntos:[
 
         ],
+        turnos: [
+
+        ] 
       });
     } catch (e) {
       console.log("ERROR ! =", e);
@@ -238,8 +242,9 @@ function RecorridosItem(props) {
   const { nombre, descripcion, id, actualizar, openAsignar} = props.package;
   const deleteRecorrido = async () => {
     console.log("Eliminar recorrido");
-  await deleteDoc(doc(db, "recorridos", id));
-  actualizar();
+    await deleteDoc(doc(db, "recorridos", id));
+    
+    actualizar();
   }
   return (
     <div className="recorridos-screen__body__item">

@@ -40,9 +40,10 @@
   flex: 1;
   height: 100%;
   display: grid;
-  place-items: center start;
+  place-items: start;
   overflow-y: scroll;
   grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 200px;
   padding-left: 35px;
 }
 

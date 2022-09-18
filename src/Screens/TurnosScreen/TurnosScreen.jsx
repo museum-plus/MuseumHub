@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { Modal } from "@mui/material";
 import { db } from "../../database/db";
 import close from "../../assets/close.svg";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 export default function TurnosScreen() {
   const [open, setOpen] = React.useState(false);
   const [openEdit, setOpenEdit] = React.useState(false);
@@ -34,25 +34,43 @@ export default function TurnosScreen() {
   }, []);
 
   const sendTurno = async () => {
+    //Cierra el modal
     setOpen(false);
-    console.log("entro sendTurno")
-    // try {
-    //   const docRef = await addDoc(collection(db, "turnos"), {
-    //     visitante: data.visitante,
-    //     horario: data.horario,
-    //     fecha: data.fecha,
-    //     recorrido_id: data.recorrido_id,
-    //   });
-    //   setTurnos(await getTurnos());
-    //   setData({
-    //     visitante: "",
-    //     horario: "",
-    //     fecha: "",
-    //     recorrido_id: "",
-    //   });
-    // } catch (e) {
-    //   console.log("ERROR ! =", e);
-    // }
+
+    //Intento de agregar a la base de datos
+    try {
+      //Añado el turno a la base y obtengo su referencia
+      const docRef = await addDoc(collection(db, "turnos"), {
+        visitante: data.visitante,
+        horario: data.horario,
+        fecha: data.fecha,
+        recorrido_id: data.recorrido_id,
+      });
+
+      const recorridoRef = doc(db, "recorridos", data.recorrido_id); //Referencia al recorrido del turno
+      const recorridoSnap = await getDoc(recorridoRef); //Obtengo el recorrido
+      const recorridoData = recorridoSnap.data(); //Obtengo los datos del recorrido
+      const recorridoTurnos = recorridoData.turnos; //Obtengo el array de turnos del recorrido
+      const turnoId = docRef.id; //Id del turno agregado
+
+      //Añado el id del turno al array de turnos del recorrido con updateDoc
+      await updateDoc(recorridoRef, {
+        turnos: [...recorridoTurnos, turnoId], 
+      });
+
+      setTurnos(await getTurnos()); //Actualizo la lista de turnos
+
+      //Reseteo los datos del formulario
+      setData({
+        visitante: "",
+        horario: "",
+        fecha: "",
+        recorrido_id: "",
+      });
+    } catch (e) {
+      console.log("ERROR ! =", e);
+    }
+
   }
   const setearTurnos = async () => {
     setTurnos(await getTurnos())
