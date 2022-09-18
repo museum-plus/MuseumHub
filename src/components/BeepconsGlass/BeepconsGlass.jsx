@@ -41,30 +41,11 @@ export default function BeepconsGlass() {
   };
 
   React.useEffect(() => {
-    const getBeepcons = async () => {
-      const beepconsCollection = collection(db, "beepcons");
-      const beepconsSnapshot = await getDocs(beepconsCollection);
-      const beepconsList = beepconsSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      console.log(beepconsList);
-
-      setBeepcons(beepconsList);
-    };
-    getBeepcons();
+    async function hola() {
+      setBeepcons(await getBeepcons());
+    }
+    hola();
   }, []);
-
-  // const getBeepcons = async () => {
-  //   const beepconsCollection = collection(db, "beepcons");
-  //   const beepconsSnapshot = await getDocs(beepconsCollection);
-  //   const beepconsList = beepconsSnapshot.docs.map((doc) => ({
-  //     id: doc.id,
-  //     ...doc.data(),
-  //     }));
-  //   setBeepcons(beepconsList);
-  // };
 
   const sendBeepcon = async () => {
     setOpen(false);
@@ -78,7 +59,7 @@ export default function BeepconsGlass() {
         },
       });
 
-      setBeepcons(getBeepcons());
+      setBeepcons(await getBeepcons());
       //Limpio los campos
       setUserInput({
         id: "",
