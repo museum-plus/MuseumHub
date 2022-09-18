@@ -52,7 +52,7 @@ export default function TurnosScreen() {
         recorrido_id: data.recorrido_id,
       });
 
-      const recorridoRef =  doc(db, "recorridos", data.recorrido_id); //Referencia al recorrido del turno
+      const recorridoRef = doc(db, "recorridos", data.recorrido_id); //Referencia al recorrido del turno
       const recorridoSnap = await getDoc(recorridoRef); //Obtengo el recorrido
       const recorridoData = recorridoSnap.data(); //Obtengo los datos del recorrido
       const recorridoTurnos = recorridoData.turnos; //Obtengo el array de turnos del recorrido
@@ -60,7 +60,7 @@ export default function TurnosScreen() {
 
       //Añado el id del turno al array de turnos del recorrido con updateDoc
       const updateRef = await updateDoc(recorridoRef, {
-        turnos: [...recorridoTurnos, turnoId], 
+        turnos: [...recorridoTurnos, turnoId],
       });
 
       setTurnos(await getTurnos()); //Actualizo la lista de turnos
@@ -103,7 +103,6 @@ export default function TurnosScreen() {
   }
   //seters Data
   const setDataVisitante = (visitante) => {
-    console.log(visitante, "SET DATA VISITANTE")
     setData({ ...data, visitante: visitante })
   }
   const setDataHorario = (horario) => {
@@ -121,8 +120,7 @@ export default function TurnosScreen() {
     setDataFecha();
     setDataRecorrido();
   }
-  const handleSelectChange = (e) => { 
-    console.log(e.target.value)
+  const handleSelectChange = (e) => {
     let value = e.target.value;
     setData({ ...data, recorrido_id: value })
   }
@@ -141,7 +139,7 @@ export default function TurnosScreen() {
       >
         <div className="turnos-screen__header">
           <div className="turnos-screen__header__text">Turnos</div>
-          <RefreshButton refresh={() => {setearTurnos()}}/>
+          <RefreshButton refresh={() => { setearTurnos() }} />
           <div className="turnos-screen__header__icon" onClick={openModal}>
             <img src={plus} alt="" />
           </div>
@@ -164,23 +162,35 @@ export default function TurnosScreen() {
         </div>
       </motion.div>
       <Modal open={open}>
-        <div className="turnos_modal">
+        <div className="turnos-modal">
           <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
             <img src={close} alt="close" />
           </span>
-          <div>
+          <div className="turnos-modal__col">
             <p> Turnos </p>
-            <input type="text" onChange={(e) => { setData({ ...data, visitante: e.target.value }) }} value={data.visitante} />
-            <input type="text" onChange={(e) => { setData({ ...data, horario: e.target.value }) }} value={data.horario} />
-            <input type="text" onChange={(e) => { setData({ ...data, fecha: e.target.value }) }} value={data.fecha} />
-            <button onClick={sendTurno} >Guardar</button>
-          </div>
-          <div>
-            <select onClick={handleSelectChange} >
-              {recorridos.map((recorrido) => (
-                <option key={recorrido.id} value={recorrido.id}>{recorrido.nombre}</option>
-              ))}
-            </select>
+            <div className="turnos-modal__col__text">
+              <div className="turnos-modal__col__text__row">
+                <p> Visitante </p>
+                <input type="text" placeholder="Ingrese nombre visitante" className="turnos-modal__col__input" onChange={(e) => { setData({ ...data, visitante: e.target.value }) }} value={data.visitante} />
+              </div>
+              <div className="turnos-modal__col__text__row">
+                <p> Horario </p>
+                <input type="text" placeholder="Ingrese Horario 00:00 - 23:59" className="turnos-modal__col__input" onChange={(e) => { setData({ ...data, horario: e.target.value }) }} value={data.horario} />
+              </div>
+              <div className="turnos-modal__col__text__row">
+                <p> Fecha </p>
+                <input type="text" placeholder="Ingrese Fecha dd/mm/aaaa" className="turnos-modal__col__input" onChange={(e) => { setData({ ...data, fecha: e.target.value }) }} value={data.fecha} />
+              </div>
+              <div className="turnos-modal__col__text__row">
+              <p> Seleccionar Recorrido </p>
+                <select className="turnos-modal__col__text__row__select" onClick={handleSelectChange} >
+                  {recorridos.map((recorrido) => (
+                    <option key={recorrido.id} value={recorrido.id}>{recorrido.nombre}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <button className="turnos-modal__col__btn" onClick={sendTurno} >Guardar</button>
           </div>
         </div>
       </Modal>

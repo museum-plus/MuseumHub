@@ -7,13 +7,24 @@ import { motion } from "framer-motion"
 import Punto from "./Punto";
 import { Link } from "react-router-dom";
 import { getTurnos } from '../../database/getBeepcons';
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../database/db";
 function TurnosInfo(props) {
+  const [recorrido, setRecorrido] = React.useState({});
+  React.useEffect(() => {
+    const get = async () => {
+      const docRef = doc(db, "recorridos", props.turno.recorrido_id);
+      const docSnap = await getDoc(docRef);
+      setRecorrido(docSnap.data());
+    };
+    get();
+  }, [props.turno.recorrido_id]);
   return (
     <Link to="/Turnos">
     <motion.div className="turno-glass__body__container" whileHover={{ translateX: 5 }}>
       <div className="turno-glass__body__info">
         <Punto color={props.color}></Punto>
-        <div className="turno-glass__body__text">Recorrido Arte Europeo</div>
+        <div className="turno-glass__body__nombre">{props.turno.visitante}</div>
         <div className="hora__container">
           <div className="turno-glass__body__text__hora">
             {props.turno.horario}
@@ -26,7 +37,7 @@ function TurnosInfo(props) {
           </div>
         </div>
       </div>
-      <div className="turno-glass__body__nombre">{props.turno.visitante}</div>
+      <div className="turno-glass__body__text">{recorrido.nombre}</div>
     </motion.div>
     </Link>
   );
