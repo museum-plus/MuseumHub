@@ -80,7 +80,7 @@ export default function RecorridosScreen() {
     console.log(newReducedBeepcons);
   };
   const sendRecorrido = async () => {
-    if (userInput.nombre === "" || userInput.descripcion === "" || userInput.puntos.length === 0 )  {
+    if (userInput.nombre === "" || userInput.descripcion === "" || userInput.puntos.length > 2 )  {
       alert("Complete todos los campos");
       return;
     }

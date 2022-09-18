@@ -4,7 +4,7 @@ import NavigationGlass from '../../components/NavigationGlass/NavigationGlass'
 import './BeepconsScreen.css'
 export default function BeepconsScreen() {
   return (
-    <div className='screen-blur screen-container'>
+    <div className='screen-blur screen-container-beepcon'>
       <div className="row1">
         <NavigationGlass/> 
       </div>
