@@ -151,8 +151,10 @@ export default function RecorridosScreen() {
                   nombre: recorrido.nombre,
                   descripcion: recorrido.descripcion,
                   id: recorrido.id,
+                  turnos: recorrido.turnos,
                   actualizar: getterRecorridos,
                   openAsignar: openDialog,
+
                 }}
               />
             ))}
@@ -239,11 +241,13 @@ Lista de tareas
 */
 
 function RecorridosItem(props) {
-  const { nombre, descripcion, id, actualizar, openAsignar} = props.package;
+  const { nombre, descripcion, id, actualizar, openAsignar, turnos} = props.package;
   const deleteRecorrido = async () => {
     console.log("Eliminar recorrido");
     await deleteDoc(doc(db, "recorridos", id));
-
+    turnos.forEach(async (turno) => {
+      await deleteDoc(doc(db, "turnos", turno));
+    });
     actualizar();
   }
   return (
