@@ -8,7 +8,9 @@ export default function BeepconsScreen() {
       <div className="row1">
         <NavigationGlass/> 
       </div>
+      <div className='beepcon-row2'>
         <BeepconsGlass/>
+      </div>
   </div>
   )
 }

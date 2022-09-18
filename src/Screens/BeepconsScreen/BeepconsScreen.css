@@ -5,3 +5,11 @@
     height: 100vh;
     flex-direction: row;
 }
+
+.beepcon-row2{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+}
