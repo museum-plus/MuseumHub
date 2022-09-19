@@ -3,7 +3,6 @@ import './VisitadoGlass.css'
 import ojo from '../../assets/ojo.svg'
 import Graph from './Graph.jsx'
 import { motion } from "framer-motion"
-
 function Position(props) {
   const styles = {
     primary: { color: props.color }

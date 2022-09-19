@@ -4,22 +4,30 @@ import { db } from '../../database/db';
 import { collection, addDoc, doc, onSnapshot, getDocs, setDoc, query, getDoc, where, documentId } from 'firebase/firestore';
 import { getRecorridos } from '../../database/getBeepcons';
 import { Doughnut } from 'react-chartjs-2';
+import { getRecorridos } from '../../database/getBeepcons'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Graph(props) {
-    React.useEffect(() => {
-        const get = async () => {
-            const recorridos = await getRecorridos();
-            const a = recorridos.map((recorrido) => recorrido.turnos);
-            console.log(a);
-            a.forEach((element) => {
-                console.log(element);
-            });
-
-        }
-        get();
-    }, [])
+    // const [turnos, setTurnos] = React.useState(0)
+    // React.useEffect(() => {
+    //   async function hola() {
+    //     let allRecorridos = await getRecorridos();
+    //     allRecorridos.forEach((recorrido)=>{
+    //       // console.log(recorrido)
+    //       console.log(recorrido)
+    //       const turnos = recorrido.turnos
+    //         turnos.forEach((turno) => {
+    //             // const turnoTotal = turno.turno_id
+    //             // console.log(turnoTotal);
+    //         })
+    //       // setTurnos(turnos.length)
+    //       setTurnos(turnosTotal.length)
+    //     })
+    //   }
+    //   hola();
+    // }, []);
+    console.log(props.turno)
     const data = {
         labels: false,
         datasets: [
