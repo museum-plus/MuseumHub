@@ -205,7 +205,16 @@ function TurnosItem(props) {
     get();
   }, [props.recorrido_id]);
   const deleteTurno = async () => {
-    await deleteTurnos(props.id)
+    console.log(recorrido)
+    try {
+      await updateDoc(doc(db, "recorridos", props.recorrido_id), {
+        turnos: arrayRemove(props.id),
+      });
+      await deleteTurnos(props.id);
+      } catch (error) {
+        console.log("No fue posible eliminar el turno del recorrido", error);
+    }        
+
     props.setearTurnos();
   }
 

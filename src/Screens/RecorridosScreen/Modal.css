@@ -145,7 +145,7 @@
     transform: translate(-50%, 0);
 
     margin: 30px;
-    height: 150px;
+    height: 350px;
     width: 450px;
 
     border-radius: 5px;
@@ -177,4 +177,45 @@
     right: 0;
     margin: .5em;
 
+}
+
+.recorridos-screen__modal__asignar >  span:hover{
+    cursor: pointer;
+}
+
+.recorridos-screen__modal__asignar >  div > input{
+    margin: 0;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 300;
+    width: 60%;
+}
+
+.recorridos-screen__modal__asignar >  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.recorridos-screen__modal__asignar >  div > button {
+    height: 30px;
+    width: 100px;
+    margin: 20px 0;
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    color: #fff;
+    transition: all 0.2s ease;
+    border-radius: 15px;
+}
+
+.recorridos-screen__modal__asignar >  div > button:hover{
+    background-color: #ffffff;
+    color: #000;
 }

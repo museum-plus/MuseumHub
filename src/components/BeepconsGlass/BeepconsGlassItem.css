@@ -1,4 +1,5 @@
 .beepcons-glass__body__content__item {
+    position: relative;
     /* margin-left: 75px; */
     height: auto;
     width: 440px;
@@ -6,6 +7,14 @@
     /* border-bottom: 2px solid #ffffff2d; */
     margin-bottom: 40px;
     font-size: 24px;
+}
+
+.beepcons-glass__delete{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
 }
 
 .beepcons-glass__body__content__item__header {

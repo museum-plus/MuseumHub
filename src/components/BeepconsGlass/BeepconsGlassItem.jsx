@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import Punto from '../TurnoGlass/Punto'
+import React, { useState } from 'react';
+import Punto from '../TurnoGlass/Punto';
+import close from "../../assets/close.svg";
 import { motion } from "framer-motion"
 import './BeepconsGlassItem.css'
 import BeepconsItemInfo from './BeepconsItemInfo';
@@ -37,6 +38,9 @@ export default function BeepconsGlassItem(props) {
 
   return (
     <div className='beepcons-glass__body__content__item'>
+        <span className='beepcons-glass__delete'>
+          <img src={close} alt="close" />
+        </span>
       <motion.div
         className='beepcons-glass__body__content__item__header'
         whileHover={{ scale: 1.05 }}
@@ -56,7 +60,6 @@ export default function BeepconsGlassItem(props) {
           handleDoubleClick={() => setShowInputTitle(true)}
           handleBlur={() => setShowInputTitle(false)}
           showInput={showInputTitle} />
-          
         </div>
         {/* </div> */}
       </motion.div>
