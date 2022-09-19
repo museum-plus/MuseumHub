@@ -12,10 +12,11 @@ import { motion } from "framer-motion";
 import { Modal } from "@mui/material";
 import { db } from "../../database/db";
 import close from "../../assets/close.svg";
-import { RefreshButton } from "../../database/getBeepcons";
-import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { RefreshButton , getTurnoId } from "../../database/getBeepcons";
+import { addDoc, collection, doc, getDoc,setDoc, updateDoc } from "firebase/firestore";
 export default function TurnosScreen() {
   const [open, setOpen] = React.useState(false);
+  const [turnoId, setTurnoId] = React.useState('');
   const [openEdit, setOpenEdit] = React.useState(false);
   const [recorridos, setRecorridos] = React.useState([]);
   const [turnos, setTurnos] = React.useState([]);
@@ -40,7 +41,8 @@ export default function TurnosScreen() {
 
   const sendTurno = async () => {
     //Cierra el modal
-    setOpen(false);
+    console.log("Entro al send")
+    // setOpen(false);
 
     //Intento de agregar a la base de datos
     try {
@@ -75,8 +77,8 @@ export default function TurnosScreen() {
     } catch (e) {
       console.log("ERROR ! =", e);
     }
-
   }
+
   const setearTurnos = async () => {
     setTurnos(await getTurnos())
   }
@@ -94,32 +96,16 @@ export default function TurnosScreen() {
   const closeModal = () => {
     setOpen(false);
   }
-
-  const openModalEdit = () => {
+  const openModalEdit = (turno) => {
+    // console.log("open", turno)
+    setTurnoId(turno);
     setOpenEdit(true);
   }
   const closeModalEdit = () => {
     setOpenEdit(false);
   }
   //seters Data
-  const setDataVisitante = (visitante) => {
-    setData({ ...data, visitante: visitante })
-  }
-  const setDataHorario = (horario) => {
-    setData({ ...data, horario: e.target.value })
-  }
-  const setDataFecha = (fecha) => {
-    setData({ ...data, fecha: e.target.value })
-  }
-  const setDataRecorrido = (recorrido) => {
-    setData({ ...data, recorrido_id: e.target.value })
-  }
-  const setersData = () => {
-    setDataVisitante();
-    setDataHorario();
-    setDataFecha();
-    setDataRecorrido();
-  }
+
   const handleSelectChange = (e) => {
     let value = e.target.value;
     setData({ ...data, recorrido_id: value })
@@ -140,7 +126,7 @@ export default function TurnosScreen() {
         <div className="turnos-screen__header">
           <div className="turnos-screen__header__text">Turnos</div>
           <RefreshButton refresh={() => { setearTurnos() }} />
-          <div className="turnos-screen__header__icon" onClick={openModal}>
+          <div className="turnos-screen__header__icon" onClick={() =>{openModal()}}>
             <img src={plus} alt="" />
           </div>
         </div>
@@ -148,7 +134,8 @@ export default function TurnosScreen() {
           {turnos.map((turno) => (
 
             <TurnosItem
-              openModalEdit={() => { openModalEdit() }}
+          
+              openModalEdit={(turno) => { openModalEdit(turno) }}
               setearTurnos={() => { setearTurnos() }}
               key={turno.id}
               id={turno.id}
@@ -156,7 +143,6 @@ export default function TurnosScreen() {
               horario={turno.horario}
               fecha={turno.fecha}
               recorrido_id={turno.recorrido_id}
-
             />
           ))}
         </div>
@@ -175,7 +161,7 @@ export default function TurnosScreen() {
               </div>
               <div className="turnos-modal__col__text__row">
                 <p> Horario </p>
-                <input type="text" placeholder="Ingrese Horario 00:00 - 23:59" className="turnos-modal__col__input" onChange={(e) => { setData({ ...data, horario: e.target.value }) }} value={data.horario} />
+                <input type="text" placeholder="Ingrese Horario 00:00" className="turnos-modal__col__input" onChange={(e) => { setData({ ...data, horario: e.target.value }) }} value={data.horario} />
               </div>
               <div className="turnos-modal__col__text__row">
                 <p> Fecha </p>
@@ -194,7 +180,13 @@ export default function TurnosScreen() {
           </div>
         </div>
       </Modal>
-      <ModalEdit open={openEdit}
+      <ModalEdit 
+        actualizar={async () => setTurnos(await getTurnos())}
+        getId={()=>{return turnoId}}
+        open={openEdit}
+        turnoId={turnoId}
+        data={data}
+        setDataVisitante={(visitante) => { setDataVisitante(visitante) }}
         closeModalEdit={() => { closeModalEdit() }}
       />
     </div>
@@ -237,7 +229,7 @@ function TurnosItem(props) {
         <div className="turnos-screen__body__row2__text">{recorrido.nombre}</div>
         <div className="turnos-screen__body__row2__button__group">
           <div className="turnos-screen__body__row2__button__group__edit">
-            <img src={edit} alt="..." onClick={() => { props.openModalEdit() }} />
+            <img src={edit} alt="..." onClick={() => { props.openModalEdit(props.id) }} />
           </div>
           <div className="turnos-screen__body__row2__button__group__delete">
             <img src={deleteicon} alt="" onClick={() => { deleteTurno() }} />
@@ -249,13 +241,86 @@ function TurnosItem(props) {
 }
 
 function ModalEdit(props) {
+  const [recorridos, setRecorridos] = React.useState([]);
+  const [data, setData] = React.useState({
+    visitante: "",
+    horario: "",
+    fecha: "",
+    recorrido_id: "",
+    id: props.turnoId,
+  });
+  const handleSelectChange = (e) => {
+    let value = e.target.value;
+    setData({...data, recorrido_id: value })
+  }
+  const sendTurnoEdit = async () => {
+    setData({...data, id:props.getId()})
+    //Cierra el modal
+    console.log("Entro al send",data)
+    props.closeModalEdit()
+    await updateDoc(doc(db,"turnos", props.turnoId),{
+      visitante: data.visitante,
+      horario: data.horario,
+      fecha: data.fecha,
+      recorrido_id: data.recorrido_id,
+    })
+    // await setDoc(doc(db, "turnos", data.id), {
+    //   visitante: data.visitante,
+    //   horario: data.horario,
+    //   fecha: data.fecha,
+    //   recorrido_id: data.recorrido_id,
+    // });
+    console.log(data.id,"hey youS")
+    props.actualizar();
+  }
+  React.useEffect(() => {
+    const get = async () => {
+      // const hola = await getTurnoId(props.turnoId);
+      // setTurno(hola);
+      const a = doc(db, "turnos", props.turnoId);
+      const b = await getDoc(a)
+      const info = b.data()
+      setData(info);
+      const recos = await getRecorridos();
+      setRecorridos(recos);
+      // console.log(data,"daasdasdasd")
+    };
+    get();
+  }, [props.turnoId]);
+
   return (
     <Modal open={props.open}>
-      <div className="turnos_modal">
-        <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
-          <img src={close} alt="close" />
-        </span>
-      </div>
+      <div className="turnos-modal">
+          <span className="recorridos-screen__modal__close" onClick={() => { props.closeModalEdit() }}>
+            <img src={close} alt="close" />
+          </span>
+          <div className="turnos-modal__col">
+            <p> Turnos </p>
+            <div className="turnos-modal__col__text">
+              <div className="turnos-modal__col__text__row">
+                <p> Visitante </p>
+                <input type="text" placeholder="Ingrese nombre visitante" className="turnos-modal__col__input" onChange={(e) => { setData( {...data, visitante:e.target.value} )}} value={data.visitante} />
+              </div>
+              <div className="turnos-modal__col__text__row">
+                <p> Horario </p>
+                <input type="text" placeholder="Ingrese Horario 00:00 - 23:59" className="turnos-modal__col__input" onChange={(e) => { setData( {...data, horario:e.target.value} )}} value={data.horario} />
+              </div>
+              <div className="turnos-modal__col__text__row">
+                <p> Fecha </p>
+                <input type="text" placeholder="Ingrese Fecha dd/mm/aaaa" className="turnos-modal__col__input" onChange={(e) => { setData( {...data, fecha:e.target.value} )}} value={data.fecha} />
+              </div>
+              <div className="turnos-modal__col__text__row">
+              <p> Seleccionar Recorrido </p>
+                <select className="turnos-modal__col__text__row__select" onClick={handleSelectChange} >
+                  {recorridos.map((recorrido) => (
+                    <option key={recorrido.id} value={recorrido.id}>{recorrido.nombre}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <button className="turnos-modal__col__btn" onClick={()=>{ sendTurnoEdit() }} >Editar</button>
+          </div>
+        </div>
     </Modal>
   );
 }

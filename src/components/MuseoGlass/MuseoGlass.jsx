@@ -1,10 +1,18 @@
 import React from 'react'
 import './MuseoGlass.css'
 import { getMuseum } from "../../database/getBeepcons";
-import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 
 export default function MuseoGlass() {
-    const [museo, setMuseo] = React.useState({});
+    const [museo, setMuseo] = React.useState({
+        id: "",
+        nombre: "",
+        descripcion: "",
+        direccion:{
+            provincia:"",
+            ciudad:"",
+            calle:""
+        },
+    });
     React.useEffect(() => {
         async function get() {
             let museo = await getMuseum();
