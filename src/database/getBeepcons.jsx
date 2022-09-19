@@ -63,13 +63,6 @@ const getTurnoId = async (id) =>{
     console.log("No such document!");
   }
 }
-
-const deleteTurnos = async (id) =>{
-  await deleteDoc(doc(db, "turnos", id));
-  console.log(id)
-  return id;
-}
-
 const getSingleRecorrido = async (id) =>{
   const recorridoDoc = doc(db, "recorridos", id);
   const recorridoSnapshot = await getDoc(recorridoDoc);
@@ -90,6 +83,20 @@ const getSingleBeepcon = async (id) =>{
   }
 }
 
+// DELETEs
+const deleteBeepcons = async (id) =>{
+  await deleteDoc(doc(db, "beepcons", id));
+  console.log(id)
+  return id;
+}
+
+const deleteTurnos = async (id) =>{
+  await deleteDoc(doc(db, "turnos", id));
+  console.log(id)
+  return id;
+}
+
+//REFRESH
 const RefreshButton = (props) => {
   return(
     <button className="refresh" onClick={props.refresh}>
@@ -98,4 +105,8 @@ const RefreshButton = (props) => {
   )
 }
 
-export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton, getMuseum, getSingleRecorrido,getTurnoId, getSingleBeepcon};
+export { 
+  deleteTurnos, deleteBeepcons, 
+  getTurnos, getRecorridos, getBeepcons, getMuseum,
+  getSingleRecorrido, getTurnoId, getSingleBeepcon, RefreshButton
+  };
