@@ -203,12 +203,13 @@ function TurnosItem(props) {
       setRecorrido(docSnap.data());
     };
     get();
+    
   }, [props.recorrido_id]);
   const deleteTurno = async () => {
     console.log(recorrido)
     try {
       await updateDoc(doc(db, "recorridos", props.recorrido_id), {
-        turnos: arrayRemove(props.id),
+        turnos: recorrido.turnos.filter((turno) => turno !== props.id),
       });
       await deleteTurnos(props.id);
       } catch (error) {
