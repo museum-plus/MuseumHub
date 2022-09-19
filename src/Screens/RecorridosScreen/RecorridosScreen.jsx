@@ -185,7 +185,8 @@ export default function RecorridosScreen() {
                   actualizar: getterRecorridos,
                   openAsignar: openDialog,
                   openView: openViewModal,
-                  openEdit: openEditModal
+                  openEdit: openEditModal,
+                  getTurnos: getTurnos,
                 }}
               />
             ))}
@@ -450,19 +451,30 @@ function ModalEditRecorrido(props) {
 }
 
 
-
-
-
 function RecorridosItem(props) {
+  const [turno, setTurno] = React.useState(props.package.turnos);
   const { nombre, descripcion, id, actualizar, openAsignar, turnos, openView, openEdit } =
     props.package;
+
   const deleteRecorrido = async () => {
-    console.log("Eliminar recorrido");
+    const ELIMINAR_TURNOS = async ()=>{
+      const manzana = await getDoc(doc(db, "recorridos", id))
+      const mandarina = manzana.data()
+      setTurno(mandarina.turnos)
+      console.log("ESTE ES EL TURNO", turno);
+      console.log("Usted ha presionado eliminar recorrido", turno);
+      turno.forEach(async (turno) => {
+        await deleteDoc(doc(db, "turnos", turno.turno_id));
+        console.log("eliminado con id: " + turno.turno.id);
+      });
+    }
+
+    await ELIMINAR_TURNOS()
     await deleteDoc(doc(db, "recorridos", id));
-    turnos.forEach(async (turno) => {
-      await deleteDoc(doc(db, "turnos", turno));
-    });
     actualizar();
+    
+    
+    // console.log(props.package);
   };
   const showPopper = () => {
     openView(id);
