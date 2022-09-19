@@ -19,6 +19,11 @@ function TurnosInfo(props) {
     };
     get();
   }, [props.turno.recorrido_id]);
+  if (recorrido == undefined ){
+    <div>
+      hola
+    </div>
+  } else {
   return (
     <Link to="/Turnos">
     <motion.div className="turno-glass__body__container" whileHover={{ translateX: 5 }}>
@@ -41,6 +46,7 @@ function TurnosInfo(props) {
     </motion.div>
     </Link>
   );
+}
 }
 export default function TurnoGlass() {
   const [turnos, setTurnos] = React.useState([]);

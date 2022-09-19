@@ -1,10 +1,30 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { getRecorridos } from '../../database/getBeepcons'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Graph(props) {
+    // const [turnos, setTurnos] = React.useState(0)
+    // React.useEffect(() => {
+    //   async function hola() {
+    //     let allRecorridos = await getRecorridos();
+    //     allRecorridos.forEach((recorrido)=>{
+    //       // console.log(recorrido)
+    //       console.log(recorrido)
+    //       const turnos = recorrido.turnos
+    //         turnos.forEach((turno) => {
+    //             // const turnoTotal = turno.turno_id
+    //             // console.log(turnoTotal);
+    //         })
+    //       // setTurnos(turnos.length)
+    //       setTurnos(turnosTotal.length)
+    //     })
+    //   }
+    //   hola();
+    // }, []);
+    console.log(props.turno)
     const data = {
         labels: false,
         datasets: [

@@ -218,7 +218,7 @@ function TurnosItem(props) {
         <div className="turnos-screen__body__row__text">{props.visitante}</div>
         <div className="turnos-screen__body__row__group">
           <div className="turnos-screen__body__row__group__text">
-            {props.horario}
+            {props.horario == undefined?("hola"):(props.horario)}
           </div>
           <div className="turnos-screen__body__row__group__icon">
             <img src={clock} alt="..." />
@@ -226,7 +226,7 @@ function TurnosItem(props) {
         </div>
       </div>
       <div className="turnos-screen__body__row2">
-        <div className="turnos-screen__body__row2__text">{recorrido.nombre}</div>
+        <div className="turnos-screen__body__row2__text">{recorrido === undefined ? ("No hay recorrido"):(recorrido.nombre)}</div>
         <div className="turnos-screen__body__row2__button__group">
           <div className="turnos-screen__body__row2__button__group__edit">
             <img src={edit} alt="..." onClick={() => { props.openModalEdit(props.id) }} />

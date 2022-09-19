@@ -55,8 +55,9 @@
 }
 
 .turno-glass__body__nombre {
-    margin-left: 47px;
-    margin-top: 18px;
+    justify-content: center;
+    width: auto;
+    padding-right: 92px;
     padding-bottom: 14px;
     font-size: 24px;
     color: #ffffffab;
