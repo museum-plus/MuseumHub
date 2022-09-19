@@ -4,7 +4,6 @@ import { db } from '../../database/db';
 import { collection, addDoc, doc, onSnapshot, getDocs, setDoc, query, getDoc, where, documentId } from 'firebase/firestore';
 import { getRecorridos } from '../../database/getBeepcons';
 import { Doughnut } from 'react-chartjs-2';
-import { getRecorridos } from '../../database/getBeepcons'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

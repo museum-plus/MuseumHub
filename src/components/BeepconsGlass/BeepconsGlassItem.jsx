@@ -48,18 +48,19 @@ export default function BeepconsGlassItem(props) {
         <div className='beepcons-glass__body__content__item__header__icon'>
           <Punto color={props.color}></Punto>
         </div>
-        <div className='beepcons-glass__body__content__item__header__titulo'>
+        {/* <div className='beepcons-glass__body__content__item__header__titulo'> */}
         <BeepconsItemInfo
           value={userInput.nombre}
           title={true}
           sendEditedValues={()=>{sendEditedValues()}}
           handleChange={(e) => setUserInput({ ...userInput, nombre: e.target.value })}
-          handleDoubleClick={() => setShowInputTitle(true)}
+          handleDoubleClick={() => {setShowInputTitle(true); console.log("doubleclicked")}}
           handleBlur={() => setShowInputTitle(false)}
           showInput={showInputTitle} />
-        </div>
+        {/* </div> */}
         <div className='beepcons-glass__delete' onClick={() => {
-          deleteBeepcons(userInput.id)
+          deleteBeepcons(userInput.id),
+          props.package.actualizar()
         }}>
           <img src={close} alt="close" />
         </div>

@@ -88,6 +88,7 @@ export default function RecorridosScreen() {
     });
     setReducedBeepcons(newReducedBeepcons);
     console.log(newReducedBeepcons);
+    console.log(reducedBeepcons.filter((beepcon) => beepcon.selected));
   };
 
   const sendRecorrido = async () => {
@@ -105,7 +106,7 @@ export default function RecorridosScreen() {
       const docRef = await addDoc(collection(db, "recorridos"), {
         nombre: userInput.nombre,
         descripcion: userInput.descripcion,
-        puntos: reducedBeepcons.filter((beepcon) => beepcon.selected),
+        puntos: reducedBeepcons,
         turnos: [],
       });
 

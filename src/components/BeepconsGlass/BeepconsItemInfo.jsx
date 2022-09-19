@@ -41,8 +41,15 @@ export default function BeepconsItemInfo(props) {
           />
         )
       ) : (
-
-          props.value
+        <span
+        onDoubleClick={props.handleDoubleClick}
+        style={{
+          height: "25px",
+          width: "auto",
+        }}
+      >
+        {props.value}
+      </span>
 
       )}
     </>

@@ -115,6 +115,7 @@ export default function BeepconsGlass() {
                 descripcion: beepcon.descripcion,
                 posicion: beepcon.posicion,
                 id: beepcon.id,
+                actualizar: () => { getterBeepcons() }
               }}
               color="#fff"
             />
