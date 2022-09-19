@@ -58,12 +58,8 @@ export default function TurnosScreen() {
       const recorridoSnap = await getDoc(recorridoRef); //Obtengo el recorrido
       const recorridoData = recorridoSnap.data(); //Obtengo los datos del recorrido
       const recorridoTurnos = recorridoData.turnos; //Obtengo el array de turnos del recorrido
-      const turnoId = docRef.id; //Id del turno agregado
-
-      //Añado el id del turno al array de turnos del recorrido con updateDoc
-      const updateRef = await updateDoc(recorridoRef, {
-        turnos: [...recorridoTurnos, turnoId],
-      });
+      recorridoTurnos.push({turno_id: docRef.id, turno_visitante: data.visitante}); //Agrego el id del turno al array de turnos del recorrido
+      await updateDoc(recorridoRef, { turnos: recorridoTurnos }); //Actualizo el array de turnos del recorrido
 
       setTurnos(await getTurnos()); //Actualizo la lista de turnos
 
