@@ -59,6 +59,14 @@
   display: flex;
   flex-direction: column;
   margin: 15px 0;
+  transition: all 0.3s ease-out;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+
+.recorridos-screen__body__row__text:hover{
+  transform: scale(1.1);
+  
 }
 
 .recorridos-screen__body__row {
@@ -163,9 +171,28 @@ p {
 .recorridos-screen__body__row2__button__group__edit,
 .recorridos-screen__body__row2__button__group__delete {
   transition: all 0.2s ease;
+  z-index: 24;
 }
 
 .recorridos-screen__body__row2__button__group__edit:hover,
 .recorridos-screen__body__row2__button__group__delete:hover {
   transform: scale(1.1);
+}
+
+.recorridos-description__modal{
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  border-radius: 35px;
+  border: 2px solid #ffffff40;
+
+  background: #15151583;
+  backdrop-filter: blur(127px);
+  width: 300px;
+  height: 60%;
+  padding: 20px;
 }

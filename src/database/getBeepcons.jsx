@@ -53,11 +53,7 @@ const getTurnos = async () =>{
     }));
     return turnosList;
 }
-const deleteTurnos = async (id) =>{
-  await deleteDoc(doc(db, "turnos", id));
-  console.log(id)
-  return id;
-}
+
 const getTurnoId = async (id) =>{
   const turnoDoc = doc(db, "turno", id);
   const turnoSnapshot = await getDoc(turnoDoc);
@@ -67,6 +63,23 @@ const getTurnoId = async (id) =>{
     console.log("No such document!");
   }
 }
+
+const deleteTurnos = async (id) =>{
+  await deleteDoc(doc(db, "turnos", id));
+  console.log(id)
+  return id;
+}
+
+const getSingleRecorrido = async (id) =>{
+  const recorridoDoc = doc(db, "recorridos", id);
+  const recorridoSnapshot = await getDoc(recorridoDoc);
+  if (recorridoSnapshot.exists()) {
+    return recorridoSnapshot.data();
+  } else {
+    console.log("No such document!");
+  }
+}
+
 const RefreshButton = (props) => {
   return(
     <button className="refresh" onClick={props.refresh}>
@@ -75,4 +88,4 @@ const RefreshButton = (props) => {
   )
 }
 
-export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton, getMuseum, getTurnoId};
+export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton, getMuseum, getSingleRecorrido,getTurnoId};
