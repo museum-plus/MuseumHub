@@ -4,15 +4,21 @@ import plus from "../../assets/plus.svg";
 import Punto from "../../components/TurnoGlass/Punto";
 import edit from "../../assets/edit.svg";
 import deleteicon from "../../assets/deleteicon.svg";
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, Popover } from "@mui/material";
 import "./RecorridosScreen.css";
-import ListItem from '@mui/material/ListItem';
+import ListItem from "@mui/material/ListItem";
 import "./Modal.css";
 import { motion } from "framer-motion";
 import DialogAsignar from "./DialogAsignar";
 import close from "../../assets/close.svg";
-import RecorridoGlassSelected from '../../components/RecorridoGlass/RecorridoGlassSelect'
-import { getBeepcons, getRecorridos, getTurnos, RefreshButton, } from "../../database/getBeepcons";
+import DialogView from "./DialogView";
+import RecorridoGlassSelected from "../../components/RecorridoGlass/RecorridoGlassSelect";
+import {
+  getBeepcons,
+  getRecorridos,
+  getTurnos,
+  RefreshButton,
+} from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
@@ -32,11 +38,18 @@ export default function RecorridosScreen() {
   const [beepcons, setBeepcons] = React.useState([]);
   const [turnos, setTurnos] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [openView, setOpenView] = React.useState(false);
   const [openAsignar, setOpenAsignar] = React.useState(false);
   const [recorridos, setRecorridos] = React.useState([]);
   const [recorridoId, setRecorridoId] = React.useState("");
   const [reducedBeepcons, setReducedBeepcons] = React.useState([]);
-
+  const [userInput, setUserInput] = React.useState({
+    id: "",
+    nombre: "",
+    descripcion: "",
+    puntos: [],
+    turnos: [],
+  });
   React.useEffect(() => {
     async function hola() {
       let beepcons = await getBeepcons();
@@ -45,26 +58,18 @@ export default function RecorridosScreen() {
       setBeepcons(beepcons);
       setRecorridos(recorridos);
       setTurnos(turnos);
-      
+
       let r_beepcons = beepcons.map((beepcon) => {
         return {
           id: beepcon.id,
           selected: false,
         };
-      }
-      );
+      });
       setReducedBeepcons(r_beepcons);
       // console.log(reducedBeepcons);
     }
     hola();
   }, []);
-  const [userInput, setUserInput] = React.useState({
-    id: "",
-    nombre: "",
-    descripcion: "",
-    puntos: [],
-    turnos: [],
-  });
   const handleCheck = (beepcon) => {
     let newReducedBeepcons = reducedBeepcons.map((r_beepcon) => {
       if (r_beepcon.id === beepcon.id) {
@@ -79,13 +84,17 @@ export default function RecorridosScreen() {
     setReducedBeepcons(newReducedBeepcons);
     console.log(newReducedBeepcons);
   };
+
   const sendRecorrido = async () => {
-    if (userInput.nombre === "" || userInput.descripcion === "" || userInput.puntos.length > 2 )  {
+    if (
+      userInput.nombre === "" ||
+      userInput.descripcion === "" ||
+      userInput.puntos.length > 2
+    ) {
       alert("Complete todos los campos");
       return;
     }
 
-    
     setOpen(false);
     try {
       const docRef = await addDoc(collection(db, "recorridos"), {
@@ -102,12 +111,8 @@ export default function RecorridosScreen() {
         id: "",
         nombre: "",
         descripcion: "",
-        puntos:[
-
-        ],
-        turnos: [
-
-        ] 
+        puntos: [],
+        turnos: [],
       });
     } catch (e) {
       console.log("ERROR ! =", e);
@@ -115,7 +120,12 @@ export default function RecorridosScreen() {
   };
 
   const getterRecorridos = async () => {
-    setRecorridos(await getRecorridos())
+    setRecorridos(await getRecorridos());
+  };
+
+  const openViewModal = (id) => {
+    setRecorridoId(id);
+    setOpenView(true);
   };
 
   const openDialog = (id) => {
@@ -138,14 +148,16 @@ export default function RecorridosScreen() {
           }}
         >
           <div className="recorridos-screen__header">
-
             <div className="recorridos-screen__header__text">Recorridos</div>
-            <RefreshButton refresh={() => { getterRecorridos() }}/>
+            <RefreshButton
+              refresh={() => {
+                getterRecorridos();
+              }}
+            />
             <div
               className="recorridos-screen__header__icon"
               onClick={async () => {
-                setOpen(true),
-                  setBeepcons(await getBeepcons())
+                setOpen(true), setBeepcons(await getBeepcons());
               }}
             >
               <img src={plus} alt="" />
@@ -162,7 +174,7 @@ export default function RecorridosScreen() {
                   turnos: recorrido.turnos,
                   actualizar: getterRecorridos,
                   openAsignar: openDialog,
-
+                  openView: openViewModal,
                 }}
               />
             ))}
@@ -171,7 +183,12 @@ export default function RecorridosScreen() {
         {/* MODAL AÑADIR */}
         <Modal open={open}>
           <div className="recorridos-screen__modal">
-            <span className="recorridos-screen__modal__close" onClick={() => { setOpen(false) }}>
+            <span
+              className="recorridos-screen__modal__close"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
               <img src={close} alt="close" />
             </span>
             <div className="recorridos-screen__modal__header">Recorrido:</div>
@@ -187,7 +204,7 @@ export default function RecorridosScreen() {
                   onChange={(e) => {
                     setUserInput({
                       ...userInput,
-                      nombre: e.target.value
+                      nombre: e.target.value,
                     });
                   }}
                 />
@@ -201,7 +218,7 @@ export default function RecorridosScreen() {
                   onChange={(e) => {
                     setUserInput({
                       ...userInput,
-                      descripcion: e.target.value
+                      descripcion: e.target.value,
                     });
                   }}
                 />
@@ -218,15 +235,17 @@ export default function RecorridosScreen() {
                     Seleccione los puntos:
                   </div>
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
-                    {
-                    beepcons.map((beepcon) => {return (
-                      <div className="recorridos-modal__item">
-                        <p>{beepcon.nombre}</p>
-                        <input type="checkbox" onClick={() => handleCheck(beepcon)} />
-                      </div>
-                    )})
-
-                    }
+                    {beepcons.map((beepcon) => {
+                      return (
+                        <div className="recorridos-modal__item">
+                          <p>{beepcon.nombre}</p>
+                          <input
+                            type="checkbox"
+                            onClick={() => handleCheck(beepcon)}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -234,7 +253,24 @@ export default function RecorridosScreen() {
           </div>
         </Modal>
         {/* Dialog ASIGNAR */}
-        <DialogAsignar setRecorridos={()=>{ getterRecorridos}} open={openAsignar} onClose={() => setOpenAsignar(false)} id={recorridoId} />
+        <DialogAsignar
+          setRecorridos={() => {
+            getterRecorridos;
+          }}
+          open={openAsignar}
+          onClose={() => setOpenAsignar(false)}
+          id={recorridoId}
+          getId={() => {
+            return recorridoId;
+          }}
+        />
+        {/* Dialog VIEW */}
+        <DialogView
+          open={openView}
+          onClose={() => setOpenView(false)}
+          id={recorridoId}
+        />
+        
       </div>
     </>
   );
@@ -249,7 +285,8 @@ Lista de tareas
 */
 
 function RecorridosItem(props) {
-  const { nombre, descripcion, id, actualizar, openAsignar, turnos} = props.package;
+  const { nombre, descripcion, id, actualizar, openAsignar, turnos, openView } =
+    props.package;
   const deleteRecorrido = async () => {
     console.log("Eliminar recorrido");
     await deleteDoc(doc(db, "recorridos", id));
@@ -257,26 +294,36 @@ function RecorridosItem(props) {
       await deleteDoc(doc(db, "turnos", turno));
     });
     actualizar();
-  }
+  };
+  const showPopper = () => {
+    openView(id);
+    console.log("Mostrar popper");
+  };
   return (
-    <div className="recorridos-screen__body__item">
+    <div className="recorridos-screen__body__item" >
       <div className="recorridos-screen__body__row">
         <div className="recorridos-screen__body__row__icon">
           <Punto color="#9F51DD" />
         </div>
-        <div className="recorridos-screen__body__row__text">
-          {nombre}
-        </div>
+        <div className="recorridos-screen__body__row__text" onClick={showPopper}>{nombre}</div>
       </div>
       <div className="recorridos-screen__body__row2">
-        <div className="recorridos-screen__body__row2__button" onClick={()=>{openAsignar(id)}}>
+        <div
+          className="recorridos-screen__body__row2__button"
+          onClick={() => {
+            openAsignar(id);
+          }}
+        >
           <p>Asignar Turno</p>
         </div>
         <div className="recorridos-screen__body__row2__button__group">
           <div className="recorridos-screen__body__row2__button__group__edit">
             <img src={edit} alt="" />
           </div>
-          <div className="recorridos-screen__body__row2__button__group__delete" onClick={deleteRecorrido}>
+          <div
+            className="recorridos-screen__body__row2__button__group__delete"
+            onClick={deleteRecorrido}
+          >
             <img src={deleteicon} alt="" />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "@mui/material";
 import { db } from "../../database/db";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import close from "../../assets/close.svg";
 export default function DialogAsignar(props) {
     const [data, setData] = React.useState({
@@ -12,14 +12,29 @@ export default function DialogAsignar(props) {
     });
     const sendTurno = async () => {
         props.onClose();
+        setData({...data, recorrido_id: props.getId()})
         try {
             console.log(data);
+            //Add doc no es lo mismo que setdoc
             const docRef = await addDoc(collection(db, "turnos"), {
                 visitante: data.visitante,
                 horario: data.horario,
                 fecha: data.fecha,
-                recorrido_id: props.id,
+                recorrido_id: props.getId(),
             });
+
+            const recorridoRef = doc(db, "recorridos", data.recorrido_id); //Referencia al recorrido del turno
+            const recorridoSnap = await getDoc(recorridoRef); //Obtengo el recorrido
+            const recorridoData = recorridoSnap.data(); //Obtengo los datos del recorrido
+            console.log(recorridoData);
+            const recorridoTurnos = recorridoData.turnos; //Obtengo el array de turnos del recorrido
+            const turnoId = docRef.id; //Id del turno agregado
+      
+            //Añado el id del turno al array de turnos del recorrido con updateDoc
+            const updateRef = await updateDoc(recorridoRef, {
+              turnos: [...recorridoTurnos, turnoId],
+            });
+
             props.setRecorridos()
             setData({
                 visitante: "",
@@ -60,7 +75,6 @@ export default function DialogAsignar(props) {
           />
           <button onClick={sendTurno} >Guardar</button>
         </div>
-        <button>Asignar turno</button>
       </div>
     </Modal>
   );
