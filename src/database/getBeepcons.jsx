@@ -80,6 +80,16 @@ const getSingleRecorrido = async (id) =>{
   }
 }
 
+const getSingleBeepcon = async (id) =>{
+  const bpc_ref = doc(db, "turnos", id);
+  const bpc_snap = await getDoc(bpc_ref);
+  if (bpc_snap.exists()) {
+    return bpc_snap.data();
+  } else {
+    console.log("No such document!");
+  }
+}
+
 const RefreshButton = (props) => {
   return(
     <button className="refresh" onClick={props.refresh}>
@@ -88,4 +98,4 @@ const RefreshButton = (props) => {
   )
 }
 
-export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton, getMuseum, getSingleRecorrido,getTurnoId};
+export { deleteTurnos, getTurnos, getRecorridos, getBeepcons, RefreshButton, getMuseum, getSingleRecorrido,getTurnoId, getSingleBeepcon};
