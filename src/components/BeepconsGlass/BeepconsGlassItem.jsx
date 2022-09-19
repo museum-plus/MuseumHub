@@ -4,6 +4,7 @@ import close from "../../assets/close.svg";
 import { motion } from "framer-motion"
 import './BeepconsGlassItem.css'
 import BeepconsItemInfo from './BeepconsItemInfo';
+import { deleteBeepcons } from '../../database/getBeepcons';
 import { db } from '../../database/db';
 import { updateDoc, doc, query, where, collection } from 'firebase/firestore';
 export default function BeepconsGlassItem(props) {
@@ -38,20 +39,16 @@ export default function BeepconsGlassItem(props) {
 
   return (
     <div className='beepcons-glass__body__content__item'>
-        <span className='beepcons-glass__delete'>
-          <img src={close} alt="close" />
-        </span>
       <motion.div
         className='beepcons-glass__body__content__item__header'
         whileHover={{ scale: 1.05 }}
         onHoverStart={e => { }}
         onHoverEnd={e => { }}
       >
-        {/* <div className='beepcons-glass__body__content__item__header'> */}
-        <div className='beepcons-glass__body__content__item__header_icon'>
+        <div className='beepcons-glass__body__content__item__header__icon'>
           <Punto color={props.color}></Punto>
         </div>
-        <div className='beepcons-glass__body__content__item__header_titulo'>
+        <div className='beepcons-glass__body__content__item__header__titulo'>
         <BeepconsItemInfo
           value={userInput.nombre}
           title={true}
@@ -60,6 +57,11 @@ export default function BeepconsGlassItem(props) {
           handleDoubleClick={() => setShowInputTitle(true)}
           handleBlur={() => setShowInputTitle(false)}
           showInput={showInputTitle} />
+        </div>
+        <div className='beepcons-glass__delete' onClick={() => {
+          deleteBeepcons(userInput.id)
+        }}>
+          <img src={close} alt="close" />
         </div>
         {/* </div> */}
       </motion.div>

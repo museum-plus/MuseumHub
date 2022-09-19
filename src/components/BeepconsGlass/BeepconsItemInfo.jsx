@@ -3,7 +3,7 @@ import React from "react";
 import "./BeepconsGlassItem";
 export default function BeepconsItemInfo(props) {
   return (
-    <span>
+    <>
       {props.showInput ? (
         props.title == true ? (
           <TextareaAutosize
@@ -41,16 +41,10 @@ export default function BeepconsItemInfo(props) {
           />
         )
       ) : (
-        <span
-          onDoubleClick={props.handleDoubleClick}
-          style={{
-            height: "25px",
-            width: "auto",
-          }}
-        >
-          {props.value}
-        </span>
+
+          props.value
+
       )}
-    </span>
+    </>
   );
 }

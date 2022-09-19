@@ -1,5 +1,5 @@
 .beepcons_modal{
-    width: 90%;
+    width: 65%;
     height: 90%;
     background: #15151583;
     backdrop-filter: blur(127px);
@@ -8,10 +8,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 35px;
-    border: none;
+    
+    border: 2px solid #ffffff60;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .beepcons-modal__row1{

@@ -99,9 +99,9 @@ export default function BeepconsGlass() {
             <div className="beepcons-icon-punto">
               <Punto color="#fff" />
             </div>
-            
+
           </div>
-          <RefreshButton refresh={() => {getterBeepcons()}}/>
+          <RefreshButton refresh={() => { getterBeepcons() }} />
           <div className="beepcons-glass__header__icon" onClick={openModal}>
             <img src={plus} alt="" />
           </div>
@@ -135,9 +135,9 @@ export default function BeepconsGlass() {
             <div className="beepcons-modal__title">Beepcon</div>
             <div className="beepcons-modal__inputs">
               <span className="beepcons-modal__input1__label">Nombre</span>
-              <input
+              <TextareaAutosize
                 type="text"
-                className="beepcons-modal__input1"
+                className="beepcons-modal__input2"
                 value={userInput.nombre}
                 onChange={(e) => {
                   setUserInput({ ...userInput, nombre: e.target.value });
@@ -145,7 +145,7 @@ export default function BeepconsGlass() {
               />
               <div className="beepcons-modal__input__group">
                 <span className="beepcons-modal__input2__label">
-                  Descripcion
+                  Descripción
                 </span>
                 <TextareaAutosize
                   aria-label="empty textarea"

@@ -10,26 +10,26 @@
 }
 
 .beepcons-glass__delete{
-    position: absolute;
     top: 0;
+    margin-top: 2px;
     right: 0;
-    margin: 10px;
     cursor: pointer;
 }
 
 .beepcons-glass__body__content__item__header {
     cursor: pointer;
-    align-items: center;
     margin-bottom: 18px;
     display: flex;
 }
 
-.beepcons-glass__body__content__item__header_icon {
+.beepcons-glass__body__content__item__header__icon {
     margin-top: 3px;
     margin-right: 18px;
 }
 
-.beepcons-glass__body__content__item__header_titulo {
+.beepcons-glass__body__content__item__header__titulo {
+    width: 80%;
+    word-wrap: break-word;
     font-size: 32px;
 }
 
