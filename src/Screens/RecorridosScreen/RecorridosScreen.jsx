@@ -248,7 +248,7 @@ export default function RecorridosScreen() {
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
                     {beepcons.map((beepcon) => {
                       return (
-                        <div className="recorridos-modal__item">
+                        <div key={beepcon.id} className="recorridos-modal__item">
                           <p>{beepcon.nombre}</p>
                           <input
                             type="checkbox"
@@ -370,7 +370,7 @@ function ModalEditRecorrido(props) {
   };
 
   return (
-    <Modal open={props.open}>
+    <Modal open={props.open} >
           <div className="recorridos-screen__modal">
             <span
               className="recorridos-screen__modal__close"
@@ -429,7 +429,7 @@ function ModalEditRecorrido(props) {
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
                     {beepcons.map((beepcon) => {
                       return (
-                        <div className="recorridos-modal__item">
+                        <div key={beepcon.id} className="recorridos-modal__item">
                           <p>{beepcon.nombre}</p>
                           <input
                             defaultChecked={beepcon.selected}
