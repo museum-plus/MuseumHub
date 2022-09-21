@@ -11,6 +11,7 @@ import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../database/db";
 import ThemeContext from "../../context/theme-context";
 import ClockIcon from "../../assets/ClockIcon";
+import CalendarIcon from "../../assets/CalendarIcon";
 function TurnosInfo(props) {
   const { theme, handleTheme } = useContext(ThemeContext);
   const [recorrido, setRecorrido] = React.useState({});
@@ -78,7 +79,7 @@ export default function TurnoGlass() {
         <motion.div className="turno-glass__header__text" whileTap={{ scale: 0.95 }}>
           Turnos Pendientes
           <div className="icon__calendar">
-            <img src={calendar} alt="icon" />
+            <CalendarIcon/>
           </div>
         </motion.div>
       </div>

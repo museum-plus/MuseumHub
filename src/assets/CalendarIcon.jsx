@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import ThemeContext from '../context/theme-context';
 
-export default function TurnosIcon() {
+export default function CalendarIcon() {
     const { theme, handleTheme } = useContext(ThemeContext);
     return (
         <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">

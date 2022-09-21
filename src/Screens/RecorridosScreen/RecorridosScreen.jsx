@@ -395,6 +395,7 @@ function ModalEditRecorrido(props) {
                   Nombre:
                 </div>
                 <input
+                  style={theme.fondo}
                   value={data.nombre}
                   type="text"
                   className="recorridos-screen__modal__body__row1__input"
@@ -409,6 +410,7 @@ function ModalEditRecorrido(props) {
                   Descripcion:
                 </div>
                 <input
+                style={theme.fondo}
                   value={data.descripcion}
                   type="text"
                   className="recorridos-screen__modal__body__row1__input"
@@ -419,15 +421,16 @@ function ModalEditRecorrido(props) {
                     });
                   }}
                 />
-                <button
+                <motion.button 
+                  whileHover={{ scale: 1.06 }}
                   className="recorridos-screen__modal__body__row1__button"
                   onClick={() => {
                     guardarEdit();
                   }}
-                  style={theme.border}
+                  style={theme.btn}
                 >
                   Guardar cambios
-                </button>
+                </motion.button>
               </div>
               <div className="recorridos-screen__modal__body__row2">
                 <div className="recorridos-screen__modal__body__row2__group">
@@ -437,9 +440,10 @@ function ModalEditRecorrido(props) {
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
                     {beepcons.map((beepcon) => {
                       return (
-                        <div key={beepcon.id} className="recorridos-modal__item">
+                        <div key={beepcon.id} className="recorridos-modal__item" style={theme.check}>
                           <p>{beepcon.nombre}</p>
                           <input
+                            style={theme.border}
                             defaultChecked={beepcon.selected}
                             type="checkbox"
                             onClick={() => handleCheck(beepcon)}

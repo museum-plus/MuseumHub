@@ -25,6 +25,12 @@ const themes ={
                     borderBottom: "1px solid rgba(255, 255, 255, 0.3)",
                 }
             },
+        },
+        check:{
+            background:'#fff',
+        },
+        btn:{
+            border:"2px solid #fff",
         }
     },
     light:{
@@ -56,6 +62,14 @@ const themes ={
                     borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
                 }
             },
+        },
+        check:{
+            background:'#000',
+        },
+        btn:{
+            color:"#000",
+            background:'#EAEAEA',
+            border:"1px solid #000",
         }
     }
 };

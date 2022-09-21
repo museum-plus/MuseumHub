@@ -5,6 +5,7 @@ import "./AlertasGlass.css";
 import { motion } from "framer-motion"
 import ThemeContext from "../../context/theme-context";
 import BellIcon from "../../assets/BellIcon";
+import PhoneIcon from "../../assets/PhoneIcon";
 
 export default function AlertasGlass() {
   const { theme, handleTheme } = useContext(ThemeContext);
@@ -42,7 +43,7 @@ export default function AlertasGlass() {
           return (
             <div key={alert.id} className="alertas-glass__body__alert">
               <div className="alertas-glass__body__alert__icon">
-                <img src={`${phone}`} alt="..." />
+                <PhoneIcon/>
               </div>
               <div className="alertas-glass__body__alert__text">
                 {alert.title}

@@ -41,7 +41,7 @@
     color: #ffffffab;
     font-size: 24px;
     font-weight: 300;
-    border-bottom: 2px solid #ffffffab;  
+    padding: 5px 0;
     width: 100%;
 }
 
@@ -50,11 +50,10 @@
     position: relative;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
-    padding: 5px 5px;
+    padding: 5px 0;
     border: 3px;
     font-size: 24px;
     font-weight: 300;
-    border-bottom: 2px solid #ffffffab;    
 }
 
 .turnos-modal__col__btn{

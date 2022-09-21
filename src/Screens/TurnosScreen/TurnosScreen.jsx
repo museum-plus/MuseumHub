@@ -189,7 +189,7 @@ export default function TurnosScreen() {
           <div className="turnos-modal__col">
             <p> Turnos </p>
             <div className="turnos-modal__col__text">
-              <div className="turnos-modal__col__text__row">
+              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
                 <p> Visitante </p>
                 <input
                   type="text"
@@ -202,7 +202,7 @@ export default function TurnosScreen() {
                   value={data.visitante}
                 />
               </div>
-              <div className="turnos-modal__col__text__row" >
+              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
                 <p> Horario </p>
                 <input
                   type="text"
@@ -215,11 +215,11 @@ export default function TurnosScreen() {
                   value={data.horario}
                 />
               </div>
-              <div className="turnos-modal__col__text__row">
+              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
                 <p> Fecha </p>
                 <input
                   type="text"
-                  style={theme.border.bottom.solid}
+                  style={theme.fondo}
                   placeholder="Ingrese Fecha dd/mm/aaaa"
                   className="turnos-modal__col__input"
                   onChange={(e) => {
@@ -228,7 +228,7 @@ export default function TurnosScreen() {
                   value={data.fecha}
                 />
               </div>
-              <div className="turnos-modal__col__text__row">
+              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
                 <p> Seleccionar Recorrido </p>
                 <select
                 style={theme.fondo}
@@ -243,9 +243,11 @@ export default function TurnosScreen() {
                 </select>
               </div>
             </div>
-            <button className="turnos-modal__col__btn" onClick={sendTurno} style={theme.fondo}>
+            <motion.button 
+            whileHover={{ scale: 1.06 }}
+            className="turnos-modal__col__btn" onClick={sendTurno} style={theme.btn}>
               Guardar
-            </button>
+            </motion.button>
           </div>
         </div>
       </Modal>
@@ -320,9 +322,7 @@ function TurnosItem(props) {
           <div className="turnos-screen__body__row2__button__group__edit" onClick={() => {
                 props.openModalEdit(props.id);
               }}>
-            <EditIcon
-              
-            />
+            <EditIcon/>
           </div>
           <div className="turnos-screen__body__row2__button__group__delete">
             <img
@@ -415,7 +415,7 @@ function ModalEdit(props) {
         <div className="turnos-modal__col">
           <p> Turnos </p>
           <div className="turnos-modal__col__text">
-            <div className="turnos-modal__col__text__row">
+            <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
               <p> Visitante </p>
               <input
                 type="text"
@@ -428,7 +428,7 @@ function ModalEdit(props) {
                 value={data.visitante}
               />
             </div>
-            <div className="turnos-modal__col__text__row">
+            <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
               <p> Horario </p>
               <input
                 type="text"
@@ -441,7 +441,7 @@ function ModalEdit(props) {
                 value={data.horario}
               />
             </div>
-            <div className="turnos-modal__col__text__row">
+            <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
               <p> Fecha </p>
               <input
                 type="text"
@@ -454,7 +454,7 @@ function ModalEdit(props) {
                 value={data.fecha}
               />
             </div>
-            <div className="turnos-modal__col__text__row">
+            <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}> 
               <p> Seleccionar Recorrido </p>
               <select
                 className="turnos-modal__col__text__row__select"
@@ -469,15 +469,16 @@ function ModalEdit(props) {
               </select>
             </div>
           </div>
-          <button
+          <motion.button 
+            whileHover={{ scale: 1.06 }}
             className="turnos-modal__col__btn"
-            style={theme.fondo}
+            style={theme.btn}
             onClick={() => {
               sendTurnoEdit();
             }}
           >
             Editar
-          </button>
+          </motion.button>
         </div>
       </div>
     </Modal>

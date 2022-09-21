@@ -1,6 +1,6 @@
 .recorridos-screen__modal{
-    width: 65%;
-    height: 65%;
+    width: 50%;
+    height: 75%;
     background: #15151583;
     backdrop-filter: blur(127px);
     position: absolute;
@@ -112,7 +112,6 @@
     font-size: 23px;
     font-family: 'Roboto', 'sans-serif';
     font-weight: 300;
-    color: #fff;
     margin-bottom: 5px;
 }
 
