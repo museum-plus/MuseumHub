@@ -101,14 +101,12 @@
 
 .turnos-screen__body__row2__text{
     font-size: 24px;
-    color: #ffffffab;
     margin-left: 45px;
 }
 
 .turnos-screen__body__row2__button {
   height: 40px;
   width: 200px;
-  border: 2px solid #ffffff;
   border-radius: 5px;
   display: grid;
   place-items: center;

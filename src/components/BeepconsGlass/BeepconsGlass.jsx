@@ -106,7 +106,7 @@ export default function BeepconsGlass() {
           </div>
           <RefreshButton refresh={() => { getterBeepcons() }} />
           <div className="beepcons-glass__header__icon" onClick={openModal}>
-            <PlusIcon/>
+            <PlusIcon />
           </div>
         </div>
         <div className="beepcons-glass__body">
@@ -126,20 +126,22 @@ export default function BeepconsGlass() {
         </div>
       </motion.div>
       <Modal open={open}>
-        <div className="beepcons_modal">
+        <div className="beepcons_modal" style={theme.glass}>
           <span
             className="recorridos-screen__modal__close"
             onClick={() => {
               setOpen(false);
             }}
           >
-            <CloseIcon/>
+            <CloseIcon />
           </span>
-          <div className="beepcons-modal__row1">
+          <div className="beepcons-modal__row1" style={theme.color}>
             <div className="beepcons-modal__title">Beepcon</div>
-            <div className="beepcons-modal__inputs">
+            <div className="beepcons-modal__inputs" >
               <span className="beepcons-modal__input1__label">Nombre</span>
               <TextareaAutosize
+                style={theme.input}
+                placeholder="Ingrese nombre beepcon"
                 type="text"
                 className="beepcons-modal__input2"
                 value={userInput.nombre}
@@ -152,9 +154,10 @@ export default function BeepconsGlass() {
                   Descripción
                 </span>
                 <TextareaAutosize
+                  style={theme.input}
+                  placeholder="Ingrese Descripción"
                   aria-label="empty textarea"
                   className="beepcons-modal__input2"
-                  placeholder=""
                   value={userInput.descripcion}
                   onChange={(e) => {
                     setUserInput({
@@ -164,6 +167,7 @@ export default function BeepconsGlass() {
                   }}
                 />
                 <input
+                style={theme.input}
                   type="text"
                   placeholder="posicion x"
                   className="beepcons-modal__input__test"
@@ -179,6 +183,7 @@ export default function BeepconsGlass() {
                   }}
                 />
                 <input
+                style={theme.input}
                   type="text"
                   placeholder="posicion y"
                   className="beepcons-modal__input__test"
@@ -195,6 +200,7 @@ export default function BeepconsGlass() {
                 />
 
                 <motion.button
+                  style={theme.btn}
                   className="beepcons-modal__button"
                   onClick={sendBeepcon}
                 >
@@ -204,9 +210,7 @@ export default function BeepconsGlass() {
             </div>
           </div>
 
-          <div className="beepcons-modal__row2">
 
-          </div>
         </div>
       </Modal>
     </>

@@ -31,6 +31,9 @@ const themes ={
         },
         btn:{
             border:"2px solid #fff",
+        },
+        input:{
+            borderBottom: "1px solid #fff"
         }
     },
     light:{
@@ -70,6 +73,11 @@ const themes ={
             color:"#000",
             background:'#EAEAEA',
             border:"1px solid #000",
+        },
+        input:{
+            background:'#EAEAEA',
+            color:'black',
+            borderBottom: "1px solid #000"
         }
     }
 };

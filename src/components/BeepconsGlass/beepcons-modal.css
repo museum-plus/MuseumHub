@@ -8,8 +8,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 35px;
-    
-    border: 2px solid #ffffff60;
 
     display: flex;
     flex-direction: column;
@@ -35,11 +33,9 @@
     outline: none;
     border: none;
     background: transparent;
-    color: white;
     font-size: 24px;
     padding: 35px;
     margin-top: auto;
-    border: solid 3px #fff;
     transition: all 0.3s ease;
 }
 
@@ -50,7 +46,6 @@
 
 .beepcons-modal__inputs > span, .beepcons-modal__input__group > span{
     font-size: 24px;
-    color: #fff;
     margin-bottom: 10px;
 }
 
@@ -68,10 +63,8 @@
     overflow: hidden;
     border: 3px;
     background-color: transparent;
-    color: #ffffffab;
     font-size: 24px;
     font-weight: 300;
-    border-bottom: 2px solid #ffffffab;    
 }
 
 .beepcons-modal__input1:focus{
@@ -85,12 +78,9 @@
     resize: none;
     overflow: hidden;
     border: 3px;
-    background-color: transparent;
-    color: #ffffffab;
     font-size: 24px;
     stroke: none;
     font-weight: 300;
-    border-bottom: 2px solid #ffffffab;
 }
 
 .beepcons-modal__input2::after{
@@ -132,9 +122,7 @@
     overflow: hidden;
     border: 3px;
     background-color: transparent;
-    color: #ffffffab;
     font-size: 24px;
     stroke: none;
     font-weight: 300;
-    border-bottom: 2px solid #ffffffab;
 }
