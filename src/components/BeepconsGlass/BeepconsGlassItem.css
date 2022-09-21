@@ -64,7 +64,8 @@
     overflow: auto;
     border: 0px;
     background-color: transparent;
-    font-size: 32px;
+    color: #080808de;
+    font-size: 24px;
     stroke: none;
     height: 100%;
     width: 100%;
