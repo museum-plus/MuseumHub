@@ -50,9 +50,8 @@
     position: relative;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
+    padding: 5px 5px;
     border: 3px;
-    background-color: transparent;
-    color: #ffffffab;
     font-size: 24px;
     font-weight: 300;
     border-bottom: 2px solid #ffffffab;    

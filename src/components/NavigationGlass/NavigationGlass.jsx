@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import homeIcon from "../../assets/homeIcon.svg";
+import HomeIcon from "../../assets/HomeIcon.jsx";
 import museumicon from "../../assets/museumicon.svg";
 import beepconsicon from "../../assets/beepconIcon.svg";
 import recorridosicon from "../../assets/recorridosicon.svg";
@@ -21,6 +22,11 @@ import {
 
 import "./NavigationGlass.css";
 import { Link } from "react-router-dom";
+import ThemeContext from "../../context/theme-context";
+import MuseumIcon from "../../assets/MuseumIcon";
+import BeepconsIcon from "../../assets/BeepconsIcon";
+import RecorridosIcon from "../../assets/RecorridosIcon";
+import TurnosIcon from "../../assets/TurnosIcon";
 
 function NavigationGlassItem(props) {
   return (
@@ -36,6 +42,8 @@ function NavigationGlassItem(props) {
 }
 
 export default function NavigationGlass() {
+  const { theme, handleTheme } = useContext(ThemeContext);
+  console.log(theme);
   const registerMuseum = async () => {
     try {
       await setDoc(doc(db, "museums", "museum1"), {
@@ -63,25 +71,54 @@ export default function NavigationGlass() {
   };
 
   return (
-    <div className="navigation-glass-container">
-      <div className="navigation-glass">
+    <div className="navigation-glass-container" >
+      <div className="navigation-glass" style={theme.glass}>
         <section>
-        <Cube />
-        <div className="navigation-glass__title">MuseumHub</div>
+          <Cube />
+          <div className="navigation-glass__title">MuseumHub</div>
         </section>
-        <NavigationGlassItem icon={homeIcon} text="Inicio" route="/" />
-        <NavigationGlassItem icon={museumicon} text="Tu museo" route="/museo" />
-        <NavigationGlassItem
-          icon={beepconsicon}
-          text="Beepcons"
-          route="/beepcons"
-        />
-        <NavigationGlassItem
-          icon={recorridosicon}
-          text="Tus recorridos"
-          route="/recorridos"
-        />
-        <NavigationGlassItem icon={turnosIcon} text="Turnos" route="/turnos" />
+
+        <Link to="/">
+          <div className="navigation-glass__item">
+            <div className="navigation-glass__item__icon">
+              <HomeIcon />
+            </div>
+            <div className="navigation-glass__item__text">Inicio</div>
+          </div>
+        </Link>
+        <Link to="/museo">
+          <div className="navigation-glass__item">
+            <div className="navigation-glass__item__icon">
+              <MuseumIcon/>
+            </div>
+            <div className="navigation-glass__item__text">Tu museo</div>
+          </div>
+        </Link>
+        <Link to="/beepcons">
+          <div className="navigation-glass__item">
+            <div className="navigation-glass__item__icon">
+              <BeepconsIcon/>
+            </div>
+            <div className="navigation-glass__item__text">Beepcons</div>
+          </div>
+        </Link>
+        <Link to="/recorridos">
+          <div className="navigation-glass__item">
+            <div className="navigation-glass__item__icon">
+              <RecorridosIcon/>
+            </div>
+            <div className="navigation-glass__item__text">Tus Recorridos</div>
+          </div>
+        </Link>
+        <Link to="/turnos">
+          <div className="navigation-glass__item">
+            <div className="navigation-glass__item__icon">
+              <TurnosIcon/>
+            </div>
+            <div className="navigation-glass__item__text">Turnos</div>
+          </div>
+        </Link>
+        <button onClick={handleTheme}>holaaaaaaa</button>
       </div>
     </div>
   );

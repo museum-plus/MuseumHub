@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavigationGlass from "../../components/NavigationGlass/NavigationGlass";
 import "./TurnosScreen.css";
 import "./TurnosModal.css";
-import plus from "../../assets/plus.svg";
+import PlusIcon from "../../assets/PlusIcon.jsx";
 import Punto from "../../components/TurnoGlass/Punto";
 import edit from "../../assets/edit.svg";
 import clock from "../../assets/clock.svg";
@@ -25,6 +25,10 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+import ThemeContext from "../../context/theme-context";
+import ClockIcon from "../../assets/ClockIcon";
+import EditIcon from "../../assets/EditIcon";
+import CloseIcon from "../../assets/CloseIcon";
 export default function TurnosScreen() {
   const [open, setOpen] = React.useState(false);
   const [turnoId, setTurnoId] = React.useState("");
@@ -122,10 +126,12 @@ export default function TurnosScreen() {
     let value = e.target.value;
     setData({ ...data, recorrido_id: value });
   };
+  const { theme, handleTheme } = useContext(ThemeContext);
   return (
-    <div className="screen-blur turnos-screen-container">
+    <div className="screen-blur turnos-screen-container" style={theme.fondo}>
       <NavigationGlass />
       <motion.div
+        style={theme.glass}
         className="turnos-screen"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -148,7 +154,7 @@ export default function TurnosScreen() {
               openModal();
             }}
           >
-            <img src={plus} alt="" />
+            <PlusIcon/>
           </div>
         </div>
         <div className="turnos-screen__body">
@@ -171,14 +177,14 @@ export default function TurnosScreen() {
         </div>
       </motion.div>
       <Modal open={open}>
-        <div className="turnos-modal">
+        <div className="turnos-modal" style={theme.glass}>
           <span
             className="recorridos-screen__modal__close"
             onClick={() => {
               setOpen(false);
             }}
           >
-            <img src={close} alt="close" />
+            <CloseIcon/>
           </span>
           <div className="turnos-modal__col">
             <p> Turnos </p>
@@ -189,16 +195,18 @@ export default function TurnosScreen() {
                   type="text"
                   placeholder="Ingrese nombre visitante"
                   className="turnos-modal__col__input"
+                  style={theme.fondo}
                   onChange={(e) => {
                     setData({ ...data, visitante: e.target.value });
                   }}
                   value={data.visitante}
                 />
               </div>
-              <div className="turnos-modal__col__text__row">
+              <div className="turnos-modal__col__text__row" >
                 <p> Horario </p>
                 <input
                   type="text"
+                  style={theme.fondo}
                   placeholder="Ingrese Horario 00:00"
                   className="turnos-modal__col__input"
                   onChange={(e) => {
@@ -211,6 +219,7 @@ export default function TurnosScreen() {
                 <p> Fecha </p>
                 <input
                   type="text"
+                  style={theme.border.bottom.solid}
                   placeholder="Ingrese Fecha dd/mm/aaaa"
                   className="turnos-modal__col__input"
                   onChange={(e) => {
@@ -222,6 +231,7 @@ export default function TurnosScreen() {
               <div className="turnos-modal__col__text__row">
                 <p> Seleccionar Recorrido </p>
                 <select
+                style={theme.fondo}
                   className="turnos-modal__col__text__row__select"
                   onClick={handleSelectChange}
                 >
@@ -233,7 +243,7 @@ export default function TurnosScreen() {
                 </select>
               </div>
             </div>
-            <button className="turnos-modal__col__btn" onClick={sendTurno}>
+            <button className="turnos-modal__col__btn" onClick={sendTurno} style={theme.fondo}>
               Guardar
             </button>
           </div>
@@ -298,7 +308,7 @@ function TurnosItem(props) {
             {props.horario == undefined ? "hola" : props.horario}
           </div>
           <div className="turnos-screen__body__row__group__icon">
-            <img src={clock} alt="..." />
+            <ClockIcon/>
           </div>
         </div>
       </div>
@@ -307,13 +317,11 @@ function TurnosItem(props) {
           {recorrido === undefined ? "No hay recorrido" : recorrido.nombre}
         </div>
         <div className="turnos-screen__body__row2__button__group">
-          <div className="turnos-screen__body__row2__button__group__edit">
-            <img
-              src={edit}
-              alt="..."
-              onClick={() => {
+          <div className="turnos-screen__body__row2__button__group__edit" onClick={() => {
                 props.openModalEdit(props.id);
-              }}
+              }}>
+            <EditIcon
+              
             />
           </div>
           <div className="turnos-screen__body__row2__button__group__delete">
@@ -392,17 +400,17 @@ function ModalEdit(props) {
     };
     get();
   }, [props.turnoId]);
-
+  const { theme, handleTheme } = useContext(ThemeContext);
   return (
     <Modal open={props.open}>
-      <div className="turnos-modal">
+      <div className="turnos-modal" style={theme.glass}>
         <span
           className="recorridos-screen__modal__close"
           onClick={() => {
             props.closeModalEdit();
           }}
         >
-          <img src={close} alt="close" />
+          <CloseIcon/>
         </span>
         <div className="turnos-modal__col">
           <p> Turnos </p>
@@ -412,6 +420,7 @@ function ModalEdit(props) {
               <input
                 type="text"
                 placeholder="Ingrese nombre visitante"
+                style={theme.fondo}
                 className="turnos-modal__col__input"
                 onChange={(e) => {
                   setData({ ...data, visitante: e.target.value });
@@ -424,6 +433,7 @@ function ModalEdit(props) {
               <input
                 type="text"
                 placeholder="Ingrese Horario 00:00 - 23:59"
+                style={theme.fondo}
                 className="turnos-modal__col__input"
                 onChange={(e) => {
                   setData({ ...data, horario: e.target.value });
@@ -436,6 +446,7 @@ function ModalEdit(props) {
               <input
                 type="text"
                 placeholder="Ingrese Fecha dd/mm/aaaa"
+                style={theme.fondo}
                 className="turnos-modal__col__input"
                 onChange={(e) => {
                   setData({ ...data, fecha: e.target.value });
@@ -448,6 +459,7 @@ function ModalEdit(props) {
               <select
                 className="turnos-modal__col__text__row__select"
                 onClick={handleSelectChange}
+                style={theme.fondo}
               >
                 {recorridos.map((recorrido) => (
                   <option key={recorrido.id} value={recorrido.id}>
@@ -459,6 +471,7 @@ function ModalEdit(props) {
           </div>
           <button
             className="turnos-modal__col__btn"
+            style={theme.fondo}
             onClick={() => {
               sendTurnoEdit();
             }}

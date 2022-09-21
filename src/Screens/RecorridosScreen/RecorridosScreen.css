@@ -147,7 +147,6 @@ p {
 .recorridos-screen__body__row2__button {
   height: 40px;
   width: 200px;
-  border: 2px solid #ffffff;
   border-radius: 5px;
   display: grid;
   place-items: center;

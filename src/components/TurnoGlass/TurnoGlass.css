@@ -44,8 +44,6 @@
 
 .turno-glass__body__container {
     margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-
 }
 
 .turno-glass__body__info {
@@ -80,6 +78,5 @@
     display: flex;
 }
 
-.turno-glass__body_text_clock {}
 
 /* BODY */

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./BeepconsGlass.css";
 import Punto from "../TurnoGlass/Punto";
 import BeepconsGlassItem from "./BeepconsGlassItem";
@@ -24,9 +24,12 @@ import {
   documentId,
 } from "firebase/firestore";
 import { useRef } from "react";
-
+import ThemeContext from "../../context/theme-context";
+import PlusIcon from "../../assets/PlusIcon";
+import CloseIcon from "../../assets/CloseIcon";
 
 export default function BeepconsGlass() {
+  const { theme, handleTheme } = useContext(ThemeContext);
   const [open, setOpen] = React.useState(false);
   const [beepcons, setBeepcons] = React.useState([]);
   const [userInput, setUserInput] = React.useState({
@@ -85,6 +88,7 @@ export default function BeepconsGlass() {
     <>
       <motion.div
         className="beepcons-glass"
+        style={theme.glass}
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
@@ -99,11 +103,10 @@ export default function BeepconsGlass() {
             <div className="beepcons-icon-punto">
               <Punto color="#fff" />
             </div>
-
           </div>
           <RefreshButton refresh={() => { getterBeepcons() }} />
           <div className="beepcons-glass__header__icon" onClick={openModal}>
-            <img src={plus} alt="" />
+            <PlusIcon/>
           </div>
         </div>
         <div className="beepcons-glass__body">
@@ -130,7 +133,7 @@ export default function BeepconsGlass() {
               setOpen(false);
             }}
           >
-            <img src={close} alt="close" />
+            <CloseIcon/>
           </span>
           <div className="beepcons-modal__row1">
             <div className="beepcons-modal__title">Beepcon</div>

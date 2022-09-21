@@ -35,7 +35,6 @@
 
 .beepcons-glass__body__content__item__text {
     cursor: pointer;
-    color: #ffffffab;
     font-size: 24px;
     margin-bottom: 2px;
     border-bottom: 2px solid #ffffff2d;
@@ -49,7 +48,6 @@
     overflow: auto;
     border: 0px;
     background-color: transparent;
-    color: #ffffffab;
     font-size: 24px;
     stroke: none;
     height: 100%;
@@ -66,7 +64,6 @@
     overflow: auto;
     border: 0px;
     background-color: transparent;
-    color: #ffffffde;
     font-size: 32px;
     stroke: none;
     height: 100%;

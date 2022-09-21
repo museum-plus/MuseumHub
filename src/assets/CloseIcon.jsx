@@ -1,0 +1,29 @@
+import React, { useContext } from 'react'
+import ThemeContext from '../context/theme-context';
+
+export default function CloseIcon() {
+    const { theme, handleTheme } = useContext(ThemeContext);
+    return (
+        <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_179_1395)">
+        <path d="M21.5 0C11.8504 0 4 7.85042 4 17.5C4 27.1496 11.8504 35 21.5 35C31.1496 35 39 27.1496 39 17.5C39 7.85042 31.1496 0 21.5 0ZM21.5 32.5C13.229 32.5 6.5 25.771 6.5 17.5C6.5 9.22903 13.229 2.5 21.5 2.5C29.771 2.5 36.5 9.22903 36.5 17.5C36.5 25.771 29.771 32.5 21.5 32.5Z" fill={theme.color.color}/>
+        <path d="M26.8628 12.1373C26.3746 11.6491 25.5833 11.6491 25.0951 12.1373L21.5001 15.7323L17.9049 12.1371C17.4167 11.6489 16.6253 11.6489 16.1371 12.1371C15.6489 12.6253 15.6489 13.4167 16.1371 13.9049L19.7323 17.5001L16.1371 21.0952C15.6489 21.5834 15.6489 22.3748 16.1371 22.863C16.3812 23.107 16.7012 23.2291 17.021 23.2291C17.3409 23.2291 17.6608 23.107 17.9049 22.863L21.5001 19.2678L25.0952 22.863C25.3392 23.107 25.6592 23.2291 25.9791 23.2291C26.2989 23.2291 26.6188 23.107 26.863 22.863C27.3512 22.3748 27.3512 21.5834 26.863 21.0952L23.2678 17.5001L26.863 13.9049C27.351 13.4169 27.351 12.6253 26.8628 12.1373Z" fill={theme.color.color}/>
+        </g>
+        <defs>
+        <filter id="filter0_d_179_1395" x="0" y="0" width="43" height="43" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+        <feOffset dy="4"/>
+        <feGaussianBlur stdDeviation="2"/>
+        <feComposite in2="hardAlpha" operator="out"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_179_1395"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_179_1395" result="shape"/>
+        </filter>
+        <clipPath id="clip0_179_1395">
+        <rect width="35" height="35" fill={theme.color.color} transform="translate(4)"/>
+        </clipPath>
+        </defs>
+        </svg>
+    )
+}

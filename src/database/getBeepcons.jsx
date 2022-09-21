@@ -13,6 +13,7 @@ import {
     documentId
   } from "firebase/firestore";
 import refresh from '../assets/refresh.svg'
+import RefreshIcon from "../assets/RefreshIcon";
 
 const getMuseum = async () =>{
   const museumCollection = collection(db, "museum");
@@ -100,7 +101,7 @@ const deleteTurnos = async (id) =>{
 const RefreshButton = (props) => {
   return(
     <button className="refresh" onClick={props.refresh}>
-      <img src={refresh} alt="refresh" />
+      <RefreshIcon></RefreshIcon>
     </button>
   )
 }

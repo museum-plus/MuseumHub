@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavigationGlass from "../../components/NavigationGlass/NavigationGlass";
 import plus from "../../assets/plus.svg";
 import Punto from "../../components/TurnoGlass/Punto";
@@ -37,6 +37,10 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import BeepconsGlassItem from "../../components/BeepconsGlass/BeepconsGlassItem";
+import ThemeContext from "../../context/theme-context";
+import PlusIcon from "../../assets/PlusIcon";
+import EditIcon from "../../assets/EditIcon";
+import CloseIcon from "../../assets/CloseIcon";
 export default function RecorridosScreen() {
   const [beepcons, setBeepcons] = React.useState([]);
   const [turnos, setTurnos] = React.useState([]);
@@ -143,13 +147,14 @@ export default function RecorridosScreen() {
     setRecorridoId(id);
     setOpenAsignar(true);
   };
-
+  const { theme, handleTheme } = useContext(ThemeContext);
   return (
     <>
-      <div className="screen-blur container-screen">
+      <div className="screen-blur container-screen" style={theme.fondo}>
         <NavigationGlass />
         <motion.div
           className="recorridos-screen"
+          style={theme.glass}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -171,7 +176,7 @@ export default function RecorridosScreen() {
                 setOpen(true), setBeepcons(await getBeepcons());
               }}
             >
-              <img src={plus} alt="" />
+              <PlusIcon/>
             </div>
           </div>
           <div className="recorridos-screen__body">
@@ -370,17 +375,18 @@ function ModalEditRecorrido(props) {
     props.actualizar();
     props.onClose()
   };
-
+  const { theme, handleTheme } = useContext(ThemeContext);
+  console.log(theme.border.border);
   return (
     <Modal open={props.open} >
-          <div className="recorridos-screen__modal">
+          <div className="recorridos-screen__modal" style={theme.glass}>
             <span
               className="recorridos-screen__modal__close"
               onClick={() => {
                 props.onClose()
               }}
             >
-              <img src={close} alt="close" />
+              <CloseIcon/>
             </span>
             <div className="recorridos-screen__modal__header">Editar Recorrido:</div>
             <div className="recorridos-screen__modal__body">
@@ -418,7 +424,7 @@ function ModalEditRecorrido(props) {
                   onClick={() => {
                     guardarEdit();
                   }}
-                  
+                  style={theme.border}
                 >
                   Guardar cambios
                 </button>
@@ -484,6 +490,8 @@ function RecorridosItem(props) {
   const showEdit = () => {
     openEdit(id);
   }
+  const { theme, handleTheme } = useContext(ThemeContext);
+
   return (
     <div className="recorridos-screen__body__item" >
       <div className="recorridos-screen__body__row">
@@ -495,6 +503,7 @@ function RecorridosItem(props) {
       <div className="recorridos-screen__body__row2">
         <div
           className="recorridos-screen__body__row2__button"
+          style={theme.border}
           onClick={() => {
             openAsignar(id);
           }}
@@ -503,7 +512,7 @@ function RecorridosItem(props) {
         </div>
         <div className="recorridos-screen__body__row2__button__group">
           <div className="recorridos-screen__body__row2__button__group__edit" onClick={showEdit}>
-            <img src={edit} alt="" />
+            <EditIcon/>
           </div>
           <div
             className="recorridos-screen__body__row2__button__group__delete"

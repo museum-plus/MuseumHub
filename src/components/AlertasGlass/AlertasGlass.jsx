@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import bell from "../../assets/bell.svg";
 import phone from "../../assets/phone.svg";
 import "./AlertasGlass.css";
 import { motion } from "framer-motion"
-
+import ThemeContext from "../../context/theme-context";
+import BellIcon from "../../assets/BellIcon";
 
 export default function AlertasGlass() {
+  const { theme, handleTheme } = useContext(ThemeContext);
   const [alerts, setAlerts] = React.useState([
     {
       id: 1,
@@ -18,6 +20,7 @@ export default function AlertasGlass() {
   ]);
   return (
     <motion.div className="alertas-glass"
+    style={theme.glass}
     initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
@@ -26,10 +29,12 @@ export default function AlertasGlass() {
         ease: [0, 0.71, 0.2, 1.01]
       }}
     >
-      <motion.div className="alertas-glass__header" whileTap={{ scale: 0.95 }}>
+      <motion.div 
+      className="alertas-glass__header" 
+      whileTap={{ scale: 0.95 }}>
         <motion.div className="alertas-glass__header__text" >Alertas</motion.div>
         <div className="alertas-glass__header__icon">
-          <img src={bell} alt="" />
+          <BellIcon></BellIcon>
         </div>
       </motion.div>
       <div className="alertas-glass__body">

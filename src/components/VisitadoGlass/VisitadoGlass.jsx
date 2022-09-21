@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './VisitadoGlass.css'
-import ojo from '../../assets/ojo.svg'
+import Ojo from '../../assets/Ojo.jsx'
 import Graph from './Graph.jsx'
 import { motion } from "framer-motion"
+import ThemeContext from '../../context/theme-context'
 function Position(props) {
   const styles = {
     primary: { color: props.color }
@@ -14,8 +15,10 @@ function Position(props) {
   )
 }
 export default function VisitadoGlass(props) {
+  const { theme, handleTheme } = useContext(ThemeContext);
   return (
 <motion.div className='visitado-glass__container'
+  style={theme.glass}
     initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
@@ -28,7 +31,7 @@ export default function VisitadoGlass(props) {
         <motion.div className='visitado-glass__header__text' whileTap={{ scale: 0.95 }}>
           Más visitado
           <div className='icon__calendar'>
-            <img src={ojo} alt="icon" />
+            <Ojo></Ojo>
           </div>
         </motion.div>
       </div>

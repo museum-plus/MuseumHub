@@ -5,11 +5,14 @@ import TurnoGlass from "../../components/TurnoGlass/TurnoGlass";
 import VisitadoGlass from "../../components/VisitadoGlass/VisitadoGlass";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../database/db";
-
 import "./PrincipalScreen.css";
+import ThemeContext, { ThemeProvider } from "../../context/theme-context";
+import { useContext } from "react";
 export default function PrincipalScreen() {
+  const { theme, handleTheme } = useContext(ThemeContext);
+  console.log(theme.glass);
   return (
-    <div className="screen-blur screen-container">
+    <div className="screen-blur screen-container" style={theme.fondo}>
       <div className="screen">
         <div className="row1">
           <NavigationGlass />

@@ -1,7 +1,9 @@
 import { TextareaAutosize } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import ThemeContext from "../../context/theme-context";
 import "./BeepconsGlassItem";
 export default function BeepconsItemInfo(props) {
+  const { theme, handleTheme } = useContext(ThemeContext);
   return (
     <>
       {props.showInput ? (

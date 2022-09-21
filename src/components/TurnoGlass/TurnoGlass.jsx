@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./TurnoGlass.css";
 import calendar from "../../assets/calendar.svg";
 import punto from "../../assets/punto.svg";
@@ -9,7 +9,10 @@ import { Link } from "react-router-dom";
 import { getTurnos } from '../../database/getBeepcons';
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../database/db";
+import ThemeContext from "../../context/theme-context";
+import ClockIcon from "../../assets/ClockIcon";
 function TurnosInfo(props) {
+  const { theme, handleTheme } = useContext(ThemeContext);
   const [recorrido, setRecorrido] = React.useState({});
   React.useEffect(() => {
     const get = async () => {
@@ -26,15 +29,18 @@ function TurnosInfo(props) {
   } else {
   return (
     <Link to="/Turnos">
-    <motion.div className="turno-glass__body__container" whileHover={{ translateX: 5 }}>
+    <motion.div 
+    className="turno-glass__body__container" 
+    whileHover={{ translateX: 5 }} 
+    style={theme.border.bottom.alpha}>
       <div className="turno-glass__body__info">
         <Punto color={props.color}></Punto>
-        <div className="turno-glass__body__nombre">{props.turno.visitante}</div>
+        <div className="turno-glass__body__nombre" style={theme.subtitle}>{props.turno.visitante}</div>
         <div className="hora__container">
           <div className="turno-glass__body__text__hora">
             {props.turno.horario}
             <div className="turno-glass__body_text_clock" >
-            <img src={clock} alt="icon"/>
+            <ClockIcon></ClockIcon>
             </div>
           </div>
           <div className="turno-glas__body__text__fecha">
@@ -49,6 +55,7 @@ function TurnosInfo(props) {
 }
 }
 export default function TurnoGlass() {
+  const { theme, handleTheme } = useContext(ThemeContext);
   const [turnos, setTurnos] = React.useState([]);
   React.useEffect(() => {
     async function get() {
@@ -58,6 +65,7 @@ export default function TurnoGlass() {
   }, []);
   return (
     <motion.div className="turno-glass__container"
+      style={theme.glass}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{

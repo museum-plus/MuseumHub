@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Punto from '../TurnoGlass/Punto';
 import close from "../../assets/close.svg";
 import { motion } from "framer-motion"
@@ -7,6 +7,8 @@ import BeepconsItemInfo from './BeepconsItemInfo';
 import { deleteBeepcons } from '../../database/getBeepcons';
 import { db } from '../../database/db';
 import { updateDoc, doc, query, where, collection } from 'firebase/firestore';
+import CloseIcon from '../../assets/CloseIcon';
+import ThemeContext from '../../context/theme-context';
 export default function BeepconsGlassItem(props) {
   const { nombre, descripcion, posicion, id } = props.package;
   const [punto, setPunto] = useState(props.nombre);
@@ -36,6 +38,7 @@ export default function BeepconsGlassItem(props) {
     // console.log(id);
   };
 
+  const { theme, handleTheme } = useContext(ThemeContext);
 
   return (
     <div className='beepcons-glass__body__content__item'>
@@ -62,12 +65,13 @@ export default function BeepconsGlassItem(props) {
           deleteBeepcons(userInput.id),
           props.package.actualizar()
         }}>
-          <img src={close} alt="close" />
+          <CloseIcon/>
         </div>
         {/* </div> */}
       </motion.div>
       <motion.div
         className='beepcons-glass__body__content__item__text'
+        style={theme.border.bottom.alpha}
         whileHover={{ scale: 1.05 }}
         onHoverStart={e => { }}
         onHoverEnd={e => { }}

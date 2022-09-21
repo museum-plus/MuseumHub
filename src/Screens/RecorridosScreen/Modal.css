@@ -32,7 +32,6 @@
 .recorridos-screen__modal__header{
     font-size: 40px;
     padding: 35px 35px 0 45px;
-    color: #fff;
 }
 
 .recorridos-screen__modal__body{
@@ -100,7 +99,6 @@
     font-size: 23px;
     font-family: 'Roboto', 'sans-serif';
     font-weight: 300;
-    color: #fff;
     margin-bottom: 5px;
 }
 
