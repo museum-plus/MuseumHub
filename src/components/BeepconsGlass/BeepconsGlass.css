@@ -41,6 +41,10 @@
     transform: scale(1.1);
 }
 
+.beepcons-glass__delete{
+    margin-left: auto;
+}
+
 .beepcons-icon-punto {
     margin-left: 15px;
 }
