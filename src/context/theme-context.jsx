@@ -89,9 +89,6 @@ const themes = {
 };
 const ThemeContext = createContext();
 const ThemeProvider = ({children}) =>{
-    const hola = () =>{
-        asdasdasdasd
-    }
     const [theme, setTheme] = React.useState(themes.dark)
     const handleTheme = () => {
         if(theme === themes.dark) {

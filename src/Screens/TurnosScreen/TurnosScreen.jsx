@@ -357,7 +357,7 @@ function ModalEdit(props) {
   const sendTurnoEdit = async () => {
 
     const sendTurnoBD = async () => {
-      console.log(props.turnoId);
+      // console.log(props.turnoId);
        await updateDoc(doc(db, "turnos", props.turnoId), {
         visitante: data.visitante,
         horario: data.horario,
@@ -373,9 +373,9 @@ function ModalEdit(props) {
     await sendTurnoBD()
 
     let recorrido = await getDoc(doc(db, "recorridos", data.recorrido_id));
-    console.log(recorrido.data())
+    // console.log(recorrido.data())
     let array = recorrido.data().turnos;
-    console.log(array);
+    // console.log(array);
     array.push({
       turno_id: data.id,
       turno_visitante: data.visitante,
@@ -384,7 +384,7 @@ function ModalEdit(props) {
     // recorridoTurnos.push(docRef); //Agrego el id del turno al array de turnos del recorrido
     await updateDoc(doc(db, "recorridos", data.recorrido_id), { turnos: array });
 
-    console.log(data.id, "hey youS");
+    // console.log(data.id, "hey youS");
     props.actualizar();
 
   };

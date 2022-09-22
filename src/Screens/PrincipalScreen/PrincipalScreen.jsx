@@ -8,10 +8,13 @@ import { db } from "../../database/db";
 import "./PrincipalScreen.css";
 import ThemeContext, { ThemeProvider } from "../../context/theme-context";
 import { useContext } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 export default function PrincipalScreen() {
   const { theme, handleTheme } = useContext(ThemeContext);
+  const [selectedId, setSelectedId] = React.useState(null)
   console.log(theme.glass);
   return (
+    <>
     <div className="screen-blur screen-container" style={theme.fondo}>
       <div className="screen">
         <div className="row1">
@@ -26,5 +29,6 @@ export default function PrincipalScreen() {
         </div>
       </div>
     </div>
+    </>
   );
 }
