@@ -12,6 +12,7 @@ import { db } from "../../database/db";
 import ThemeContext from "../../context/theme-context";
 import ClockIcon from "../../assets/ClockIcon";
 import CalendarIcon from "../../assets/CalendarIcon";
+import PuntoColor from "../../assets/PuntoColor";
 function TurnosInfo(props) {
   const { theme, handleTheme } = useContext(ThemeContext);
   const [recorrido, setRecorrido] = React.useState({});
@@ -35,14 +36,12 @@ function TurnosInfo(props) {
     whileHover={{ translateX: 5 }} 
     style={theme.border.bottom.alpha}>
       <div className="turno-glass__body__info">
-        <Punto color={props.color}></Punto>
+        <PuntoColor color={props.color}></PuntoColor>
         <div className="turno-glass__body__nombre" style={theme.subtitle}>{props.turno.visitante}</div>
         <div className="hora__container">
           <div className="turno-glass__body__text__hora">
             {props.turno.horario}
-            <div className="turno-glass__body_text_clock" >
-            <ClockIcon></ClockIcon>
-            </div>
+            <ClockIcon/>
           </div>
           <div className="turno-glas__body__text__fecha">
             {props.turno.fecha}

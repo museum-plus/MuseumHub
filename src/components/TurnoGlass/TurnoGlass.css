@@ -26,7 +26,7 @@
 /* HEADER */
 /* BODY */
 .turno-glass__body {
-    margin: 52px;
+    margin: 42px;
     width: auto;
     height: auto;
     overflow-y: scroll;
@@ -44,19 +44,21 @@
 
 .turno-glass__body__container {
     margin-bottom: 20px;
+    word-break: break-word;
 }
 
 .turno-glass__body__info {
     width: auto;
     height: auto;
     display: flex;
+    word-wrap: break-word;
+    padding-bottom: 10px;
 }
 
 .turno-glass__body__nombre {
     justify-content: center;
-    width: auto;
-    padding-right: 92px;
-    padding-bottom: 14px;
+    word-wrap: break-word;
+    width: 97%;
     font-size: 24px;
     color: #ffffffab;
 }

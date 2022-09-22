@@ -1,4 +1,4 @@
-import { TextareaAutosize } from "@mui/material";
+import { TextareaAutosize, useThemeProps } from "@mui/material";
 import React, { useContext } from "react";
 import ThemeContext from "../../context/theme-context";
 import "./BeepconsGlassItem";
@@ -9,7 +9,7 @@ export default function BeepconsItemInfo(props) {
       {props.showInput ? (
         props.title == true ? (
           <TextareaAutosize
-            style={{ width: "100%" , userSelect: "revert"}}
+            style={theme.input}
             className="item-text-area-title"
             type="text"
             value={props.value}
@@ -26,7 +26,7 @@ export default function BeepconsItemInfo(props) {
           />
         ) : (
           <TextareaAutosize
-            style={{ width: "100%", userSelect: "revert"}}
+            style={theme.color}
             className="item-text-area"
             type="text"
             value={props.value}
@@ -44,14 +44,11 @@ export default function BeepconsItemInfo(props) {
         )
       ) : (
         <span
-        onDoubleClick={props.handleDoubleClick}
-        style={{
-          height: "25px",
-          width: "auto",
-        }}
-      >
-        {props.value}
-      </span>
+          onDoubleClick={props.handleDoubleClick}
+          style={theme.color}
+        >
+          {props.value}
+        </span>
 
       )}
     </>

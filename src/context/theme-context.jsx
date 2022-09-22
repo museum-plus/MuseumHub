@@ -1,7 +1,10 @@
 import React, { createContext } from "react";
 
-const themes ={
+const themes = {
     dark:{
+        fondo:{
+            color:'#fff'
+        },
         glass:{
             background: "rgba(21, 21, 21, 0.4)",
             border: "1px solid rgba(255, 255, 255, 0.19)",
@@ -15,8 +18,10 @@ const themes ={
             color:'#fff'
         },
         border:{
-            border:"2px solid #fff",
+            border:"1px solid #fff",
+            border_alpha:{border:"1px solid rgba(255, 255, 255, 0.19)"},
             bottom:{
+                border_alpha:{border:"1px solid rgba(0, 0, 0, 0.3)"},
                 solid:{
                     borderBottom: "1px solid #fff"
                 },
@@ -30,9 +35,10 @@ const themes ={
             background:'#fff',
         },
         btn:{
-            border:"2px solid #fff",
+            border:"1px solid #fff",
         },
         input:{
+            color:'#fff',
             borderBottom: "1px solid #fff"
         }
     },
@@ -55,7 +61,8 @@ const themes ={
             color:'#000'
         },
         border:{
-            border:"2px solid #000",
+            border:"1px solid #000",
+            border_alpha:{border:"1px solid rgba(0, 0, 0, 0.3)"},
             bottom:{
                 solid:{
                     borderBottom: "1px solid #000"
@@ -75,7 +82,6 @@ const themes ={
             border:"1px solid #000",
         },
         input:{
-            background:'#EAEAEA',
             color:'black',
             borderBottom: "1px solid #000"
         }
@@ -83,6 +89,9 @@ const themes ={
 };
 const ThemeContext = createContext();
 const ThemeProvider = ({children}) =>{
+    const hola = () =>{
+        asdasdasdasd
+    }
     const [theme, setTheme] = React.useState(themes.dark)
     const handleTheme = () => {
         if(theme === themes.dark) {

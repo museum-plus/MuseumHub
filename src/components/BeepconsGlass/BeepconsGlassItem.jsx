@@ -9,6 +9,7 @@ import { db } from '../../database/db';
 import { updateDoc, doc, query, where, collection } from 'firebase/firestore';
 import CloseIcon from '../../assets/CloseIcon';
 import ThemeContext from '../../context/theme-context';
+import PuntoColor from '../../assets/PuntoColor';
 export default function BeepconsGlassItem(props) {
   const { nombre, descripcion, posicion, id } = props.package;
   const [punto, setPunto] = useState(props.nombre);
@@ -49,7 +50,7 @@ export default function BeepconsGlassItem(props) {
         onHoverEnd={e => { }}
       >
         <div className='beepcons-glass__body__content__item__header__icon'>
-          <Punto color={props.color}></Punto>
+          <PuntoColor color={"#e1b74a"}></PuntoColor>
         </div>
         {/* <div className='beepcons-glass__body__content__item__header__titulo'> */}
         <BeepconsItemInfo

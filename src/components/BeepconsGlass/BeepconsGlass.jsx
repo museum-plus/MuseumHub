@@ -101,7 +101,7 @@ export default function BeepconsGlass() {
           <div className="beepcons-glass__header__text">
             Beepcons
             <div className="beepcons-icon-punto">
-              <Punto color="#fff" />
+              <Punto/>
             </div>
           </div>
           <RefreshButton refresh={() => { getterBeepcons() }} />
@@ -209,8 +209,6 @@ export default function BeepconsGlass() {
               </div>
             </div>
           </div>
-
-
         </div>
       </Modal>
     </>

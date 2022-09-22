@@ -62,6 +62,8 @@
   display: flex;
   flex-direction: column;
   margin: 15px 0;
+  border-radius: 35px;
+  padding: 10px 20px;
 }
 
 .turnos-screen__body__row {
@@ -70,10 +72,12 @@
   flex-direction: row;
   align-items: center;
   align-content: center;
-  gap: 15px;
   font-size: 28px;
+  word-break: break-all;
 }
-
+.turnos-screen__body__row__text{
+  width: 90%;
+}
 .turnos-screen__body__row__group{
     display: flex;
     flex-direction: row;

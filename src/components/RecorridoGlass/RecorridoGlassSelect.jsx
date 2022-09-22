@@ -10,8 +10,6 @@ export default function BeepconsGlassItem(props) {
   console.log(userInput);
   return (
     <ListItem key={props.package.id} component="div" disablePadding className='item'>
-      {/* <ListItemButton>
-      </ListItemButton> */}
       <Punto color="#fff"></Punto>
       <div className='item__text'>
       {props.package.nombre}

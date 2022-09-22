@@ -1,46 +1,33 @@
 import React, { useContext } from "react";
 import NavigationGlass from "../../components/NavigationGlass/NavigationGlass";
-import plus from "../../assets/plus.svg";
-import Punto from "../../components/TurnoGlass/Punto";
-import edit from "../../assets/edit.svg";
 import deleteicon from "../../assets/deleteicon.svg";
-import { Box, Modal, Popover } from "@mui/material";
+import { Modal } from "@mui/material";
 import "./RecorridosScreen.css";
-import ListItem from "@mui/material/ListItem";
 import "./Modal.css";
 import { motion } from "framer-motion";
 import DialogAsignar from "./DialogAsignar";
 import close from "../../assets/close.svg";
 import DialogView from "./DialogView";
-
-import RecorridoGlassSelected from "../../components/RecorridoGlass/RecorridoGlassSelect";
 import {
   getBeepcons,
   getRecorridos,
   getTurnos,
   RefreshButton,
-  getSingleBeepcon
 } from "../../database/getBeepcons";
 import { db } from "../../database/db";
 import {
   collection,
   addDoc,
   doc,
-  onSnapshot,
-  getDocs,
-  setDoc,
-  query,
   getDoc,
-  where,
-  documentId,
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
-import BeepconsGlassItem from "../../components/BeepconsGlass/BeepconsGlassItem";
 import ThemeContext from "../../context/theme-context";
 import PlusIcon from "../../assets/PlusIcon";
 import EditIcon from "../../assets/EditIcon";
 import CloseIcon from "../../assets/CloseIcon";
+import PuntoColor from "../../assets/PuntoColor";
 export default function RecorridosScreen() {
   const [beepcons, setBeepcons] = React.useState([]);
   const [turnos, setTurnos] = React.useState([]);
@@ -79,6 +66,7 @@ export default function RecorridosScreen() {
     }
     hola();
   }, []);
+
   const handleCheck = (beepcon) => {
     let newReducedBeepcons = reducedBeepcons.map((r_beepcon) => {
       if (r_beepcon.id === beepcon.id) {
@@ -147,6 +135,7 @@ export default function RecorridosScreen() {
     setRecorridoId(id);
     setOpenAsignar(true);
   };
+
   const { theme, handleTheme } = useContext(ThemeContext);
   return (
     <>
@@ -200,14 +189,14 @@ export default function RecorridosScreen() {
         </motion.div>
         {/* MODAL AÑADIR */}
         <Modal open={open}>
-          <div className="recorridos-screen__modal">
+          <div className="recorridos-screen__modal" style={theme.glass}>
             <span
               className="recorridos-screen__modal__close"
               onClick={() => {
                 setOpen(false);
               }}
             >
-              <img src={close} alt="close" />
+              <CloseIcon/>
             </span>
             <div className="recorridos-screen__modal__header">Recorrido:</div>
             <div className="recorridos-screen__modal__body">
@@ -216,6 +205,7 @@ export default function RecorridosScreen() {
                   Nombre:
                 </div>
                 <input
+                style={theme.input}
                   value={userInput.nombre}
                   type="text"
                   className="recorridos-screen__modal__body__row1__input"
@@ -230,6 +220,7 @@ export default function RecorridosScreen() {
                   Descripcion:
                 </div>
                 <input
+                style={theme.input}
                   value={userInput.descripcion}
                   type="text"
                   className="recorridos-screen__modal__body__row1__input"
@@ -241,6 +232,7 @@ export default function RecorridosScreen() {
                   }}
                 />
                 <button
+                style={theme.btn}
                   className="recorridos-screen__modal__body__row1__button"
                   onClick={sendRecorrido}
                 >
@@ -304,7 +296,7 @@ export default function RecorridosScreen() {
     </>
   );
 }
-
+//modal edit
 function ModalEditRecorrido(props) {
   const [beepcons, setBeepcons] = React.useState([]);
   const [data, setData] = React.useState({
@@ -328,6 +320,7 @@ function ModalEditRecorrido(props) {
     console.log(data.id,"hey youS")
     props.actualizar();
   }
+
   React.useEffect(() => {
     const get = async () => {
       // const hola = await getTurnoId(props.turnoId);
@@ -440,10 +433,10 @@ function ModalEditRecorrido(props) {
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
                     {beepcons.map((beepcon) => {
                       return (
-                        <div key={beepcon.id} className="recorridos-modal__item" style={theme.check}>
+                        <div key={beepcon.id} className="recorridos-modal__item" style={theme.input}>
                           <p>{beepcon.nombre}</p>
                           <input
-                            style={theme.border}
+                            style={theme.border_alpha}
                             defaultChecked={beepcon.selected}
                             type="checkbox"
                             onClick={() => handleCheck(beepcon)}
@@ -460,7 +453,6 @@ function ModalEditRecorrido(props) {
   
   );
 }
-
 
 function RecorridosItem(props) {
   const [turno, setTurno] = React.useState(props.package.turnos);
@@ -497,10 +489,10 @@ function RecorridosItem(props) {
   const { theme, handleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="recorridos-screen__body__item" >
+    <div className="recorridos-screen__body__item" style={theme.border.border_alpha}>
       <div className="recorridos-screen__body__row">
         <div className="recorridos-screen__body__row__icon">
-          <Punto color="#9F51DD" />
+          <PuntoColor color="#9F51DD" />
         </div>
         <div className="recorridos-screen__body__row__text" onClick={showPopper}>{nombre}</div>
       </div>

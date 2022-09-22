@@ -46,6 +46,7 @@
     outline: none;
     resize: none;
     overflow: auto;
+    padding: 5px 0;
     border: 0px;
     background-color: transparent;
     font-size: 24px;
@@ -63,6 +64,7 @@
     resize: none;
     overflow: auto;
     border: 0px;
+    padding: 5px 0;
     background-color: transparent;
     color: #080808de;
     font-size: 24px;

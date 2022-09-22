@@ -29,6 +29,7 @@ import ThemeContext from "../../context/theme-context";
 import ClockIcon from "../../assets/ClockIcon";
 import EditIcon from "../../assets/EditIcon";
 import CloseIcon from "../../assets/CloseIcon";
+import PuntoColor from "../../assets/PuntoColor";
 export default function TurnosScreen() {
   const [open, setOpen] = React.useState(false);
   const [turnoId, setTurnoId] = React.useState("");
@@ -271,6 +272,7 @@ export default function TurnosScreen() {
 }
 
 function TurnosItem(props) {
+  const { theme, handleTheme } = useContext(ThemeContext);
   const [recorrido, setRecorrido] = React.useState({});
 
   React.useEffect(() => {
@@ -299,10 +301,10 @@ function TurnosItem(props) {
   };
 
   return (
-    <div key={props.id} className="turnos-screen__body__item">
+    <div key={props.id} className="turnos-screen__body__item" style={theme.border.border_alpha}>
       <div className="turnos-screen__body__row">
         <div className="turnos-screen__body__row__icon">
-          <Punto color="#9F51DD" />
+          <PuntoColor color="#9F51DD" />
         </div>
         <div className="turnos-screen__body__row__text">{props.visitante}</div>
         <div className="turnos-screen__body__row__group">
