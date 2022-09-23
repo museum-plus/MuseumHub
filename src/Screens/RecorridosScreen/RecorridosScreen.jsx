@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import NavigationGlass from "../../components/NavigationGlass/NavigationGlass";
 import deleteicon from "../../assets/deleteicon.svg";
-import { Modal } from "@mui/material";
+import { Modal, TextareaAutosize } from "@mui/material";
 import "./RecorridosScreen.css";
 import "./Modal.css";
 import { motion } from "framer-motion";
@@ -208,6 +208,7 @@ export default function RecorridosScreen() {
                 style={theme.input}
                   value={userInput.nombre}
                   type="text"
+                  placeholder="Ingrese Nombre..."
                   className="recorridos-screen__modal__body__row1__input"
                   onChange={(e) => {
                     setUserInput({
@@ -219,10 +220,11 @@ export default function RecorridosScreen() {
                 <div className="recorridos-screen__modal__body__row1__input__label">
                   Descripcion:
                 </div>
-                <input
+                <TextareaAutosize
                 style={theme.input}
                   value={userInput.descripcion}
                   type="text"
+                  placeholder="Ingrese Descripción..."
                   className="recorridos-screen__modal__body__row1__input"
                   onChange={(e) => {
                     setUserInput({
@@ -250,6 +252,7 @@ export default function RecorridosScreen() {
                         <div key={beepcon.id} className="recorridos-modal__item">
                           <p>{beepcon.nombre}</p>
                           <input
+                            style={theme.border}
                             type="checkbox"
                             onClick={() => handleCheck(beepcon)}
                           />
@@ -388,9 +391,10 @@ function ModalEditRecorrido(props) {
                   Nombre:
                 </div>
                 <input
-                  style={theme.fondo}
+                  style={theme.input}
                   value={data.nombre}
                   type="text"
+                  placeholder="Ingrese Nombre..."
                   className="recorridos-screen__modal__body__row1__input"
                   onChange={(e) => {
                     setData({
@@ -402,10 +406,11 @@ function ModalEditRecorrido(props) {
                 <div className="recorridos-screen__modal__body__row1__input__label">
                   Descripcion:
                 </div>
-                <input
-                style={theme.fondo}
+                <TextareaAutosize
+                style={theme.input}
                   value={data.descripcion}
                   type="text"
+                  placeholder="Ingrese Descripcion..."
                   className="recorridos-screen__modal__body__row1__input"
                   onChange={(e) => {
                     setData({
@@ -433,10 +438,10 @@ function ModalEditRecorrido(props) {
                   <div className="recorridos-screen__modal__body__row2__group__puntos">
                     {beepcons.map((beepcon) => {
                       return (
-                        <div key={beepcon.id} className="recorridos-modal__item" style={theme.input}>
+                        <div key={beepcon.id} className="recorridos-modal__item" style={theme.fondo}>
                           <p>{beepcon.nombre}</p>
                           <input
-                            style={theme.border_alpha}
+                            style={theme.border}
                             defaultChecked={beepcon.selected}
                             type="checkbox"
                             onClick={() => handleCheck(beepcon)}

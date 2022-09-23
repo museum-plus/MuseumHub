@@ -31,9 +31,6 @@ const themes = {
                 }
             },
         },
-        check:{
-            background:'#fff',
-        },
         btn:{
             border:"1px solid #fff",
         },
@@ -73,15 +70,13 @@ const themes = {
                 }
             },
         },
-        check:{
-            background:'#000',
-        },
         btn:{
             color:"#000",
             background:'#EAEAEA',
             border:"1px solid #000",
         },
         input:{
+            background:'#EAEAEA',
             color:'black',
             borderBottom: "1px solid #000"
         }

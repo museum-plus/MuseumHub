@@ -72,7 +72,7 @@ return (
     </div>
     <div className='visitado-glass__body'>
       <div className='visitado-glass__body__content'>
-        <Position color="#EEC740" nombre={mayorR}/>
+        <Position color={theme.color} nombre={mayorR}/>
         <Position nombre={medioR}/>
         <Position nombre={menorR}/>
       </div>
