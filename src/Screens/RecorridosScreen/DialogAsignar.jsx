@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal } from "@mui/material";
 import { db } from "../../database/db";
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import close from "../../assets/close.svg";
 import './Modal.css'
+import ThemeContext from "../../context/theme-context";
+import CloseIcon from "../../assets/CloseIcon";
+import { motion } from "framer-motion";
 export default function DialogAsignar(props) {
+  const { theme, handleTheme } = useContext(ThemeContext);
     const [data, setData] = React.useState({
         visitante: "",
         horario: "",
@@ -51,14 +55,15 @@ export default function DialogAsignar(props) {
     };
   return (
     <Modal open={props.open}>
-      <div className="recorridos-screen__modal__asignar" >
+      <div className="recorridos-screen__modal__asignar" style={theme.glass}>
         <p>Asignar un nuevo turno</p>
         <span onClick={props.onClose}>
-          <img src={close} alt="close" />
+          <CloseIcon/>
         </span>
         <div>
           <label>Visitante </label>
           <input
+          style={theme.input}
           placeholder="Ingrese nombre"
             type="text"
             onChange={(e) => {
@@ -68,6 +73,7 @@ export default function DialogAsignar(props) {
           />
           <label >Horario: </label>
           <input
+          style={theme.input}
           placeholder="Ingrese Horario (HH:MM)"
             type="text"
             onChange={(e) => {
@@ -78,6 +84,7 @@ export default function DialogAsignar(props) {
           <label>Fecha: </label>
 
           <input
+          style={theme.input}
           placeholder="Ingrese Fecha (DD/MM/AAAA)"
             type="text"
             onChange={(e) => {
@@ -85,7 +92,7 @@ export default function DialogAsignar(props) {
             }}
             value={data.fecha}
           />
-          <button onClick={sendTurno}>Guardar</button>
+          <motion.button whileHover={{ scale: 1.06 }} onClick={sendTurno} style={theme.btn}>Guardar</motion.button>
         </div>
       </div>
     </Modal>

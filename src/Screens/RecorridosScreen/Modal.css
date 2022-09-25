@@ -148,9 +148,7 @@
     border-radius: 5px;
     font-size: 20px;
     transition: all 0.2s ease;
-    background: #15151583;
     backdrop-filter: blur(127px);
-    border: 2px solid #ffffff60;
     padding: 2em;
 
     display: flex;
@@ -164,7 +162,6 @@
     font-size: 32px;
     font-family: 'Roboto', 'sans-serif';
     font-weight: 300;
-    color: #fff;
     margin-bottom: 5px;
 }
 

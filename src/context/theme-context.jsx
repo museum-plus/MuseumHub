@@ -11,6 +11,11 @@ const themes = {
             boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.25)",
             borderRadius: "35px",
         },
+        glass_navigation:{
+            background: "rgba(21, 21, 21, 0.4)",
+            border: "1px solid rgba(255, 255, 255, 0.19)",
+            boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.25)",
+        },
         subtitle:{
             color:'#ffffff82',
         },
@@ -30,9 +35,6 @@ const themes = {
                     borderBottom: "1px solid rgba(255, 255, 255, 0.3)",
                 }
             },
-        },
-        check:{
-            background:'#fff',
         },
         btn:{
             border:"1px solid #fff",
@@ -54,6 +56,12 @@ const themes = {
             boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.25)",
             borderRadius: "35px",
         },
+        glass_navigation:{
+            background:'#fff',
+            color:"#000",
+            border: "1px solid rgba(255, 255, 255, 0.19)",
+            boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.25)",
+        },
         subtitle:{
             color:'#0000008c',
         },
@@ -73,15 +81,13 @@ const themes = {
                 }
             },
         },
-        check:{
-            background:'#000',
-        },
         btn:{
             color:"#000",
             background:'#EAEAEA',
             border:"1px solid #000",
         },
         input:{
+            background:'#EAEAEA',
             color:'black',
             borderBottom: "1px solid #000"
         }

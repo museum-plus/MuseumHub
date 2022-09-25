@@ -78,6 +78,12 @@
   gap: 15px;
   font-size: 28px;
 }
+.recorridos-screen__modal__body__row1__input{
+
+  outline: none;
+  resize: none;
+  overflow: hidden;
+}
 
 .recorridos-screen__body__row2 {
   flex: 1;
@@ -120,8 +126,7 @@ p {
   transition: all 0.2s ease;
 }
 .recorridos-modal__item > input:checked {
-  background-color: #fff;
-  border: 1px solid #fff;
+  background-color: #EEC740;
   width: 25px;
   height: 25px;
   cursor: pointer;
@@ -129,16 +134,13 @@ p {
 }
 
 .recorridos-modal__item > input:hover {
-  background-color: #ffffff30;
-  border: 1px solid #fff;
-
   cursor: pointer;
   transform: scale(1.05);
 }
 
 .recorridos-modal__item > input:checked:hover{
-  background-color: #fff;
-  border: 1px solid #fff;
+  background-color: #EEC740;
+  border: 1px solid #000;
   width: 25px;
   height: 25px;
   cursor: pointer;
