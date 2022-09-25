@@ -1,186 +1,199 @@
 import React, { createContext } from "react";
 
 const themes = {
-    dark:{
-        fondo:{
-            color:'#fff'
+    dark: {
+        fondo: {
+            color: '#fff'
         },
-        glass:{
+        glass: {
             background: "rgba(21, 21, 21, 0.4)",
             border: "1px solid rgba(255, 255, 255, 0.19)",
             boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.25)",
             borderRadius: "35px",
         },
-        glass_navigation:{
+        glass_navigation: {
             background: "rgba(21, 21, 21, 0.4)",
             border: "1px solid rgba(255, 255, 255, 0.19)",
             boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.25)",
         },
-        subtitle:{
-            color:'#ffffff82',
+        subtitle: {
+            color: '#ffffff82',
         },
-        color:{
-            color:'#fff'
+        color: {
+            color: '#fff'
         },
-        border:{
-            border:"1px solid #fff",
-            border_alpha:{border:"1px solid rgba(255, 255, 255, 0.19)"},
-            bottom:{
-                border_alpha:{border:"1px solid rgba(0, 0, 0, 0.3)"},
-                solid:{
+        border: {
+            border: "1px solid #fff",
+            border_alpha: { border: "1px solid rgba(255, 255, 255, 0.19)" },
+            bottom: {
+                border_alpha: { border: "1px solid rgba(0, 0, 0, 0.3)" },
+                solid: {
                     borderBottom: "1px solid #fff"
                 },
-                alpha:{
-                    color:'#ffffff82',
+                alpha: {
+                    color: '#ffffff82',
                     borderBottom: "1px solid rgba(255, 255, 255, 0.3)",
                 }
             },
         },
-        btn:{
-            border:"1px solid #fff",
+        btn: {
+            border: "1px solid #fff",
         },
-        input:{
-            color:'#fff',
+        input: {
+            color: '#fff',
             borderBottom: "1px solid #fff"
         },
-        punto:{
-            color:"#9F51DD"
+        card:{
+            border: "1px solid rgba(255, 255, 255, 0.19)"
         },
-        graph:{
-            mayor:{
-                background:'rgba(214, 152, 0, 0.75)',
-                color:'rgba(214, 152, 0, 1)',
+        punto: {
+            color: "#9F51DD"
+        },
+        graph: {
+            mayor: {
+                background: 'rgba(214, 152, 0, 0.75)',
+                color: 'rgba(214, 152, 0, 1)',
             },
-            medio:{
+            medio: {
                 background: '#9742984f',
-                color:'#974298ff',
+                color: '#974298ff',
             },
-            menor:{
+            menor: {
                 background: '#64AABD4f',
-                color:'#64AABDff'
+                color: '#64AABDff'
             },
         },
-        cube:{
-            front:{
-                background:'#974298'
+        cube: {
+            front: {
+                background: '#974298'
             },
-            right:{
+            right: {
                 background: '#D69800'
             },
-            back:{
+            back: {
                 background: '#E61720'
             },
-            left:{
+            left: {
                 background: '#64AABD'
             },
-            top:{
+            top: {
                 background: '#0099ff'
             },
-            bottom:{
+            bottom: {
                 background: '#22cc88'
             }
         }
     },
-    light:{
-        fondo:{
+    light: {
+        fondo: {
+            textShadow: '1px 2px 3px rgba(0,0,0,0.5)',
             background: 'rgb(255,249,230)',
             background: 'linear-gradient(0deg, rgba(255,249,230,1) 0%, rgba(238,242,230,1) 65%)',
+            color: '#000000af',
+        },
+        glass: {
             color:'#1B1A1A',
+            backdropFilter: 'blur(2px)',
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+            borderRadius: '29px',
+            boxShadow: '35px 35px 68px 0px rgba(65, 141, 244, 0.5), inset -9px -9px 16px 0px rgba(65, 141, 244, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255)',
+            border:'0px',
         },
-        glass:{
-            background:'#FFFBF4',
-            color:'#1B1A1A',
-            border: "1px solid rgba(255, 255, 255, 0.19)",
-            boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.4)",
-            borderRadius: "35px",
+        glass_navigation: {
+            backdropFilter: 'blur(2px)',
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+            borderRadius: '29px',
+            boxShadow: '35px 35px 68px 0px rgba(65, 141, 244, 0.5), inset -9px -9px 16px 0px rgba(65, 141, 244, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255)',
+            border:'0px',
         },
-        glass_navigation:{
-            background:'#FFFBF4',
-            color:'#1B1A1A',
-            border: "1px solid rgba(255, 255, 255, 0.19)",
-            boxShadow: "0px 4px 24px 2px rgba(0, 0, 0, 0.25)",
+        subtitle: {
+            textShadow: '0',
+            color: '#000000af',
         },
-        subtitle:{
-            color:'#0000008c',
+        color: {
+            color: '#000000af'
         },
-        color:{
-            color:'#1B1A1A'
-        },
-        border:{
-            border:"1px solid #1B1A1A",
-            border_alpha:{border:"1px solid rgba(0, 0, 0, 0.3)"},
-            bottom:{
-                solid:{
+        border: {
+            border: "1px solid #1B1A1A",
+            border_alpha: { border: "1px solid rgba(0, 0, 0, 0.3)" },
+            bottom: {
+                solid: {
                     borderBottom: "1px solid #1B1A1A"
                 },
-                alpha:{
-                    color:'#0000008c',
+                alpha: {
+                    color: '#0000008c',
                     borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
                 }
             },
         },
-        btn:{
-            color:"#1B1A1A",
-            background:'#EAEAEA',
-            border:"1px solid #000",
+        btn: {
+            color: "#fff",
+            textShadow: '3px 3px 4px rgba(0,0,0,0.6)',
+            borderRadius: '20px',
+            boxShadow: '35px 35px 68px 0px rgba(65, 141, 244, 0.5), inset -9px -9px 16px 0px rgba(65, 141, 244, 0.6), inset 0px 2px 4px 0px rgb(255, 255, 255)',
+            border:'0px',
+            background: 'linear-gradient(#69cdfd,#45a5fc)'
         },
-        input:{
-            background:'#EAEAEA',
-            color:'#1B1A1A',
+        input: {
+            background: '#f1f7ff',
+            color: '#1B1A1A',
             borderBottom: "1px solid #000"
         },
-        punto:{
-            color:'#728254',
+        punto: {
+            color: '#4edf20',
         },
-        graph:{
-            mayor:{
-                background:'rgba(214, 152, 0, 0.75)',
-                color:'rgba(214, 152, 0, 1)',
+        card:{
+            background:'#f1f7ff'
+        },
+        graph: {
+            mayor: {
+                background: 'rgba(214, 152, 0, 0.75)',
+                color: 'rgba(214, 152, 0, 1)',
             },
-            medio:{
+            medio: {
                 background: '#9FC088bf',
                 color: '#9FC088ff'
             },
-            menor:{
+            menor: {
                 background: '#D6CDA4bf',
                 color: '#D6CDA9ff'
             },
         },
-        cube:{
-            front:{
-                background:'#E8C07D'
+        cube: {
+            front: {
+                background: 'linear-gradient(#69cdfd,#45a5fc)'
             },
-            right:{
+            right: {
                 background: '#9FC088'
             },
-            back:{
+            back: {
                 background: '#D4B499'
             },
-            left:{
-                background: '#D6CDA4'
+            left: {
+                background: '#506D84'
             },
-            top:{
+            top: {
                 background: '#D4AC2B'
             },
-            bottom:{
+            bottom: {
                 background: '#F0A500'
             }
         }
     }
 };
 const ThemeContext = createContext();
-const ThemeProvider = ({children}) =>{
+const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = React.useState(themes.dark)
     const handleTheme = () => {
-        if(theme === themes.dark) {
+        if (theme === themes.dark) {
             setTheme(themes.light);
         } else {
             setTheme(themes.dark);
         }
         console.log("handleteme")
     }
-    const data= {theme, handleTheme};
-    return(
+    const data = { theme, handleTheme };
+    return (
         <ThemeContext.Provider value={data}>{children}</ThemeContext.Provider>
     )
 }
