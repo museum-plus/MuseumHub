@@ -1,0 +1,10 @@
+.counter-glass__container{
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+}
+
+.counter-glass__item{
+    flex: 1;
+    padding: 35px;
+}

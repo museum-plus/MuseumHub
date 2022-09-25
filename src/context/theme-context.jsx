@@ -3,7 +3,7 @@ import React, { createContext } from "react";
 const themes = {
     dark: {
         fondo: {
-            color: '#fff'
+            color: '#fff',
         },
         glass: {
             background: "rgba(21, 21, 21, 0.4)",
@@ -28,7 +28,7 @@ const themes = {
             bottom: {
                 border_alpha: { border: "1px solid rgba(0, 0, 0, 0.3)" },
                 solid: {
-                    borderBottom: "1px solid #fff"
+                    borderBottom: "1px solid #080808"
                 },
                 alpha: {
                     color: '#ffffff82',

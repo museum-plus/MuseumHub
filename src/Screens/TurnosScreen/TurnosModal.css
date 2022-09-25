@@ -46,6 +46,7 @@
 }
 
 .turnos-modal__col__input{
+    background-color: rgba(198, 198, 198, 0.392);
     width: 100%;
     position: relative;
     font-family: 'Roboto', sans-serif;
@@ -54,6 +55,7 @@
     border: 3px;
     font-size: 24px;
     font-weight: 300;
+    color: #ffffffab;
 }
 
 .turnos-modal__col__btn{

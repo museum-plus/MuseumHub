@@ -5,6 +5,7 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
   text-rendering: optimizeLegibility;
+  min-height:0;
 }
 body {
   margin: 0;
