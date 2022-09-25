@@ -29,7 +29,9 @@ import EditIcon from "../../assets/EditIcon";
 import CloseIcon from "../../assets/CloseIcon";
 import PuntoColor from "../../assets/PuntoColor";
 import DeleteIcon from "../../assets/DeleteIcon.svg";
+import { LogsContext } from "../../context/logsContext";
 export default function RecorridosScreen() {
+  const {handleAlert} = React.useContext(LogsContext)
   const [beepcons, setBeepcons] = React.useState([]);
   const [turnos, setTurnos] = React.useState([]);
   const [open, setOpen] = React.useState(false);
@@ -96,6 +98,7 @@ export default function RecorridosScreen() {
 
     setOpen(false);
     try {
+
       const docRef = await addDoc(collection(db, "recorridos"), {
         nombre: userInput.nombre,
         descripcion: userInput.descripcion,
@@ -113,6 +116,7 @@ export default function RecorridosScreen() {
         puntos: [],
         turnos: [],
       });
+      handleAlert('NEW_RC')
     } catch (e) {
       console.log("ERROR ! =", e);
     }
@@ -302,6 +306,7 @@ export default function RecorridosScreen() {
 }
 //modal edit
 function ModalEditRecorrido(props) {
+  const {handleAlert} = React.useContext(LogsContext)
   const [beepcons, setBeepcons] = React.useState([]);
   const [data, setData] = React.useState({
     nombre: "",
@@ -334,7 +339,6 @@ function ModalEditRecorrido(props) {
       const recorridoInfo = recorridoSnapshot.data()
       const r_beepcons = recorridoInfo.puntos
       setData(recorridoInfo);
-      console.log("R_BEPCONS" + r_beepcons);
       setBeepcons(r_beepcons);
       // console.log(data,"daasdasdasd")
     };
@@ -369,6 +373,7 @@ function ModalEditRecorrido(props) {
       puntos: data.puntos,
       turnos: data.turnos,
     })
+    handleAlert('UPDATE_RC')
     props.actualizar();
     props.onClose()
   };
@@ -462,6 +467,7 @@ function ModalEditRecorrido(props) {
 
 function RecorridosItem(props) {
   const [turno, setTurno] = React.useState(props.package.turnos);
+  const {handleAlert} = useContext(LogsContext)
   const { nombre, descripcion, id, actualizar, openAsignar, turnos, openView, openEdit } =
     props.package;
 
@@ -470,16 +476,14 @@ function RecorridosItem(props) {
       const manzana = await getDoc(doc(db, "recorridos", id))
       const mandarina = manzana.data()
       setTurno(mandarina.turnos)
-      console.log("ESTE ES EL TURNO", turno);
-      console.log("Usted ha presionado eliminar recorrido", turno);
       turno.forEach(async (turno) => {
         await deleteDoc(doc(db, "turnos", turno.turno_id));
-        console.log("eliminado con id: " + turno.turno.id);
       });
     }
 
     await ELIMINAR_TURNOS()
     await deleteDoc(doc(db, "recorridos", id));
+    handleAlert('DELETE_RC')
     actualizar();
     
     
@@ -487,7 +491,6 @@ function RecorridosItem(props) {
   };
   const showPopper = () => {
     openView(id);
-    console.log("Mostrar popper");
   };
   const showEdit = () => {
     openEdit(id);

@@ -25,7 +25,9 @@ import ClockIcon from "../../assets/ClockIcon";
 import EditIcon from "../../assets/EditIcon";
 import CloseIcon from "../../assets/CloseIcon";
 import PuntoColor from "../../assets/PuntoColor";
+import { LogsContext } from "../../context/logsContext";
 export default function TurnosScreen() {
+  const {handleAlert} = React.useContext(LogsContext)
   const [open, setOpen] = React.useState(false);
   const [turnoId, setTurnoId] = React.useState("");
   const [openEdit, setOpenEdit] = React.useState(false);
@@ -86,6 +88,7 @@ export default function TurnosScreen() {
         fecha: "",
         recorrido_id: "",
       });
+      handleAlert('NEW_TR')
     } catch (e) {
       console.log("ERROR ! =", e);
     }
@@ -267,6 +270,7 @@ export default function TurnosScreen() {
 }
 
 function TurnosItem(props) {
+  const {handleAlert} = React.useContext(LogsContext)
   const { theme, handleTheme } = useContext(ThemeContext);
   const [recorrido, setRecorrido] = React.useState({});
 
@@ -288,6 +292,8 @@ function TurnosItem(props) {
     try {
       await DELETE_TURNO();
       await deleteTurnos(props.id);
+      handleAlert('DELETE_TR')
+
     } catch (error) {
       console.log("No fue posible eliminar el turno del recorrido", error);
     }
@@ -338,6 +344,7 @@ function TurnosItem(props) {
 }
 
 function ModalEdit(props) {
+  const {handleAlert} = React.useContext(LogsContext)
   const [recorridos, setRecorridos] = React.useState([]);
   const [data, setData] = React.useState({
     visitante: "",
@@ -354,15 +361,15 @@ function ModalEdit(props) {
 
     const sendTurnoBD = async () => {
       // console.log(props.turnoId);
-       await updateDoc(doc(db, "turnos", props.turnoId), {
+      await updateDoc(doc(db, "turnos", props.turnoId), {
         visitante: data.visitante,
         horario: data.horario,
         fecha: data.fecha,
         recorrido_id: data.recorrido_id,
       });
+      handleAlert('UPDATE_TR')
       setData({ ...data, id: props.getId() });
     };
-
 
     //Cierra el modal
     props.closeModalEdit();
@@ -379,7 +386,7 @@ function ModalEdit(props) {
 
     // recorridoTurnos.push(docRef); //Agrego el id del turno al array de turnos del recorrido
     await updateDoc(doc(db, "recorridos", data.recorrido_id), { turnos: array });
-
+    
     // console.log(data.id, "hey youS");
     props.actualizar();
 

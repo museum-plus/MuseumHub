@@ -1,5 +1,5 @@
 .logs-glass__container{
     display: flex;
-    flex-direction: row; 
+    flex-direction: column; 
     padding: 35px;
 }

@@ -7,7 +7,9 @@ import './Modal.css'
 import ThemeContext from "../../context/theme-context";
 import CloseIcon from "../../assets/CloseIcon";
 import { motion } from "framer-motion";
+import { LogsContext } from "../../context/logsContext";
 export default function DialogAsignar(props) {
+  const {handleAlert} = useContext(LogsContext);
   const { theme, handleTheme } = useContext(ThemeContext);
     const [data, setData] = React.useState({
         visitante: "",
@@ -49,6 +51,7 @@ export default function DialogAsignar(props) {
                 horario: "",
                 fecha: "",
             });
+            handleAlert('NEW_TR')
         } catch (e) {
             console.log("ERROR ! =", e);
         }

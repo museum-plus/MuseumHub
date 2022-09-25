@@ -11,8 +11,12 @@ import MuseoScreen from "./Screens/MuseoScreen/MuseoScreen";
 import BeepconsScreen from "./Screens/BeepconsScreen/BeepconsScreen";
 //Theme
 
+const clicked = () => {
+  console.log("clicked");
+};
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/theme-context";
+import LogsProvider from "./context/logsContext";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/beepcons",
-    element: <BeepconsScreen />,
+    element: <BeepconsScreen click={clicked} />,
   },
   {
     path: "/recorridos",
@@ -41,10 +45,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
+      <LogsProvider>
       <RouterProvider router={router} />
+      </LogsProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
