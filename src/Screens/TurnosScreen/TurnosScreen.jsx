@@ -191,18 +191,18 @@ export default function TurnosScreen() {
                   type="text"
                   placeholder="Ingrese nombre visitante"
                   className="turnos-modal__col__input"
-                  style={theme.fondo}
+
                   onChange={(e) => {
                     setData({ ...data, visitante: e.target.value });
                   }}
                   value={data.visitante}
                 />
               </div>
-              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
+              <div className="turnos-modal__col__text__row">
                 <p> Horario </p>
                 <input
                   type="text"
-                  style={theme.fondo}
+ 
                   placeholder="Ingrese Horario 00:00"
                   className="turnos-modal__col__input"
                   onChange={(e) => {
@@ -211,11 +211,11 @@ export default function TurnosScreen() {
                   value={data.horario}
                 />
               </div>
-              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
+              <div className="turnos-modal__col__text__row">
                 <p> Fecha </p>
                 <input
                   type="text"
-                  style={theme.fondo}
+
                   placeholder="Ingrese Fecha dd/mm/aaaa"
                   className="turnos-modal__col__input"
                   onChange={(e) => {
@@ -224,10 +224,10 @@ export default function TurnosScreen() {
                   value={data.fecha}
                 />
               </div>
-              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
+              <div className="turnos-modal__col__text__row">
                 <p> Seleccionar Recorrido </p>
                 <select
-                style={theme.fondo}
+   
                   className="turnos-modal__col__text__row__select"
                   onClick={handleSelectChange}
                 >
