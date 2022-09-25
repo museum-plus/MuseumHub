@@ -35,6 +35,7 @@ export default function CounterGlass() {
         }
     }, []);
 
+    //Todo mal el merge
   return (
     <div className='counter-glass__container'>
         <BeepconsItem theme={theme} counter={counter} />
