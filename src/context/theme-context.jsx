@@ -87,7 +87,7 @@ const themes = {
     light: {
         fondo: {
             textShadow: '1px 2px 3px rgba(0,0,0,0.5)',
-            background: 'rgb(255,249,230)',
+            // background: 'rgb(255,249,230)',
             background: 'linear-gradient(0deg, rgba(255,249,230,1) 0%, rgba(238,242,230,1) 65%)',
             color: '#000000af',
         },
@@ -102,7 +102,6 @@ const themes = {
         glass_navigation: {
             backdropFilter: 'blur(2px)',
             backgroundColor: 'rgba(255, 255, 255, 1)',
-            borderRadius: '29px',
             boxShadow: '35px 35px 68px 0px rgba(65, 141, 244, 0.5), inset -9px -9px 16px 0px rgba(65, 141, 244, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255)',
             border:'0px',
         },
@@ -147,16 +146,16 @@ const themes = {
         },
         graph: {
             mayor: {
-                background: 'rgba(214, 152, 0, 0.75)',
-                color: 'rgba(214, 152, 0, 1)',
+                background: '#4edf20ff',
+                color:'#4edf20'
             },
             medio: {
-                background: '#9FC088bf',
-                color: '#9FC088ff'
+                background: '#69cdfdbf',
+                color: '#69cdfd'
             },
             menor: {
-                background: '#D6CDA4bf',
-                color: '#D6CDA9ff'
+                background: '#d2f833bf',
+                color: '#d2f833'
             },
         },
         cube: {
@@ -164,7 +163,7 @@ const themes = {
                 background: 'linear-gradient(#69cdfd,#45a5fc)'
             },
             right: {
-                background: '#9FC088'
+                background:'linear-gradient(#d4f070,#52de47)'
             },
             back: {
                 background: '#D4B499'
@@ -178,6 +177,9 @@ const themes = {
             bottom: {
                 background: '#F0A500'
             }
+        },
+        hola:{
+            hola:'3D'
         }
     }
 };

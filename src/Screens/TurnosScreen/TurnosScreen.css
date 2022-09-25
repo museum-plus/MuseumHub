@@ -134,6 +134,7 @@
 .turnos-screen__body__row2__button__group__edit,
 .turnos-screen__body__row2__button__group__delete {
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .turnos-screen__body__row2__button__group__edit:hover,

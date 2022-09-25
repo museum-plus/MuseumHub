@@ -28,6 +28,7 @@ import PlusIcon from "../../assets/PlusIcon";
 import EditIcon from "../../assets/EditIcon";
 import CloseIcon from "../../assets/CloseIcon";
 import PuntoColor from "../../assets/PuntoColor";
+import DeleteIcon from "../../assets/DeleteIcon.svg";
 export default function RecorridosScreen() {
   const [beepcons, setBeepcons] = React.useState([]);
   const [turnos, setTurnos] = React.useState([]);
@@ -519,7 +520,7 @@ function RecorridosItem(props) {
             className="recorridos-screen__body__row2__button__group__delete"
             onClick={deleteRecorrido}
           >
-            <img src={deleteicon} alt="" />
+            <img src={DeleteIcon}></img>
           </div>
         </div>
       </div>

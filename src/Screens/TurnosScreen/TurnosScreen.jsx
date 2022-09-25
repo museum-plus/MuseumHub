@@ -185,24 +185,24 @@ export default function TurnosScreen() {
           <div className="turnos-modal__col">
             <p> Turnos </p>
             <div className="turnos-modal__col__text">
-              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
+              <div className="turnos-modal__col__text__row">
                 <p> Visitante </p>
                 <input
                   type="text"
                   placeholder="Ingrese nombre visitante"
                   className="turnos-modal__col__input"
-                  style={theme.fondo}
+                  style={theme.input}
                   onChange={(e) => {
                     setData({ ...data, visitante: e.target.value });
                   }}
                   value={data.visitante}
                 />
               </div>
-              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
+              <div className="turnos-modal__col__text__row" >
                 <p> Horario </p>
                 <input
                   type="text"
-                  style={theme.fondo}
+                  style={theme.input}
                   placeholder="Ingrese Horario 00:00"
                   className="turnos-modal__col__input"
                   onChange={(e) => {
@@ -211,11 +211,11 @@ export default function TurnosScreen() {
                   value={data.horario}
                 />
               </div>
-              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
+              <div className="turnos-modal__col__text__row">
                 <p> Fecha </p>
                 <input
                   type="text"
-                  style={theme.fondo}
+                  style={theme.input}
                   placeholder="Ingrese Fecha dd/mm/aaaa"
                   className="turnos-modal__col__input"
                   onChange={(e) => {
@@ -224,10 +224,10 @@ export default function TurnosScreen() {
                   value={data.fecha}
                 />
               </div>
-              <div className="turnos-modal__col__text__row" style={theme.border.bottom.solid}>
+              <div className="turnos-modal__col__text__row">
                 <p> Seleccionar Recorrido </p>
                 <select
-                style={theme.fondo}
+                style={theme.input}
                   className="turnos-modal__col__text__row__select"
                   onClick={handleSelectChange}
                 >
@@ -296,7 +296,8 @@ function TurnosItem(props) {
   };
 
   return (
-    <div key={props.id} className="turnos-screen__body__item" style={theme.card}>
+    <motion.div whileHover={{ scale: 1.06 }} key={props.id} 
+    className="turnos-screen__body__item" style={theme.card}>
       <div className="turnos-screen__body__row">
         <div className="turnos-screen__body__row__icon">
           <PuntoColor color="#9F51DD" />
@@ -306,7 +307,7 @@ function TurnosItem(props) {
           <div className="turnos-screen__body__row__group__text">
             {props.horario == undefined ? "hola" : props.horario}
           </div>
-          <div className="turnos-screen__body__row__group__icon">
+          <div className="turnos-screen__body__row__group__icon" >
             <ClockIcon/>
           </div>
         </div>
@@ -332,7 +333,7 @@ function TurnosItem(props) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

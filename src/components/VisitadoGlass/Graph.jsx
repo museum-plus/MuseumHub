@@ -21,11 +21,6 @@ export default function Graph(props) {
                     theme.graph.medio.background,
                     theme.graph.mayor.background,
                 ],
-                borderColor: [
-                    'rgba(255, 255, 255, 1)',
-                    'rgba(255, 255, 255, 1)',
-                    'rgba(238, 199, 64, 1)',
-                ],
                 borderWidth: 0,
             },
         ],
