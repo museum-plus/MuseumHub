@@ -72,7 +72,7 @@ export default function NavigationGlass() {
 
   return (
     <div className="navigation-glass-container" >
-      <div className="navigation-glass" style={theme.glass}>
+      <div className="navigation-glass" style={theme.glass_navigation}>
         <section>
           <Cube />
           <div className="navigation-glass__title">MuseumHub</div>

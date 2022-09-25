@@ -3,9 +3,6 @@ import NavigationGlass from "../../components/NavigationGlass/NavigationGlass";
 import "./TurnosScreen.css";
 import "./TurnosModal.css";
 import PlusIcon from "../../assets/PlusIcon.jsx";
-import Punto from "../../components/TurnoGlass/Punto";
-import edit from "../../assets/edit.svg";
-import clock from "../../assets/clock.svg";
 import deleteicon from "../../assets/deleteicon.svg";
 import {
   getRecorridos,
@@ -15,14 +12,12 @@ import {
 import { motion } from "framer-motion";
 import { Modal } from "@mui/material";
 import { db } from "../../database/db";
-import close from "../../assets/close.svg";
 import { RefreshButton, getTurnoId } from "../../database/getBeepcons";
 import {
   addDoc,
   collection,
   doc,
   getDoc,
-  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import ThemeContext from "../../context/theme-context";
@@ -127,7 +122,7 @@ export default function TurnosScreen() {
     let value = e.target.value;
     setData({ ...data, recorrido_id: value });
   };
-  const { theme, handleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <div className="screen-blur turnos-screen-container" style={theme.fondo}>
       <NavigationGlass />

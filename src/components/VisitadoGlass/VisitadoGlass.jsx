@@ -6,24 +6,22 @@ import { motion } from "framer-motion"
 import ThemeContext from '../../context/theme-context'
 import { getRecorridos } from '../../database/getBeepcons'
 function Position(props) {
-  const styles = {
-    primary: { color: props.color }
-  }
+  const styles = {primary: { color: props.color }}
   return (
     <div className='visitado-glass__body__content__text' style={styles.primary}>
       {props.nombre}
     </div>
   )
 }
-export default function VisitadoGlass(props) {
-  const { theme, handleTheme } = useContext(ThemeContext);
-  const [mayor, setMayor] = React.useState(0);
+export default function VisitadoGlass() {
+  const { theme } = useContext(ThemeContext);
+  const [mayor, setMayor] = React.useState(0);//Cantidad de turnos por recorrido
   const [medio, setMedio] = React.useState(0);
   const [menor, setMenor] = React.useState(0);
-  const [mayorR, setMayorR] = React.useState("");
+  const [mayorR, setMayorR] = React.useState("");//Nombre de los recorridos
   const [medioR, setMedioR] = React.useState("");
   const [menorR, setMenorR] = React.useState("");
-  const getMayor = async () => {
+  const getComparacion = async () => {
     let allRecorridos = await getRecorridos();
     allRecorridos.map((recorrido) => {
       const turnos = recorrido.turnos
@@ -31,25 +29,18 @@ export default function VisitadoGlass(props) {
       if (turnos.length > mayor) {
         setMayor(turnos.length)
         setMayorR(recorrido.nombre)
-        console.log(mayorR,"Recorrido mayor")
-        // console.log(mayor, "Mayor esta acá", turnos.length)
       } else if (turnos.length >= medio && turnos.length < mayor) {
         setMedio(turnos.length)
         setMedioR(recorrido.nombre)
-        // console.log(medio, "Mediano esta acá", turnos.length)
       } else 
       if (turnos.length < medio) {
-        // console.log(menor, "Menor esta acá");
         setMenor(turnos.length)
         setMenorR(recorrido.nombre)
       }
     });
   }
-  console.log(mayorR,"-----mayor-------------------------")
-  console.log(medioR,"-----medio-------------------------")
-  console.log(menorR,"-----menor-------------------------")
 React.useEffect(() => {
-  getMayor();
+  getComparacion();
 }, [mayor,medio,menor]);
 return (
   <motion.div className='visitado-glass__container'
@@ -72,7 +63,7 @@ return (
     </div>
     <div className='visitado-glass__body'>
       <div className='visitado-glass__body__content'>
-        <Position color={theme.color} nombre={mayorR}/>
+        <Position color={'rgba(214, 152, 0, 1)'} nombre={mayorR}/>
         <Position nombre={medioR}/>
         <Position nombre={menorR}/>
       </div>
