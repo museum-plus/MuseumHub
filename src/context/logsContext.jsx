@@ -10,22 +10,22 @@ const alertas = {
     UPDATE_BP: {
         message: 'Beepcon actualizado correctamente'
     },
-    newRecorrido: {
+    NEW_RC: {
         message: 'Recorrido creado correctamente'
     },
-    deleteRecorrido: {
+    DELETE_RC: {
         message: 'Recorrido eliminado correctamente'
     },
-    updateRecorrido: {
+    UPDATE_RC: {
         message: 'Recorrido actualizado correctamente'
     },
-    newTurno: {
+    NEW_TR: {
         message: 'Turno creado correctamente'
     },
-    deleteTurno: {
+    DELETE_TR: {
         message: 'Turno eliminado correctamente'
     },
-    updateTurno: {
+    UPDATE_TR: {
         message: 'Turno actualizado correctamente'
     },
 }
@@ -33,7 +33,7 @@ const alertas = {
 const LogsContext = React.createContext()
 
 export default function LogsProvider({children}) {
-    const [logs, setLogs] = React.useState([])
+    const [logs, setLogs] = React.useState([{message: ''}])
 
 
     const handleAlert = (type) => {
