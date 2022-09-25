@@ -36,7 +36,7 @@ function TurnosInfo(props) {
     whileHover={{ translateX: 5 }} 
     style={theme.border.bottom.alpha}>
       <div className="turno-glass__body__info">
-        <PuntoColor color={props.color}></PuntoColor>
+        <PuntoColor color={theme.punto.color}></PuntoColor>
         <div className="turno-glass__body__nombre" style={theme.subtitle}>{props.turno.visitante}</div>
         <div className="hora__container">
           <div className="turno-glass__body__text__hora">
