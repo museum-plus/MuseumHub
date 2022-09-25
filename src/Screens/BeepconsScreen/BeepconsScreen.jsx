@@ -3,7 +3,7 @@ import BeepconsGlass from '../../components/BeepconsGlass/BeepconsGlass'
 import NavigationGlass from '../../components/NavigationGlass/NavigationGlass'
 import ThemeContext from '../../context/theme-context';
 import './BeepconsScreen.css'
-export default function BeepconsScreen() {
+export default function BeepconsScreen(props) {
   const { theme, handleTheme } = useContext(ThemeContext);
   return (
     <div className='screen-blur screen-container-beepcon' style={theme.fondo}>
@@ -11,7 +11,7 @@ export default function BeepconsScreen() {
         <NavigationGlass/> 
       </div>
       <div className='beepcon-row2'>
-        <BeepconsGlass/>
+        <BeepconsGlass click={props.click}/>
       </div>
   </div>
   )

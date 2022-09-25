@@ -11,6 +11,7 @@ import CounterGlass from "../../components/CounterGlass/CounterGlass";
 import "./PrincipalScreen.css";
 
 import ThemeContext, { ThemeProvider } from "../../context/theme-context";
+import { LogsContext } from "../../context/logsContext";
 //#endregion Imports
 
 export default function PrincipalScreen() {

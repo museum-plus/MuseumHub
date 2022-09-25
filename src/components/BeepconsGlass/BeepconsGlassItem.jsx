@@ -10,7 +10,9 @@ import { updateDoc, doc, query, where, collection } from 'firebase/firestore';
 import CloseIcon from '../../assets/CloseIcon';
 import ThemeContext from '../../context/theme-context';
 import PuntoColor from '../../assets/PuntoColor';
+import { LogsContext } from '../../context/logsContext';
 export default function BeepconsGlassItem(props) {
+  const {handleAlert} = useContext(LogsContext)
   const { nombre, descripcion, posicion, id } = props.package;
   const [showInput, setShowInput] = useState(false);
   const [showInputTitle, setShowInputTitle] = useState(false);
@@ -31,6 +33,7 @@ export default function BeepconsGlassItem(props) {
         descripcion: userInput.descripcion,
       });
       console.log("Document successfully updated!");
+      handleAlert('UPDATE_BP');
     } catch (e) {
       console.log("EROR", e);
     }
@@ -62,6 +65,7 @@ export default function BeepconsGlassItem(props) {
         <div className='beepcons-glass__delete' onClick={() => {
           deleteBeepcons(userInput.id),
           props.package.actualizar()
+          handleAlert('DELETE_BP');
         }}>
           <CloseIcon/>
         </div>

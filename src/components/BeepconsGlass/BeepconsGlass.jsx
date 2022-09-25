@@ -27,11 +27,15 @@ import { useRef } from "react";
 import ThemeContext from "../../context/theme-context";
 import PlusIcon from "../../assets/PlusIcon";
 import CloseIcon from "../../assets/CloseIcon";
+import { LogsContext } from "../../context/logsContext";
 
-export default function BeepconsGlass() {
+export default function BeepconsGlass(props) {
   const { theme, handleTheme } = useContext(ThemeContext);
+  const ctx = React.useContext(LogsContext);
   const [open, setOpen] = React.useState(false);
   const [beepcons, setBeepcons] = React.useState([]);
+
+
   const [userInput, setUserInput] = React.useState({
     id: "",
     nombre: "",
@@ -57,6 +61,7 @@ export default function BeepconsGlass() {
   }, []);
 
   const sendBeepcon = async () => {
+    ctx.handleAlert('NEW_BP')
     setOpen(false);
     try {
       const docRef = await addDoc(collection(db, "beepcons"), {
