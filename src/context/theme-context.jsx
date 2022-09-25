@@ -146,12 +146,12 @@ const themes = {
         },
         graph: {
             mayor: {
-                background: '#4edf20ff',
-                color:'#4edf20'
+                background: '#6CC5EBff',
+                color:'#6CC5EB'
             },
             medio: {
-                background: '#69cdfdbf',
-                color: '#69cdfd'
+                background: '#682f5dbf',
+                color: '#682f5d'
             },
             menor: {
                 background: '#d2f833bf',
@@ -163,19 +163,19 @@ const themes = {
                 background: 'linear-gradient(#69cdfd,#45a5fc)'
             },
             right: {
-                background:'linear-gradient(#d4f070,#52de47)'
+                background: 'linear-gradient(90deg, rgba(252,69,242,1) 0%, rgba(69,248,252,1) 100%)'
             },
             back: {
-                background: '#D4B499'
+                background: 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%)'
             },
             left: {
-                background: '#506D84'
+                background: 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%)'
             },
             top: {
-                background: '#D4AC2B'
+                background: 'linear-gradient(90deg, rgba(58,180,179,1) 0%, rgba(252,69,242,1) 100%)'
             },
             bottom: {
-                background: '#F0A500'
+                background:'linear-gradient(#d4f070,#52de47)'
             }
         },
         hola:{

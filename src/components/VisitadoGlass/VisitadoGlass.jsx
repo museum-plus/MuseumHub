@@ -9,7 +9,7 @@ function Position(props) {
   const styles = {primary: { color: props.color }}
   return (
     <div className='visitado-glass__body__content__text' style={styles.primary}>
-      {props.nombre} - {props.cantidad}
+      {props.nombre} {props.cantidad != 0 ? (" - "+props.cantidad) : (<></>)}
     </div>
   )
 }

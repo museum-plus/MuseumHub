@@ -1,12 +1,13 @@
 import React from 'react'
 import './CounterGlass.css'
 import ThemeContext from '../../context/theme-context';
-import {db} from '../../database/db';
-import { collection, doc, onSnapshot,  } from "firebase/firestore";
+import { db } from '../../database/db';
+import { collection, doc, onSnapshot, } from "firebase/firestore";
+import { motion } from 'framer-motion';
 
 
 export default function CounterGlass() {
-    const {theme , handleTheme} = React.useContext(ThemeContext);
+    const { theme, handleTheme } = React.useContext(ThemeContext);
     const [counter, setCounter] = React.useState({
         beepcons: 0,
         recorridos: 0,
@@ -36,28 +37,44 @@ export default function CounterGlass() {
     }, []);
 
     //Todo mal el merge
-  return (
-    <div className='counter-glass__container'>
-        <BeepconsItem theme={theme} counter={counter} />
-        <RecorridosItem theme={theme} counter={counter}/>
-    </div>
-  )
-}
-
-function BeepconsItem ({theme, counter}) {
     return (
-        <div style={theme.glass} className='counter-glass__item'>
-            <div className='counter-glass__item__title'>Beepcons</div>
-            <div className='counter-glass__item__value'>{counter.beepcons}</div>
+        <div className='counter-glass__container'>
+            <BeepconsItem theme={theme} counter={counter} />
+            <RecorridosItem theme={theme} counter={counter} />
         </div>
     )
 }
 
-function RecorridosItem ({theme, counter}) {
+function BeepconsItem({ theme, counter }) {
     return (
-        <div style={theme.glass} className='counter-glass__item'>
+        <motion.div style={theme.glass} className='counter-glass__item'
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.6,
+                delay: 0.5,
+                ease: [0, 0.71, 0.2, 1.01]
+            }}
+        >
+            <div className='counter-glass__item__title'>Beepcons</div>
+            <div className='counter-glass__item__value'>{counter.beepcons}</div>
+        </motion.div>
+    )
+}
+
+function RecorridosItem({ theme, counter }) {
+    return (
+        <motion.div style={theme.glass} className='counter-glass__item'
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.6,
+                delay: 0.6,
+                ease: [0, 0.71, 0.2, 1.01]
+            }}
+        >
             <div className='counter-glass__item__title'>Recorridos</div>
             <div className='counter-glass__item__value'>{counter.recorridos}</div>
-        </div>
+        </motion.div>
     )
 }
