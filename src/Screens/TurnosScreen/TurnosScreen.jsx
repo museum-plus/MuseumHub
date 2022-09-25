@@ -296,7 +296,7 @@ function TurnosItem(props) {
   };
 
   return (
-    <div key={props.id} className="turnos-screen__body__item" style={theme.border.border_alpha}>
+    <div key={props.id} className="turnos-screen__body__item" style={theme.card}>
       <div className="turnos-screen__body__row">
         <div className="turnos-screen__body__row__icon">
           <PuntoColor color="#9F51DD" />

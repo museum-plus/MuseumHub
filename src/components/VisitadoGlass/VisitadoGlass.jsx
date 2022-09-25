@@ -9,7 +9,7 @@ function Position(props) {
   const styles = {primary: { color: props.color }}
   return (
     <div className='visitado-glass__body__content__text' style={styles.primary}>
-      {props.nombre}
+      {props.nombre} - {props.cantidad}
     </div>
   )
 }
@@ -63,9 +63,9 @@ return (
     </div>
     <div className='visitado-glass__body'>
       <div className='visitado-glass__body__content'>
-        <Position color={'rgba(214, 152, 0, 1)'} nombre={mayorR}/>
-        <Position nombre={medioR}/>
-        <Position nombre={menorR}/>
+        <Position color={theme.graph.mayor.color} nombre={mayorR} cantidad={mayor}/>
+        <Position color={theme.graph.medio.color} nombre={medioR} cantidad={medio}/>
+        <Position color={theme.graph.menor.color} nombre={menorR} cantidad={menor}/>
       </div>
       <div className='visitado-glass__body__graph'>
         <Graph data={{ menor, medio, mayor }}></Graph>

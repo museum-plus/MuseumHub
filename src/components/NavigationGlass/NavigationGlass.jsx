@@ -133,16 +133,16 @@ export function Cube() {
     const y = (1 + Math.sin(t / 1000)) * -5;
     ref.current.style.transform = `translateY(${y}px) rotateX(${rotate}deg) rotateY(${rotate}deg)`;
   });
-
+  const { theme, handleTheme } = useContext(ThemeContext);
   return (
     <div className="container">
       <div className="cube" ref={ref}>
-        <div className="side front" />
-        <div className="side left" />
-        <div className="side right" />
-        <div className="side top" />
-        <div className="side bottom" />
-        <div className="side back" />
+        <div className="side front" style={theme.cube.front}/>
+        <div className="side left" style={theme.cube.left}/>
+        <div className="side right" style={theme.cube.right}/>
+        <div className="side top" style={theme.cube.top}/>
+        <div className="side bottom" style={theme.cube.bottom}/>
+        <div className="side back" style={theme.cube.back}/>
       </div>
     </div>
   );

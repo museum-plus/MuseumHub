@@ -494,7 +494,7 @@ function RecorridosItem(props) {
   const { theme, handleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="recorridos-screen__body__item" style={theme.border.border_alpha}>
+    <div className="recorridos-screen__body__item" style={theme.card}>
       <div className="recorridos-screen__body__row">
         <div className="recorridos-screen__body__row__icon">
           <PuntoColor color="#9F51DD" />
@@ -504,7 +504,7 @@ function RecorridosItem(props) {
       <div className="recorridos-screen__body__row2">
         <div
           className="recorridos-screen__body__row2__button"
-          style={theme.border}
+          style={theme.btn}
           onClick={() => {
             openAsignar(id);
           }}
