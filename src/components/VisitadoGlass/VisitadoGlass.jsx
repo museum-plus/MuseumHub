@@ -25,7 +25,6 @@ export default function VisitadoGlass() {
     let allRecorridos = await getRecorridos();
     allRecorridos.map((recorrido) => {
       const turnos = recorrido.turnos
-      console.log(recorrido);
       if (turnos.length > mayor) {
         setMayor(turnos.length)
         setMayorR(recorrido.nombre)
