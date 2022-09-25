@@ -12,8 +12,6 @@ import ThemeContext from '../../context/theme-context';
 import PuntoColor from '../../assets/PuntoColor';
 export default function BeepconsGlassItem(props) {
   const { nombre, descripcion, posicion, id } = props.package;
-  const [punto, setPunto] = useState(props.nombre);
-  const [desc, setDesc] = useState(props.descripcion);
   const [showInput, setShowInput] = useState(false);
   const [showInputTitle, setShowInputTitle] = useState(false);
   const [userInput, setUserInput] = useState({
@@ -27,7 +25,7 @@ export default function BeepconsGlassItem(props) {
   });
   const sendEditedValues = async () => {
     try {
-      console.log(doc(db, "beepcons", id));
+      // console.log(doc(db, "beepcons", id));
       await updateDoc(doc(db, "beepcons", id), {
         nombre: userInput.nombre,
         descripcion: userInput.descripcion,
@@ -40,7 +38,6 @@ export default function BeepconsGlassItem(props) {
   };
 
   const { theme, handleTheme } = useContext(ThemeContext);
-
   return (
     <div className='beepcons-glass__body__content__item'>
       <motion.div
@@ -50,7 +47,7 @@ export default function BeepconsGlassItem(props) {
         onHoverEnd={e => { }}
       >
         <div className='beepcons-glass__body__content__item__header__icon'>
-          <PuntoColor color={"#e1b74a"}></PuntoColor>
+          <PuntoColor color={theme.punto.color}></PuntoColor>
         </div>
         {/* <div className='beepcons-glass__body__content__item__header__titulo'> */}
         <BeepconsItemInfo

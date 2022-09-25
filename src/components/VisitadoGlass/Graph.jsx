@@ -9,7 +9,7 @@ import ThemeContext from '../../context/theme-context';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Graph(props) {
-
+    const { theme, handleTheme } = useContext(ThemeContext);
     const data = {
         labels: false,
         datasets: [
@@ -17,9 +17,9 @@ export default function Graph(props) {
                 label: false,
                 data: [props.data.menor,props.data.medio,props.data.mayor ],
                 backgroundColor: [
-                    'rgba(255, 255, 255, 0.55)',
-                    'rgba(255, 255, 255, 0.55)',
-                    'rgba(214, 152, 0, 1)',
+                    theme.graph.menor.background,
+                    theme.graph.medio.background,
+                    theme.graph.mayor.background,
                 ],
                 borderColor: [
                     'rgba(255, 255, 255, 1)',
@@ -35,7 +35,7 @@ export default function Graph(props) {
             duration: 1500,
         },
         responsive: 'true',
-        cutout: 70
+        cutout: 65
     }
     return <Doughnut data={data} options={options} />;
 }
