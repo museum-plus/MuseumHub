@@ -4,6 +4,8 @@ import ThemeContext from '../../context/theme-context';
 import { db } from '../../database/db';
 import { collection, doc, onSnapshot, } from "firebase/firestore";
 import { motion } from 'framer-motion';
+import PuntoColor from '../../assets/PuntoColor';
+import RecorridosIconsNew from '../../assets/RecorridosIconsNew';
 
 
 export default function CounterGlass() {
@@ -56,7 +58,10 @@ function BeepconsItem({ theme, counter }) {
                 ease: [0, 0.71, 0.2, 1.01]
             }}
         >
-            <div className='counter-glass__item__title'>Beepcons</div>
+            <div className='counter-glass__item__icon'>
+                <PuntoColor color={theme.fondo.color} />
+            </div>
+            <div className='counter-glass__item__title'>Beepcons </div>
             <div className='counter-glass__item__value'>{counter.beepcons}</div>
         </motion.div>
     )
@@ -73,7 +78,10 @@ function RecorridosItem({ theme, counter }) {
                 ease: [0, 0.71, 0.2, 1.01]
             }}
         >
-            <div className='counter-glass__item__title'>Recorridos</div>
+            <div className='counter-glass__item__icon'>
+                <RecorridosIconsNew />
+            </div>
+            <div className='counter-glass__item__title'>Recorridos </div>
             <div className='counter-glass__item__value'>{counter.recorridos}</div>
         </motion.div>
     )

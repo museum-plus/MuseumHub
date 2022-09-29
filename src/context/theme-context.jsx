@@ -2,6 +2,16 @@ import React, { createContext } from "react";
 
 const themes = {
     dark: {
+        iconCreate: {
+            color: "#fff",
+        },
+        iconDelete:{
+            color: "#fff"
+        },
+        iconUpdate:{
+            color: "#fff"
+        },
+        nombre: "Claymorphism",
         fondo: {
             color: '#fff',
         },
@@ -43,7 +53,7 @@ const themes = {
             color: '#fff',
             borderBottom: "1px solid #fff"
         },
-        card:{
+        card: {
             border: "1px solid rgba(255, 255, 255, 0.19)"
         },
         punto: {
@@ -85,6 +95,17 @@ const themes = {
         }
     },
     light: {
+        iconCreate: {
+            color: "#4edf20",
+        },
+        iconDelete:{
+            color: "#E61720"
+        },
+        iconUpdate:{
+            // color: "#341481"
+            color:"#0099ff",
+        },
+        nombre: "Glassmorphism",
         fondo: {
             textShadow: '1px 2px 3px rgba(0,0,0,0.5)',
             // background: 'rgb(255,249,230)',
@@ -92,18 +113,18 @@ const themes = {
             color: '#000000af',
         },
         glass: {
-            color:'#1B1A1A',
+            color: '#1B1A1A',
             backdropFilter: 'blur(2px)',
             backgroundColor: 'rgba(255, 255, 255, 1)',
             borderRadius: '29px',
             boxShadow: '35px 35px 68px 0px rgba(65, 141, 244, 0.5), inset -9px -9px 16px 0px rgba(65, 141, 244, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255)',
-            border:'0px',
+            border: '0px',
         },
         glass_navigation: {
             backdropFilter: 'blur(2px)',
             backgroundColor: 'rgba(255, 255, 255, 1)',
             boxShadow: '35px 35px 68px 0px rgba(65, 141, 244, 0.5), inset -9px -9px 16px 0px rgba(65, 141, 244, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255)',
-            border:'0px',
+            border: '0px',
         },
         subtitle: {
             textShadow: '0',
@@ -130,7 +151,7 @@ const themes = {
             textShadow: '3px 3px 4px rgba(0,0,0,0.6)',
             borderRadius: '20px',
             boxShadow: '35px 35px 68px 0px rgba(65, 141, 244, 0.5), inset -9px -9px 16px 0px rgba(65, 141, 244, 0.6), inset 0px 2px 4px 0px rgb(255, 255, 255)',
-            border:'0px',
+            border: '0px',
             background: 'linear-gradient(#69cdfd,#45a5fc)'
         },
         input: {
@@ -139,15 +160,15 @@ const themes = {
             borderBottom: "1px solid #000"
         },
         punto: {
-            color: '#4edf20',
+            color: '#5933F8',
         },
-        card:{
-            background:'#f1f7ff'
+        card: {
+            background: '#f1f7ff'
         },
         graph: {
             mayor: {
                 background: '#6CC5EBff',
-                color:'#6CC5EB'
+                color: '#6CC5EB'
             },
             medio: {
                 background: '#682f5dbf',
@@ -160,27 +181,24 @@ const themes = {
         },
         cube: {
             front: {
-                background: 'linear-gradient(#69cdfd,#45a5fc)'
+                background: '#974298'
             },
             right: {
-                background: 'linear-gradient(90deg, rgba(252,69,242,1) 0%, rgba(69,248,252,1) 100%)'
+                background: '#D69800'
             },
             back: {
-                background: 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%)'
+                background: '#E61720'
             },
             left: {
-                background: 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%)'
+                background: '#64AABD'
             },
             top: {
-                background: 'linear-gradient(90deg, rgba(58,180,179,1) 0%, rgba(252,69,242,1) 100%)'
+                background: '#0099ff'
             },
             bottom: {
-                background:'linear-gradient(#d4f070,#52de47)'
+                background: '#22cc88'
             }
         },
-        hola:{
-            hola:'3D'
-        }
     }
 };
 const ThemeContext = createContext();

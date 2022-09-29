@@ -9,7 +9,7 @@ function Position(props) {
   const styles = {primary: { color: props.color }}
   return (
     <div className='visitado-glass__body__content__text' style={styles.primary}>
-      {props.nombre} {props.cantidad != 0 ? (" - "+props.cantidad) : (<></>)}
+      {props.cantidad != 0 ? (props.nombre+" - "+props.cantidad) : (<></>)}
     </div>
   )
 }
@@ -24,15 +24,17 @@ export default function VisitadoGlass() {
   const getComparacion = async () => {
     let allRecorridos = await getRecorridos();
     allRecorridos.map((recorrido) => {
+      console.log(allRecorridos)
       const turnos = recorrido.turnos
       if (turnos.length > mayor) {
-        setMayor(turnos.length)
+        setMayor(turnos.length) 
         setMayorR(recorrido.nombre)
-      } else if (turnos.length >= medio && turnos.length < mayor) {
+      } else if (turnos.length >= medio && turnos.length <= mayor) {
+        console.log(turnos,"medio")
         setMedio(turnos.length)
         setMedioR(recorrido.nombre)
       } else 
-      if (turnos.length < medio) {
+      if (turnos.length < medio || turnos.length == 0) {
         setMenor(turnos.length)
         setMenorR(recorrido.nombre)
       }
@@ -40,7 +42,7 @@ export default function VisitadoGlass() {
   }
 React.useEffect(() => {
   getComparacion();
-}, [mayor,medio,menor]);
+}, [mayor,medio]);
 return (
   <motion.div className='visitado-glass__container'
     style={theme.glass}

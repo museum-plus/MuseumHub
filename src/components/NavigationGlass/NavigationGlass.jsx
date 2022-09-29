@@ -118,7 +118,7 @@ export default function NavigationGlass() {
             <div className="navigation-glass__item__text">Turnos</div>
           </div>
         </Link>
-        <button onClick={handleTheme}>holaaaaaaa</button>
+        <button style={theme.btn} className='btn-boton' onClick={handleTheme}>{theme.nombre}</button>
       </div>
     </div>
   );

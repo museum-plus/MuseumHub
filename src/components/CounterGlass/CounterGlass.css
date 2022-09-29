@@ -4,7 +4,21 @@
     gap: 55px;
 }
 
+.counter-glass__item__icon{
+    padding: 9px 13px 0 0px;
+}
+
+.counter-glass__item__title{
+    padding-top: 9px;
+}
+
+.counter-glass__item__value{
+    padding: 9px 0 0 25px;
+}
+
 .counter-glass__item{
     flex: 1;
     padding: 35px;
+    display: flex;
+    font-size: 30px;
 }
