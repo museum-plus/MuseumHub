@@ -29,7 +29,7 @@ export default function VisitadoGlass() {
       if (turnos.length > mayor) {
         setMayor(turnos.length) 
         setMayorR(recorrido.nombre)
-      } else if (turnos.length >= medio && turnos.length <= mayor) {
+      } else if (turnos.length > medio && turnos.length < mayor) {
         console.log(turnos,"medio")
         setMedio(turnos.length)
         setMedioR(recorrido.nombre)
